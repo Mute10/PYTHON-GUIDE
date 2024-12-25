@@ -1,4 +1,3 @@
-
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -11,14 +10,8 @@ class Policy(nn.Module):
   def __init__(self):
     super(Policy, self).__init__()
     self.affine1 = nn.Linear(4, 128)
-
-    # actor's layer
     self.action_head = nn.Linear(128, 2)
-
-    # critic's layer
     self.value_head = nn.Linear(128, 1)
-
-    # action & reward buffer
     self.saved_actions = []
     self.rewards = []
 
@@ -27,10 +20,8 @@ optimizer = optim.Adam(model.parameters(), lr=3e-2)
 def select_action(state):
   state = torch.from_numpy(state).float()
   probs, state_value = model(state)
-
-  # create a categorical distribution over the list of probabilities of actions
+# create a categorical distribution over the list of probabilities of actions
   m = Categorical(probs)
-
 
 
 def newMachine(numbers, letters):
@@ -53,10 +44,8 @@ def newMachine(numbers, letters):
    print("This device is the perfect version of a", paper)
   else:
    print("null") 
-
 newMachine(177, "PC")
-
-  #$$$$$$$$$$$$$$
+#-----------------
 
 def Hawaii(oahu, maui):
  honolulu = {"Kapolei": "Spam",
@@ -68,8 +57,7 @@ def Hawaii(oahu, maui):
  #for hono in honolulu.keys() .keys() doesn't take any arguments. also prints the entire dict 5 times
  print(honolulu["Waimanalo Beach"])
 Hawaii("oahu", "maui")
-
-  #$$$$$$$$$$$$$$
+#--------------
 
 def dimensions(theory, practice):
      day1 = 71
@@ -95,8 +83,7 @@ def bigVirus(numbers, strings):
   print(sorted(defrag)) #or you can use defrag.sort()
   print(defrag[10])
 bigVirus(121, "this")
-
-#$$$$$$$$$$$$$$$$$$$
+#--------------
 
 def Japan(tokyo, kyoto):
   shinto = {
@@ -109,8 +96,7 @@ def Japan(tokyo, kyoto):
   for key in shinto: #because there's 5 keys it prints 5 times. So don't target a specific value unless needed
     print(shinto[key]) #using print(key) just prings out all the names of the keys. shinto[key] prints out all the values
 Japan('Tokyo', 'Kyoto')
-
-#$$$$$$$$$$$$$$$$$$$$$$$
+#-------------
 
 def carShield(toyota, honda):
   prototype = [7, 77, 55, 18, 94, 43, 20, 20, 33, 37, 8, 87, 50, 97]
@@ -122,8 +108,7 @@ def carShield(toyota, honda):
   print(prototype) #why does print proto return 97? because is returns the last iteration
   print(new_prototype)
 carShield(11, 12)
- 
- #$$$$$$$$$$$$$$$$$
+ #--------------
 
 def aeroProject(stellar, power):
  bluePrints = 200
@@ -151,8 +136,7 @@ def aeroProject(stellar, power):
  else:
   print('null')
 aeroProject(77.01, 500)
-
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#-------------
 
 janToJunRain = 1.93 + 0.17 + 3.53 + 3.04 + 3.90 + 4.40
 annualRain = janToJunRain
@@ -161,19 +145,18 @@ annualRain += july #concatenation
 augToDec = 2.0 + 4.00 + 1.90 + 3.4 + 2.17
 annualRain += augToDec
 print(annualRain)
+#------------
 
 haiku = """ At the old pond,
 a frog jumped out of the water:
 It's now on a lilypad."""  #multiline string
-
-#$$$$$$$$$$
+#---------
 
 #string formatting, when % formatting the values need to be in a tuple ()
 string1 = "block"
 string2 = 3.0
 print("the value of %s is around %s" % (string1, str(string2)))
-
-#$$$$$$$$$$$$
+#----------
 
 def knight(swordDmg, knightHP):
   spellBook = None
@@ -201,8 +184,7 @@ def knight(swordDmg, knightHP):
       print('Your wallet is looking good.')
 knight(28, 150)
 #lesson learned: AVOID DEEP NESTING, meaning make sure all if and elif and else statements are linear
-
-#$$$$$$$$$$$$
+#--------
 
 def cycloneRadius(big, small): #something's wrong with this one
   tornado = "Joe"
@@ -214,8 +196,7 @@ def cycloneRadius(big, small): #something's wrong with this one
   new_tornado = int(tornado)
   print("I got blown away by a " + new_data + " a month ago." + new_tornado + "was it's name.") 
 cycloneRadius(1000, 20000)
-
-#$$$$$$$$$$$$$
+#----------
 
 puffin = "Icelandic bird"
 print(len(puffin))
@@ -255,4 +236,6 @@ def blastFurnace(controlSystem, centralUnit): #let's focus on lists, control flo
 blastFurnace("Control System", "Central Unit")
 
 #now focus on max(), min() abs(), for loops and dictionaries
+
+
 
