@@ -235,7 +235,6 @@ def blastFurnace(controlSystem, centralUnit): #let's focus on lists, control flo
   print(conveyor)
 blastFurnace("Control System", "Central Unit")
 
-#now focus on max(), min() abs(), for loops and dictionaries
 #now focus for loops and dictionaries
 #stoppinsg point
 def kitchen(fridge, myFreezer):
@@ -272,5 +271,3 @@ def mathProblems(low, high): #python can't preform arithmitic operations between
   print(low * high) #2178
   print(abs(prob3)) #instead of -900 you get 900
 mathProblems(33, 66)
-
-
