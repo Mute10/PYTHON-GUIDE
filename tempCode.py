@@ -270,4 +270,23 @@ def mathProblems(low, high): #python can't preform arithmitic operations between
   print(min(prob2))   #and the minimum about in prob2 is 15
   print(low * high) #2178
   print(abs(prob3)) #instead of -900 you get 900
-mathProblems(33, 66)
+mathProblems(33, 66
+
+#________________
+def math(multiplication, division):
+ numbers = [75, 77, 777, 54, 32, 21, 10, 5, 22, 404, 33, 47, 48, 88, 509]
+ numbers.remove(5) #remove acts as a filter and can only remove the element in it parentheses
+ oddNums = [3, 7, 9, 11, 13, 15, 17, 21, 23, 25, 27, 29, 31]
+ del oddNums[3] #removes the desired index, so 11 is deleted
+ evenNums = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26 , 28, 30]
+ del evenNums[1:7] #removes index 1-6 index 7 (16) is still in the list. This is like a slice method
+  # the first index is deleted up to the 2nd index which isn't deleted, only before it.
+ thisVarIsBad = 0
+ del thisVarIsBad #deletes an entire variable
+ squares = 4
+ circles = 5
+ rectangle = 7
+ pentagon = 6
+ area = max(squares, circles) #circles is the winner
+ area2 = min(rectangle, pentagon) #pentagon has the most minimum number
+math(22, 0)             
