@@ -236,6 +236,41 @@ def blastFurnace(controlSystem, centralUnit): #let's focus on lists, control flo
 blastFurnace("Control System", "Central Unit")
 
 #now focus on max(), min() abs(), for loops and dictionaries
+#now focus for loops and dictionaries
+#stoppinsg point
+def kitchen(fridge, myFreezer):
+   fridges = {
+    "Cheese Drawer": ["pepper jack cheese", "jalapenos", "ham", 'string cheese', 'hot sauce'],
+     "Main Shelf": ["milk", 'juice', 'eggs', 'beef', 'grapefruit', 'chinese food', 'green peppers'],
+     "Bottom Shelf": ['celery', 'bread', 'tomatoes', 'lemon', 'lime', 'beer', 'condiments', 'leftovers']
+  }
+   for key in fridges:
+    print(fridges[key])
 
+    freezers = {
+    "Top Shelf": ["Bacon", "Icecream", "hot pockets", 'waffles', 'whiskey', 'white castle', 'popsicles', 'TV Dinner']
+  }
+   for key in freezers:
+    print(freezers[key])
+
+   iceCubes = 50
+   iceCubeTrays = 4
+   glasses = 10
+   cups = 30
+   everything = iceCubes / iceCubeTrays + glasses * cups
+   print((iceCubes / iceCubeTrays) + glasses - cups) #-7.5
+   print(everything + everything) #105.0/625.0  when I change glasses + cups to glasses * cups
+kitchen("fridges", "freezer")
+#--------------
+
+def mathProblems(low, high): #python can't preform arithmitic operations between an int and a list
+  prob = [7, 14, 21]
+  prob2 = [15, 30, 45]
+  prob3 = -900
+  print(max(prob)) #max/min takes 2 or more arguments. since prob has a list of 3 ints, it targets the max int which is 21
+  print(min(prob2))   #and the minimum about in prob2 is 15
+  print(low * high) #2178
+  print(abs(prob3)) #instead of -900 you get 900
+mathProblems(33, 66)
 
 
