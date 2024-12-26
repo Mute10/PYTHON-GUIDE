@@ -289,4 +289,81 @@ def math(multiplication, division):
  pentagon = 6
  area = max(squares, circles) #circles is the winner
  area2 = min(rectangle, pentagon) #pentagon has the most minimum number
-math(22, 0)             
+math(22, 0)
+
+#Control flow
+def planet(Saturn, Mars):
+  timeFlow = 1
+  timeStop = 3**4
+  result = 0
+  for s in Saturn:
+   for m in Mars:
+    if s >= 0 and m >= 0:
+     timeFlow += 1
+     result += 2
+     return timeStop + timeFlow + result + 1 #81 + 2 + 2 + 1 = 86
+   else:                            #since the first values in Saturn and Mars are greater than 0 the return statement
+     return result + 1              # activates on the first iteration
+print(planet([1, 75, 44, 0], [4, 4, 5, 0, 9]))
+
+def planet2(Saturn, Mars):
+  timeFlow = 1  #initialization
+  timeStop = 3**4
+  result = 0
+  for s in Saturn: #all values are interated #outer loop
+   for m in Mars: #then all of mars values are #inner loop this goes first.
+    if s >= 0 and m >= 0: #does this each iteration of m then s.
+     timeFlow += 1
+     result += 2
+     timeStop + timeFlow * result * 3 #has no effect
+   else:                            
+     continue
+  return timeStop + timeFlow + result * 4  #so timeStop is 81, timeflow becomes 21 and result becomes 40 multiply is by 4 and you get 262           
+print(planet2([1, 75, 44, 0], [4, 4, 5, 0, 9]))
+#lesson learned: always concatenate in for loops to make proper updates
+
+def negative(surface, gravity):
+  depth = 100
+  space = 9
+  result = 0
+  magnify = depth + space + result #100 + 9 + 0 =109
+  for s in surface:
+    for g in gravity: #No updates for s since all are positive numbers
+      if s < 0 or g < 0: #it's not until the second value in g until there's an update
+        depth -= 200     #when true, depth - 200, space 9 + 99, and result -100
+        space += 99       #magnify does the following: 109 + (109 - (-100) - 108 - (-100) * 2)
+        result -= 100      #simplified: magnify = 109 + (109 + 100 -108 + 200). magnify = 109 + 301 = 410
+        magnify += magnify - depth - space - result * 2 #the key formula  for magnify causes exponential growth due to the recursive
+      else:                                        # magnify += magnify structure
+        continue
+  return result - magnify  #-631,238,239. without magnify is #16861
+print(negative([22, 22, 22, 29, 22], [11, -11, -22, -33, -44])) 
+#final calculation:after the variables have updated many times
+#if result has decreased significantly and magnify has grown exponentially, their difference results
+#in a exceptionally large negative value
+
+def solarSystem(Sun, Moon):
+  cloud = 3   #at first my result was 0 due to improper concatenations, changed result + to result += 
+  rain = 4    
+  snow = 5    
+  season = cloud + rain + snow
+  result = 0
+  for s in Sun:
+    for m in Moon:
+      if s >= 0 or m >= 0:
+       season += season 
+       result += 33 #here's the problem. by changing result += season *3 to result += 33 I went from 77,309,411,256 to 990
+      elif s < 0 or m < 0:
+       cloud -=8
+       rain -= 9
+       snow -= 4 
+       result += cloud + rain + snow * 5
+       season += season + 3
+      else: 
+       season += result + season
+       result += 8 
+       continue
+  return result 
+print(solarSystem([-50, -25, -1, 0, 72], [10.45, 1.90, 23.9,0, 9.0, 44.67]))
+#lesson learned: There's almost no need to perform astronomical calculations for every day life
+#turn down the coefficience during initialization phase...
