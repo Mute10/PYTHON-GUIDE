@@ -54,8 +54,8 @@ def Hawaii(oahu, maui):
      "Royal Kuna": "forgotten land",
      "Laie": "apples"
               }
- #for hono in honolulu.keys() .keys() doesn't take any arguments. also prints the entire dict 5 times
- print(honolulu["Waimanalo Beach"])
+ for h in honolulu:
+  print(honolulu[h]) #pints out all key values
 Hawaii("oahu", "maui")
 #--------------
 
@@ -202,6 +202,8 @@ puffin = "Icelandic bird"
 print(len(puffin))
 print(puffin[9]) #space
 
+#_________________________
+
 def blastFurnace(controlSystem, centralUnit): #let's focus on lists, control flow, and booleans
   controlSystem = ["temperature sensor", 'pressure sensor', 'level', 'gas analysis']
   centralUnit = ['Shell', "Cooling staves", "Cooling system", 'Refactory Lining', "Charging device", "Hot blast feeding system"]
@@ -210,7 +212,6 @@ def blastFurnace(controlSystem, centralUnit): #let's focus on lists, control flo
   BFG_Gas_Cleaning_Plant = controlSystem + centralUnit + castHouse 
   conicalBells = 2
   airlockTypeHoppers = 3
-
   if len(controlSystem) < len(centralUnit):
     print("The Control System has fewer compnents than the Central Unit.")
   else: 
@@ -232,11 +233,11 @@ def blastFurnace(controlSystem, centralUnit): #let's focus on lists, control flo
   else:
     print(False)
   conveyor = conicalBells**4  #2 x 2 x 2 x 2 (number, ** how many times to multiply it by itself)
-  print(conveyor)
+  print(conveyor) #16
 blastFurnace("Control System", "Central Unit")
 
 #now focus for loops and dictionaries
-#stoppinsg point
+#stopping point
 def kitchen(fridge, myFreezer):
    fridges = {
     "Cheese Drawer": ["pepper jack cheese", "jalapenos", "ham", 'string cheese', 'hot sauce'],
@@ -269,10 +270,10 @@ def mathProblems(low, high): #python can't preform arithmitic operations between
   print(max(prob)) #max/min takes 2 or more arguments. since prob has a list of 3 ints, it targets the max int which is 21
   print(min(prob2))   #and the minimum about in prob2 is 15
   print(low * high) #2178
-  print(abs(prob3)) #instead of -900 you get 900
-mathProblems(33, 66
+  print(abs(prob3)) #instead of -900 you get 900.I'm guessing it would remove a decimal point too
+mathProblems(33, 66)
 
-#________________
+#________________ https://github.com/Mute10?tab=repositories
 def math(multiplication, division):
  numbers = [75, 77, 777, 54, 32, 21, 10, 5, 22, 404, 33, 47, 48, 88, 509]
  numbers.remove(5) #remove acts as a filter and can only remove the element in it parentheses
@@ -343,7 +344,7 @@ print(negative([22, 22, 22, 29, 22], [11, -11, -22, -33, -44]))
 #in a exceptionally large negative value
 
 def solarSystem(Sun, Moon):
-  cloud = 3   #at first my result was 0 due to improper concatenations, changed result + to result += 
+  cloud = 3   
   rain = 4    
   snow = 5    
   season = cloud + rain + snow
@@ -352,18 +353,67 @@ def solarSystem(Sun, Moon):
     for m in Moon:
       if s >= 0 or m >= 0:
        season += season 
-       result += 33 #here's the problem. by changing result += season *3 to result += 33 I went from 77,309,411,256 to 990
+       result += 33 
+       print(result + season) #this condition is true: 57, 114, 195, 324
       elif s < 0 or m < 0:
        cloud -=8
        rain -= 9
        snow -= 4 
        result += cloud + rain + snow * 5
        season += season + 3
+       print(result * result)
       else: 
-       season += result + season
+       season += season * 8 #while this condition is False, it still glides down to continue
        result += 8 
        continue
-  return result 
-print(solarSystem([-50, -25, -1, 0, 72], [10.45, 1.90, 23.9,0, 9.0, 44.67]))
-#lesson learned: There's almost no need to perform astronomical calculations for every day life
-#turn down the coefficience during initialization phase...
+      #print(result, "XYZ")
+  return result #this return statement is reached (132)
+print(solarSystem([-50, -25], [10.45, 1.90]))
+#lesson learned: turn down the coefficience during initialization phase...
+
+
+def motorcycle2(power, fuel): #my greatest challenge yet...It was printing the same number 30 times followed by a printed None.
+  fineTuning = 3              #to Solve this I simply added some return statements. Empty return statements return None.
+  dynoTuning = 78.78          # and maybe don't make the function parameters have so many list items.
+  flashTuning = -40.0
+  minorAdjustments = 12**3
+  finalTune = fineTuning + dynoTuning + flashTuning + minorAdjustments 
+  result = 0
+  for p in power:
+   for f in fuel:
+    if p <= fineTuning and f <= fineTuning: 
+     fineTuning += 7
+     dynoTuning += 9
+     flashTuning -= 140
+     result += 1
+     print(fineTuning * dynoTuning * flashTuning)
+    elif minorAdjustments <= finalTune:
+     minorAdjustments -= 100
+     print(finalTune * fineTuning) # this codition is true, 5,309.34 is the answer, but where is None being printed from?
+     return result + 2
+    else: 
+     print("No solution found")
+print(motorcycle2([2200, 2200, 2000, 1000, 10], [130, 140, -200, 300, 30, 9]))
+
+#______________
+def windRatio(high):
+  storm = 50
+  hurricane = 20
+  tornado = 2
+  result = 0
+  for h in high:
+    if storm <= h:
+      storm -= 10
+      result +1
+      print(storm * storm) #1600
+      return storm
+    elif hurricane > tornado:
+      hurricane *= 16
+      tornado += 1
+      result += 2
+      print(hurricane) #320 prints then 5120?
+  else: 
+      result += 11
+      print(result + result)
+      return result
+windRatio([2, 3, 55, 5, 9, 0, 22, 1])
