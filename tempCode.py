@@ -415,5 +415,133 @@ def windRatio(high):
   else: 
       result += 11
       print(result + result)
-      return result
-windRatio([2, 3, 55, 5, 9, 0, 22, 1])
+      return result # the purpose of a return statement is to stop iteration once certain conditions are met
+windRatio([2, 3, 55, 5, 9, 0, 22, 1])   #without return, the for loop would iterate over ever value in the function parameters.
+
+#___________________
+
+
+def greenTeaBags(dozen, gross):
+  organic = 144
+  grey = 50
+  hamilton = 100
+  result = 0
+  for d in dozen:
+   for g in gross:
+    if organic != grey or organic != hamilton:
+     organic += 9
+     grey += 90
+     hamilton += 3
+     print(organic)
+     return result + 8 # so confusing like  nothing gets returned without a print statement to the terminal
+    elif grey < hamilton:   #lesson learned: print and return go hand in hand for debugging
+     grey += 100
+     result += 2 * 3**4
+     print(result)
+     continue
+  return "No Solution Found"
+print(greenTeaBags([12, 12, 12], [144, 144, 109]))
+
+
+
+#call functions inside functions and use del, .pop(), and .remove()
+def oilNeeded(twoGallons): #how can i add this function to airPlane?
+  total = twoGallons * 4
+  return total
+
+
+def airPlane(engine, landing):
+  securityCheck = "Inspection Passed"
+  electronics = ["Not Allowed", "Razor", "cellphone", "smartwatch"]
+  supplies = oilNeeded(2) # 2 gallons x 4 is 8
+  print(supplies)
+  result = 0
+  for e in engine:
+    for l in landing:
+      if securityCheck != electronics:
+        result += 1
+        del securityCheck
+        electronics.pop(0)
+        print(electronics)
+      else:
+       continue
+      print("The plane is good to go")
+      return result 
+airPlane([2, 2, 3], [ 4, 4, 4])
+
+#____________________
+def nintendo(console, controller):
+   donkey = {"name": "Donkey Kong",
+  "strength": "185", 
+  "HP": "2000",
+  "defense": "110", 
+  "weapon": "coconuts"
+  }
+   mario = {"name": "Mario",
+  "strength": "145", 
+  "HP": "1300",
+  "defense": "70", 
+  "weapon": "Fire Flower"
+  }
+   luigi = {"name": "Luigi",
+  "strength": "138", 
+  "HP": "1300",
+  "defense": "65", 
+  "weapon": "Vacuum"
+  }
+   bowser = {"name": "Bowser",
+  "strength": "200", 
+  "HP": "1800",
+  "defense": "90", 
+  "weapon": "Fire Balls"
+  }
+   for key in bowser:
+    print(bowser["strength"])
+    print(key[2]) #targets the m in name
+    return bowser # this allows me to print his strength (200) once instead of many keys a dictionary has
+
+nintendo([22, 33, 44], [1, 2, 3])
+
+
+#🦈🐋🐳🐬🐟 
+
+
+def atlantic(marine, submarine):
+  marine[1] = marine[1] + 13
+  lobster[1] = lobster[1] + 9
+  return marine + lobster
+jellyfish = [4, 8, 12]
+lobster = [6, 9]
+print(atlantic(jellyfish, lobster)) #[4, 21, 12, 6 , 18]
+
+#BЯΣΛKIПG BΣПJΛMIП
+
+now = "I Don't want to save the"
+later = "..."
+def benjamin(liquid, metal):
+  return liquid[3] + metal[0]
+def broken(fuse, world):
+   return fuse + ' world!'
+print(benjamin([1, 2, 3, 11, 22, 33], [80, 80, 33, 22, 101]))  #91
+print(broken(now, later))    
+
+############
+
+def computer(microsoft, sony):
+  result = 0
+  bridge = [-22, -9, 247]
+  betaTest = microsoft + sony
+  alphaTest = microsoft + bridge
+  for m in range(0, len(microsoft)):
+    if betaTest >= alphaTest: #this is the result I was looking for. range counts from index 0 up to the length of microsoft
+      result += 1
+      print(m)
+    else: 
+      microsoft.sort()
+      print(microsoft)
+      return result 
+computer([300, 111, 34, 66, 230, 1], [21, 221, 421, 55, 190])
+
+################
+#for i of list
+
