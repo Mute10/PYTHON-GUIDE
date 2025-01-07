@@ -1,7 +1,9 @@
+import copy
 import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.distributions import Categorical
+from random import randint
 
 class Policy(nn.Module):
   """
@@ -433,7 +435,7 @@ def greenTeaBags(dozen, gross):
      grey += 90
      hamilton += 3
      print(organic)
-     return result + 8 # so confusing like  nothing gets returned without a print statement to the terminal
+     return result + 8 
     elif grey < hamilton:   #lesson learned: print and return go hand in hand for debugging
      grey += 100
      result += 2 * 3**4
@@ -495,11 +497,12 @@ def nintendo(console, controller):
   "defense": "90", 
   "weapon": "Fire Balls"
   }
+   for key in luigi:
+    print (key, luigi[key]) #prints the key an value name
    for key in bowser:
     print(bowser["strength"])
     print(key[2]) #targets the m in name
     return bowser # this allows me to print his strength (200) once instead of many keys a dictionary has
-
 nintendo([22, 33, 44], [1, 2, 3])
 
 
@@ -542,6 +545,226 @@ def computer(microsoft, sony):
       return result 
 computer([300, 111, 34, 66, 230, 1], [21, 221, 421, 55, 190])
 
-################
-#for i of list
+#Ég mun flytja fjöll
 
+def robotics(arx, dro):
+    mainframe = 77
+    powerCord = -1
+    memory = 300
+    result = 0
+    other = mainframe + powerCord * memory #77 + (-1) * 300 = 77 - 300 = -223
+    for a in list(arx):
+     for d in list(dro):
+      if mainframe > powerCord: 
+        other += 2
+        result += 1
+        print(mainframe * other)  #other starts at -223 and gets incremented by 2
+      else: 
+        return result 
+      if powerCord < memory:
+        other *= 2
+        result += 1
+        print(memory * memory) #90000
+        return result
+      else: 
+        print(2**8)
+        return result
+print(robotics([11, 276, 343, 11, 22], [90, 0, 878, 33, 5]))
+#одиссея
+
+
+def knightsArmor(cloud, meteor):
+  spellCircle = 'Bind '
+  shadow = 'Night '
+  pyro = "Engineering is a way of life"
+  count = 0
+  while cloud < meteor:
+    print(meteor**6) #64
+    count += 2
+    break
+  else: 
+    print(meteor)
+     
+  for sp in spellCircle:
+    print(sp) 
+  for s in shadow:
+     print (s)
+  for char in pyro: 
+    if char == 'a':
+      print("0"), # the variables spellCircle, shadow, and pyro vertically
+    else: 
+      print (char),
+print
+knightsArmor(1, 2)
+#исход
+
+
+def odyssey(iceland, norway):
+  exodus = "There will be an exodus..."
+  spaceCraft = "Size. "
+  forest = [11, 22, 33, 44, 455, 455, 959, 43, 1221, 33,700]
+  jungle = [232, 242, 252, 262, 272, 282, 292, 200]
+  hills = 8.2
+  crator = 10.999
+  caveSystem = 100
+  oceanDepth = -100000
+  result = 17
+  theoryOfEverything = hills + crator + caveSystem + oceanDepth
+  count = 1
+  world = {
+    "country": "Europe",
+    "area": "30",
+    "capital": "Paris",
+    "tourism": "poetry"
+  }
+  for key in world:
+    print(key, world[key])
+  universe = {
+    "size": "lightyears",
+    "object": "moon",
+    "rock": "neptune",
+    "void": "black hole"
+  }
+  for key in universe:
+    print(key[1]) #iboo
+    print(universe, key[2]) #prints the dictionary 4 times + z, j, c, i
+    print(universe["void"]) # black hole
+
+  for e in exodus:
+    if spaceCraft <= exodus:
+     spaceCraft += exodus
+     print(spaceCraft)
+    else: 
+     print(exodus)
+    break
+     
+  
+  for f in forest:
+    if forest <= jungle:
+     jungle.append(4444)
+     forest.pop(3) #continues to pop 3rd index until 11, 22, 33 are left
+     print([forest] + [jungle])
+    else: 
+      return forest
+
+  #not iterable means it can't be iterated over
+  if crator != hills:
+    hills += crator
+    print(hills, ", the crator is deep")
+  elif crator <= hills:
+    crator += hills
+    result += 1
+    print(crator + result)
+  else: 
+    return result 
+  print (result)
+
+  while caveSystem > oceanDepth:
+    caveSystem += theoryOfEverything
+    oceanDepth += caveSystem
+    count += 77
+    print(caveSystem) 
+    break
+  else: 
+    print(oceanDepth)
+odyssey(7, 777)
+#HORROR
+
+
+def figuration(power, cut):
+  pipes = [1, 2, 3]
+  radar = [33, 66, 77]
+  crystal = [9, 9, 9, 9, 19]
+  crypto =  [0, 88, 808, 313, 5]
+  shards = max(pipes + radar) #can't multiply lists. max will get the max number in both lists
+  glass = min(pipes + radar)
+  print(shards)
+  print(glass)
+  for p in power:
+   for c in cut:
+    if p == radar: #'<=' not supported between instances of 'int' and 'list' even when they're both lists 
+      radar.append(303)
+      pipes.append(909)
+      print(pipes)
+      del shards
+    elif c != radar:
+      radar.append(-303)
+      pipes.append(-909)
+      radar += pipes
+      print([pipes], radar)
+      break
+  else: 
+    print("what is this")
+  if crystal == crypto: 
+   print("time to leave")
+  else: 
+   print([crystal ]+ [crypto])
+figuration([111, 44, 3, 5, 88], [22, 23, 77, 8, 9])
+
+
+
+def park(thorgarth, crowley):
+ result = []
+ timber = [22, 9, 7, 44, 303]
+ shifts = "Any available park"
+ timber.sort()#sort ony works with numbers
+ alpine = 3**9
+ print(alpine)
+ thorgarth = thorgarth.lower()
+ shifts = shifts.lower()
+ for chr in shifts:
+   if chr in thorgarth:
+    result.append(True) 
+   else: 
+    result.append(False)
+ print(result)
+ return result #my guess is when the " is reached in thorgarth it ends the loop
+park("Anything", "parking lot")
+
+
+
+
+def numsss(num1, num2):
+  whatNum = 33.34
+  overNum = 9000
+  staticNum = [202.2, 205, 215, 222.2, 270, 275, 5, 6, 544, 33, 10.23]
+  frozenNum = [-112, 0, -222.3, 500, 900, 17, -17.777, 7, 5, -5, -50.003]
+  result = []
+  for st in range(0, len(staticNum)):
+    for fr in range(0, len(frozenNum)):
+      if staticNum in num1 or frozenNum in num1:
+        result.append(20999)
+        staticNum.append(11111)
+        frozenNum.append(-111111)
+        print(result + staticNum + frozenNum)
+        return result
+      else: 
+        staticNum.pop(1) #205 has been removed
+        result.append(-20999)
+        print("Hey", staticNum +  [result])
+        return result
+numsss([22, 220, 343, 590, 40], -1000)
+
+#range and continue
+def farm_house(crops, stable):
+  supplies = ["pitch fork", "tractor", "harvestor", "pig trough"]
+  acres = 77.03
+  result = [11, 22, 33, 4, 44, 55, 66, 77, 88, 99, 0]
+  for r in range(0, len(result), 2):#starting from index 0(11) I go up two indexes per interation until the end of the list
+    if result[r] % 11 ==0:
+     print(result[r])
+    else:
+     print(0.0, "lol")
+  for su in supplies:
+    if su == "":
+      continue
+    acres += acres * acres
+    print(su[9]) #k
+    print(acres)
+    return
+  else: 
+     print(0.0)
+farm_house(17, 17)
+
+#--------------
+#deep learning
