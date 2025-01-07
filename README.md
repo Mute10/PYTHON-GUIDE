@@ -1,1 +1,1 @@
-#random snippets
+#python snippets
