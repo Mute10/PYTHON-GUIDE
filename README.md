@@ -1,1 +1,1 @@
-#python snippets
+Snippets on how I mastered python basics
