@@ -5,7 +5,7 @@ import torch.optim as optim
 from torch.distributions import Categorical
 from random import randint
 
-class Policy(nn.Module):
+class Policy(nn.Module):#🥽🤿🔮🎷🎺🧪🧲📱🗾🌎❔Ⓜ™💬 🕒📶(⊙_⊙)💿📀🛸
   """
   implements both actor and critic in one model
   """
@@ -57,7 +57,7 @@ def Hawaii(oahu, maui):
      "Laie": "apples"
               }
  for h in honolulu:
-  print(honolulu[h]) #pints out all key values
+  print(honolulu[h]) #prints out all key values
 Hawaii("oahu", "maui")
 #--------------
 
@@ -66,23 +66,24 @@ def dimensions(theory, practice):
      day2 = 11
      day3 = 0
      if theory > practice:
-      day1 = float(88)
-      day2 = float(888)
-      day3 + 11
+      day1 += float(88)
+      day2 += float(888)
+      day3 += 11
      else:
-      day1 = float(-88)
-      day2 = float(-888)
-      day3 - 22
-      print((day3 + day1) - 8 * 189 / day2 + 1200 - 200)
+      day1 -= float(-88)
+      day2 -= float(-888)
+      day3 -= 22
+      print(day3 * day1 - (8 * 189) / day2 + 1200 - 2000)
 dimensions(300, 400)
 #913.7027027027027
+#-4299.681868743048
 
 
 def bigVirus(numbers, strings):
   defrag = [12, 14, 19, 101, 39, 34, 54, 31, 67, 68, 909, 455, 777, 43, 41, 0, 0, 1, 17, 65, 1010, 1111, 222, 320, 77]
   defrag.append(444)
   defrag[1] = 32
-  print(sorted(defrag)) #or you can use defrag.sort()
+  print(sorted(defrag)) #same as defrag.sort()
   print(defrag[10])
 bigVirus(121, "this")
 #--------------
@@ -767,4 +768,305 @@ def farm_house(crops, stable):
 farm_house(17, 17)
 
 #--------------
-#deep learning
+#devleoper training: starting with f-string syntax
+player_health = 100
+player_has_magic = True
+
+print(f"player_health is a/an {type(player_health).__name__}")
+print(f"player_has_magic is a/an {type(player_has_magic).__name__}")
+
+
+name = "DaBeard"
+age = 37
+race = "Dwarf"
+
+print(f"{name} is a {race} who is {age} years old.")
+
+# None(NoneType) is not a string, or an integer
+enemy = None 
+print(enemy is None)
+
+
+#New quests
+quest_start = "You there! Adventurer!"
+quest_middle = "The local mine has been taken over by orcs!"
+quest_end = "We need your help taking it back."
+quest_objective = "Bring back 8 of their axes as proof of your hard work."
+space = " "
+
+print(f"{quest_start}")
+print(f"{quest_middle}")
+print(f"{quest_end} {quest_objective}")
+#---------------
+
+#finding the average score between four players
+game_one_score = 97
+game_two_score = 91
+game_three_score = 106
+game_four_score = 105
+
+average_score = (game_one_score + game_two_score + game_three_score +
+                game_four_score) /4
+
+
+print(round(average_score))
+#--------------
+
+#magic of f
+name = "Lopen"
+level = 25
+character_class = 'Windrunner'
+armor = 12
+magic_resistance = 15.4
+account_active = True
+
+print("Character Report")
+print(f"{name} is a level {level} {character_class}.")
+print(f"They have {armor} armor and {magic_resistance} magic resistance.")
+print(f"Their account is currently active: {account_active}")
+print("Character Report Complete")
+print("Data types:")
+print(
+    f"level: {type(level).__name__}, name: {type(name).__name__}, character_class: {type(character_class).__name__}"
+)
+print(
+    f"armor: {type(armor).__name__}, magic_resistance: {type(magic_resistance).__name__}"
+)
+print(
+    f"account_active: {type(account_active).__name__}"
+)
+#-------------
+
+#length of weapons, call function in the function, not just at the end
+def area_of_circle(radius):
+    pi = 3.14
+    area = pi * radius * radius
+    return area
+
+sword_length = 1.0
+spear_length = 2.0
+sword_area = area_of_circle(sword_length)# <--------
+spear_area = area_of_circle(spear_length)
+
+print("Sword length:", sword_length, "meters.")
+print("Sword attack area:", sword_area, "square meters")
+print("Spear length:", spear_length, "meters.")
+print("Spear attack area:", spear_area, "square meters")
+#----------
+
+def triple_attack(damage_one, damage_two, damage_three):
+    total = damage_one + damage_two + damage_three
+    return total
+
+attack_one = 2
+attack_two = 4
+attack_three = 3
+first_triple_attack_damage = triple_attack(attack_one, attack_two, attack_three)
+
+print("Getting damage for", attack_one, attack_two, "and", attack_three, "...")
+print(first_triple_attack_damage, "points of damage dealt!")
+print("=====================================")
+
+attack_four = -1
+attack_five = 10
+attack_six = 5
+second_triple_attack_damage = triple_attack(attack_four, attack_five, attack_six)
+
+print("Getting damage for", attack_four, attack_five, "and", attack_six, "...")
+print(second_triple_attack_damage, "points of damage dealt!")
+#--------------
+
+#fahrenheit to celsius converter
+def to_celsius(f):
+  calc = 5/9 * (f - 32) 
+  return calc
+
+def test(f):
+    c = round(to_celsius(f), 2)
+    print(f, "degrees fahrenheit is", c, "degrees celsius")
+
+test(100)
+test(88)
+test(104)
+test(112)
+#------------
+
+#hours to seconds conversion
+def hours_to_seconds(hours):
+    convert = hours * 60**2
+    return convert
+
+def test(hours):
+    secs = hours_to_seconds(hours)
+    print(hours, "hours is", secs, "seconds")
+
+test(10)
+test(1)
+test(25)
+test(100)
+test(33)
+#--------------
+
+def become_warrior(full_name, power):
+    title = f"{full_name} the warrior"
+    new_power =  power + 1
+    return title, new_power
+    
+def main():
+    test("Frodo Baggins", 5) #full_name + the warrior followed by their power level
+    test("Bilbo Baggins", 10)
+    test("Gandalf The Grey", 9000)
+
+def test(input1, input2):
+    result1, result2 = become_warrior(input1, input2)
+    print(result1, "has a power level of:", result2)
+main()
+
+#_________
+
+#this code calculates how much health a player has left after getting punched or slashed
+#the armor resistance effects this
+def get_punched(health, armor = 0):
+    damage = 50 - armor
+    new_health = health - damage
+    return new_health
+
+
+def get_slashed(health, armor = 0):
+    damage = 100 - armor
+    new_health = health - damage
+    return new_health
+
+def test(health, armor):
+    print(f"Health: {health}, Armor: {armor}")
+    print(f"Health after punch: {get_punched(health, armor)}")
+    print(f"Health: {health}, Armor: {armor}")
+    print(f"Health after slash: {get_slashed(health, armor)}\n")
+    print(f"Health: {health}, Armor: no armor!")
+    print(f"Health after slash: {get_slashed(health)}\n")
+    print(f"Health: {health}, Armor: no armor!")
+    print(f"Health after punch: {get_punched(health)}")
+
+
+test(400, 5)
+test(300, 3)
+test(200, 1)
+
+#---------------
+
+def curse(weapon_damage = 100):
+    lesser_cursed = weapon_damage * 0.5
+    greater_cursed = weapon_damage * 0.75
+    return lesser_cursed, greater_cursed
+
+def test(weapon_damage):
+    print("Weapon's base damage:", float(weapon_damage))
+    print("Cursing...")
+    lesser_cursed, greater_cursed = curse(weapon_damage)
+    print("With lesser curse the damage is:", float(lesser_cursed), "damage.")
+    print("With greater curse the damage is:", float(greater_cursed), "damage.")
+#greater cursed was doing less damage at 0.25 which made no sense so i change it to 0.75
+
+def main():
+    test(100)
+    test(500)
+    test(1000)
+main()
+#--------------
+
+#damage testing with enchanted weapons subtracted from health pool
+def enchant_and_attack(target_health, damage, weapon):
+    new_enchantment = damage + 10
+    newHealth = target_health - new_enchantment
+    enchanted_weapon = f"enchanted {weapon}"
+    return enchanted_weapon, newHealth
+
+def test(target_health, damage, weapon):
+    print("The target has", target_health, "health.")
+    print(weapon, "base damage:", damage, "- Enchanting and attacking.")
+    enchanted_weapon, new_health = enchant_and_attack(target_health, damage, weapon)
+    print("The target has been attacked with the", enchanted_weapon)
+    print("The target has", new_health, "health remaining.")
+
+def main():
+    test(100, 50, "sword")
+    test(500, 100, "axe")
+    test(1000, 250, "bow")
+main()
+
+
+
+
+#🔋💿📀 let's work with None 
+def main(battery, deal):
+    outlet, watts, surge = 72, 1910, -29
+    solution = outlet * watts * surge
+    print(f"{solution}")
+    if battery <= outlet:
+      battery += battery + outlet
+      print(battery) #92.19999999999999
+    else: 
+      return None
+
+def calendar(month, day): # \ can start a new line
+    what_day, what_month, solution = "Between 1 and 20 every month we'll hold a beer festival!", "Except January.", \
+      "January is a sad month lmao..." 
+    print(f"{what_day} {what_month} {solution}")
+    return solution
+calendar(22, 22)
+
+def events(sword, shield):
+    blastEmEvent, auto = [0, 0, 22, -9], [313, 274, 171717, -9.9]
+    blastEmEvent[0] = 72
+    auto.append(72)
+    print(f"{blastEmEvent} {auto}")
+    solution = auto.pop(0)
+    print(f"{auto}") #just printing auto prints the varible without pop
+    return solution 
+events("Attack", "Block")
+
+def newLanguage(GO, STOP):
+    listOne = [10, 2, 2.6, 3.0, 4.0, 81.81]
+    listTwo = [2, 10.1, 99, 7, 0, 7]
+    num1 = 44
+    num2 = 44.4
+    result = [0, 0]
+    for l in listOne:
+     for ll in listTwo:
+      if num1 >= num2:
+       num2 += num2
+       num1 -= num1 
+       print(f" {num2}, {num1}")
+     else: 
+       num2 *= num2 * num2
+       num1 *= 3 * 4**8
+       print(f"outer for loop: {l}, inner for loop: {ll}, num2: {num2}, num1: {num1}")
+       result.append(0)
+       print(result)
+       return None
+newLanguage(33, 34)
+main(10.100, 20)
+
+#🛺
+
+def scientists(hp, damage, weapon):
+    beaker = 9
+    poweredUpBeaker = damage + beaker
+    newHp4 = hp - poweredUpBeaker
+    powerUpBeaker = f"powered up {weapon}"
+    return powerUpBeaker, newHp4
+
+
+def test(hp, damage, weapon):
+    print("The target has", hp, "health.")
+    print(weapon, "base damage:", damage, "- Enchanting and attacking.")
+    powerUpBeaker, newHp4 = scientists(hp, damage, weapon)
+    print("The target has been attacked with the", powerUpBeaker)
+    print("The target has", newHp4, "health remaining.")
+
+def tester():
+    test(100, 9, "beaker")
+    test(500, 19, "nitro")
+    test(1000, 29, "chemicals")
+    test(1000, 200, "Powered Up Beaker")
+tester()
