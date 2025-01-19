@@ -1,1 +1,1 @@
-Snippets on how I mastered python basics
+How to Master all the python basics in 5000 lines or less
