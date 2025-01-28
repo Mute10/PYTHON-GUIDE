@@ -1,38 +1,13 @@
-import copy
-import torch
-import torch.nn as nn
-import torch.optim as optim
-from torch.distributions import Categorical
-from random import randint
-
-class Policy(nn.Module):#🥽🤿🔮🎷🎺🧪🧲📱🗾🌎❔Ⓜ™💬 🕒📶(⊙_⊙)💿📀🛸
-  """
-  implements both actor and critic in one model
-  """
-  def __init__(self):
-    super(Policy, self).__init__()
-    self.affine1 = nn.Linear(4, 128)
-    self.action_head = nn.Linear(128, 2)
-    self.value_head = nn.Linear(128, 1)
-    self.saved_actions = []
-    self.rewards = []
-
-model = Policy()
-optimizer = optim.Adam(model.parameters(), lr=3e-2)
-def select_action(state):
-  state = torch.from_numpy(state).float()
-  probs, state_value = model(state)
-# create a categorical distribution over the list of probabilities of actions
-  m = Categorical(probs)
-
+#🧪🗾🌎❔💬 📶🛸
+from main import *
 
 def newMachine(numbers, letters):
   pointA = 417.99
   pointB = 417
   pointC = 179
   pointD = 191919.0
-  component = "neutron"
-  rocket = "laser"
+  component = "Neutron"
+  rocket = "Laser"
   paper = letters + ' ' + component + ' ' + rocket
   if pointA >= pointB and pointB >= pointC:
    print("we went from point A:", pointA, "to point C:", pointC)
@@ -46,7 +21,7 @@ def newMachine(numbers, letters):
    print("This device is the perfect version of a", paper)
   else:
    print("null") 
-newMachine(177, "PC")
+newMachine(177, "Alpha")
 #-----------------
 
 def Hawaii(oahu, maui):
@@ -79,7 +54,7 @@ dimensions(300, 400)
 #-4299.681868743048
 
 
-def bigVirus(numbers, strings):
+def bigVirus(number, string):
   defrag = [12, 14, 19, 101, 39, 34, 54, 31, 67, 68, 909, 455, 777, 43, 41, 0, 0, 1, 17, 65, 1010, 1111, 222, 320, 77]
   defrag.append(444)
   defrag[1] = 32
@@ -97,7 +72,7 @@ def Japan(tokyo, kyoto):
     "katana" : "sword"
   }
   for key in shinto: #because there's 5 keys it prints 5 times. So don't target a specific value unless needed
-    print(shinto[key]) #using print(key) just prings out all the names of the keys. shinto[key] prints out all the values
+    print(shinto[key]) #using print(key) just brings out all the names of the keys. shinto[key] prints out all the values
 Japan('Tokyo', 'Kyoto')
 #-------------
 
@@ -108,7 +83,7 @@ def carShield(toyota, honda):
     for new in new_prototype:
      prototype.sort() #ascending order
      new_prototype.sort(reverse=True) #sorts in descending order
-  print(prototype) #why does print proto return 97? because is returns the last iteration
+  print(prototype) #why does print proto return 97? because it returns the last iteration
   print(new_prototype)
 carShield(11, 12)
  #--------------
@@ -1070,3 +1045,465 @@ def tester():
     test(1000, 29, "chemicals")
     test(1000, 200, "Powered Up Beaker")
 tester()
+#)))))
+
+#global variables can be used in any scope in the program
+
+
+def total_xp(level, xp_to_add): # a unit test that calculates how much exp you'll have per level
+   xp = (level * 100) + xp_to_add #and if any extra exp is added
+   return xp
+total_xp(1, 100)
+
+#)
+
+def take_magic_damage(health, resist, amp, spell_power):
+    totalMaximumDamage = (spell_power * amp) - resist
+    playerHp = health - totalMaximumDamage
+    print(playerHp)
+    return playerHp
+take_magic_damage(1500, 5, 25, 35)
+#First, calculate the total maximum damage to be inflicted by multiplying the spell_power by the amp. 
+# Then, subtract the resist from the total damage to get the actual damage dealt. Apply that damage to the player's health and 
+# return the new health.
+
+# // is floor division (rounded down)
+linkinpark = 444 // 4
+print (linkinpark) #111
+
+#changing in place
+def update_player_score(current_score, increment):
+    score = current_score + increment
+    bigScore = 44
+    bigScore = bigScore * 8
+    print(bigScore) #352
+    return score
+update_player_score(22, 2)
+#0000000
+
+#practice using & bitwise and operator with binary numbers
+#which functions return True or False?
+can_create_guild = 0b1000
+can_review_guild = 0b0100
+can_delete_guild = 0b0010
+can_edit_guild = 0b0001
+
+
+def get_create_bits(user_permissions):
+     userInput = can_create_guild & user_permissions 
+     return userInput
+get_create_bits(0b0101)
+
+
+def get_review_bits(user_permissions):
+    userInput = can_review_guild & user_permissions
+    return userInput
+get_review_bits(0b0101)
+
+
+def get_delete_bits(user_permissions):
+    userInput = can_delete_guild & user_permissions
+    return userInput
+get_delete_bits(0b0101)
+
+
+def get_edit_bits(user_permissions):
+    userInput = can_edit_guild & user_permissions
+    return userInput
+get_edit_bits(0b0101)
+#000000
+
+#practice using bitwise | operator (or)
+def calculate_guild_perms(glorfindel, galadriel, elendil, elrond):
+    calculatePermissions = glorfindel | galadriel | elendil | elrond
+    return calculatePermissions
+calculate_guild_perms(0b0101, 0b0111, 0b0111, 0b0110) #only 1 and 0 can be used in binary 
+
+
+
+def dontSub():
+    defense = 2.33e15 #15 is the highest scientific notation. the first few numbers are multiplied and e is 10 ^15
+    #print(defense) #using scientific notation seems to always require a floating number
+    attack = 2217.7790
+    hp = 1118.12
+    dodge = 82
+    swipe = 89
+    sprint = attack // 2 #1108.0 floor takes two numbers and rounds down to the nearest integer
+    doubleSprint = hp //3 #372.0
+    if attack or hp >= 99.99:
+     print(0b0010) #2
+    elif attack and hp <= 9999:
+     print(0b0100) #4
+    elif not swipe < dodge: #not returns False if the input was True and vice-versa.
+      print(swipe + 1000)
+    else: 
+      return None
+dontSub()
+
+#dataloader = torch.utils.DataLoader(dataset, batch_size=1, suffle=False)
+
+def binary_string_to_int(num_servers, num_players, num_admins):
+    newData = int(num_servers, 2)
+    new_data = int(num_players, 2)
+    new_Data = int(num_admins, 2)
+    return newData, new_data, new_Data
+binary_string_to_int("100", "101", "110")
+
+
+def player_1_wins(player_1_score, player_2_score):
+    if player_1_score > player_2_score:
+     return True
+    else: 
+     return False
+player_1_wins(11, 10)
+
+express = "result" == "fruit"
+print(express)
+
+
+def player_status(health):
+    if health <= 0:
+        return "dead"
+    elif health <= 5:
+        return "injured"
+    else:
+        return "healthy"
+player_status(4)
+
+#memo: and boolean requires both conditions to be true to return true
+#or boolean returns true if atleat one condition is true 
+
+def does_attack_hit(attack_roll, armor_class):
+    if attack_roll != 1 and attack_roll >= armor_class or attack_roll == 20:
+        return True
+    else: 
+        return False
+does_attack_hit(20, 9)
+
+ #Drinking virtual beer refills stamina!
+
+def should_serve_customer(customer_age, on_break, time):
+    if customer_age < 21:
+      return False
+    if on_break:
+      return False
+    if time < 5 or time > 10: #can a number be both less than 5 AND greater than 10 at the same time? No! 
+      return False
+    return True
+print(should_serve_customer(22, False, 7)) #All conditions are true
+
+#above code is supposed to be a cleaner version... I disagree
+def should_serve_customer(customer_age, on_break, time):
+    if customer_age >= 21 and not on_break and time >= 5 and \
+     time <= 10:
+     return True
+    return False
+should_serve_customer(21, True, 7)
+#?????
+
+def has_enough_energy(energy_available, distance_one_way, meters_per_energy):
+    energy_needed = (distance_one_way * 2) / meters_per_energy #by dividing meters by the distance you'll correctly calculate
+    print(energy_needed)                                        #the amount of energy points needed
+    if energy_needed <= energy_available:
+        return True
+    return False
+has_enough_energy(500, 180, 200)
+
+#more range practice
+def arrow(length, distance):
+   become_warrior = "Onomotopia" #10 characters
+   become_archer = "Sniper tactics"
+   for i in range(0, len(become_warrior)): # 0-9 is printed
+    print(i)
+arrow(8, 55)
+
+for i in range(-22, 1): #the first number can never equal the second. So it decrements by 1
+ print(i)
+
+
+ #remember len() is for strings 
+operation = 20
+for q in range(0, operation): 
+   #without break here it would count from 0 up to 1010990 so lets change operation to 20
+ print(q) #19
+
+#range doesn't work with float and list objects
+
+for i in range(3, 0, -1): #using the third step "step" you can also count  backwards
+    print(i)
+
+    #Remember you can use in-place operators to increase or decrease a variable by any amount.
+
+    def sum_of_odd_numbers(end):#this function counts only odd numbers starting from one
+     total = 0
+     for i in range(1, end, 2):
+        total += i
+     return 
+    sum_of_odd_numbers(33)
+
+    #while: It's a loop that continues while a condition remains True
+def regenerate(current_health, max_health, enemy_distance):
+     while enemy_distance > 3 and current_health < max_health:
+        current_health += 1
+        enemy_distance -= 2
+     return current_health #iterates twice or until players health is at max
+regenerate(8, 10, 20)
+
+
+def countdown_to_start(): #remember the second number is exclusive and is decremented by 1. so to stop at 1 you need 0
+    for i in range(11, 0, -1):
+      i -= 1
+      print(f"{i}...")
+            
+      if i == 1:
+        print("1...Fight!")
+
+#what this code does is calculate how huch damage will be done in 5 swings.
+def calculate_flurry_crit(num_attacks, base_damage):
+    total = 0
+    for i in range(0, num_attacks, 1):
+      if i == num_attacks -1: #since i will never reach num_attacks a -1 in in order
+           total += base_damage * 4 #this function runs on if i < num attacks
+           print(total) #prints tthe final attack
+      else:
+            total += base_damage * 2
+            print(total) #four attacks prints first
+    return total
+calculate_flurry_crit(5, 13)
+
+
+def calculate_experience_points(level): #this calculates how much exp you'll have accumulated by each level
+    xp = 0
+    for i in range(1, level):
+      if level == 4:
+          xp += i * 5
+          print(xp)
+    return xp
+calculate_experience_points(4)#solving this problem took me about an hour...
+
+
+#find prime and non prime numbers
+def is_prime(number): 
+    if number < 2: #this checks for non prime numbers as all number less than 2 are not
+        return False
+    for i in range(2, number):
+     if number % i == 0: #finds prime numbers and if there are none, return True
+      return False
+    return True
+#attached to this is some code that runs a series of tests
+  #the function is_prime is called on line 1343
+  # Basically, the code above works with the tests below. the for and if statements iterate through the each case          
+run_cases = [
+    (7, True),
+    (-7, False),
+    (9, False),
+    (23, True),
+]
+
+submit_cases = run_cases + [
+    (-1, False),
+    (0, False),
+    (1, False),
+    (2, True),
+    (4, False),
+    (31, True),
+    (100, False),
+]
+
+
+def test(input1, expected_output):
+    print("---------------------------------")
+    print(f"Input number: {input1}")
+    print(f"Expecting: {expected_output}")
+    result = is_prime(input1)
+    print(f"Actual: {result}")
+    if result == expected_output:
+        print("Pass")
+        return True
+    print("Fail")
+    return False
+
+
+def main():
+    passed = 0
+    failed = 0
+    for test_case in test_cases:
+        correct = test(*test_case)
+        if correct:
+            passed += 1
+        else:
+            failed += 1
+    if failed == 0:
+        print("Resolved")
+    else:
+        print("Failed")
+    print(f"{passed} passed, {failed} failed")
+
+
+test_cases = submit_cases
+if "__RUN__" in globals():
+    test_cases = run_cases
+
+main()
+
+
+#Energy Supply
+def meditate(mana, max_mana, energy, energy_drinks):
+    while mana < max_mana and (energy > 0 or energy_drinks > 0): 
+      if energy > 0:
+        mana += 1 #while meditating one energy is converted into mana until max mana is reached(40)
+        energy -= 1
+        print(f"{mana} {energy}") #without the parenthesis the console will explode.
+                                  #they ensure proper operator precedence
+      elif energy == 0:
+       energy_drinks -= 1 #I don' need to check energy drinks here because it does it in the while loop
+       energy += 50 #energy never reached 0 so no energy drinks are consumed
+    return mana, energy, energy_drinks
+meditate(20, 40, 50, 3)
+    
+
+def smelt_ore(inventory):
+    if inventory[1] == "Iron Ore": #changes the second index to iron bar
+     inventory[1] = "Iron Bar"
+     
+    return inventory
+smelt_ore(["Desert", "Iron Ore", "Axe", "Diamond"])
+
+
+def get_item_counts(items):
+    potion_count = 0
+    bread_count = 0
+    shortsword_count = 0
+
+    for i in range(0, len(items)):
+        if "Potion" in items[i]: 
+         potion_count +=1
+        if "Bread" in items[i]:
+         bread_count +=1
+        if "Shortsword" in items[i]:
+         shortsword_count +=1
+
+    return potion_count, bread_count, shortsword_count
+#~~~~~~~~~~
+
+def contains_leather_scraps(items):
+    found = False
+
+    for item in items: #searching for the value (key value) in a list
+        if item == "Leather Scraps":
+            found = True
+
+    return found
+    #~~~~~~~~~~~~~~
+
+
+def check_character_levels(): 
+    old_character_levels = [1, 42, 43, 53, 12, 3, 32, 34, 54, 32, 43]
+    new_character_levels = [1, 42, 45, 54, 12, 3, 32, 38, 54, 32, 42]
+
+    for i in range(0, len(old_character_levels)):#this compares the values of each variable and returns the indes number where the new
+        if old_character_levels[i] < new_character_levels[i]: #level is higher than the old one
+            print(i)    #2, 3 7          to make this more interesting, change the i, to an index number for specific comparisons
+      
+def test():
+    print("Character level increased at indexes:")
+    check_character_levels()
+    print("=====================================")
+
+
+def main():
+    test()
+
+
+main()
+#~~~~~~~~~~~~~~
+
+def find_max(nums): #how to find the maximum value in a list
+    max_so_far = float("-inf") #here's the baseline
+    for num in nums: #checks the entire list
+        if num > max_so_far: #compares each list index
+         max_so_far = num #updates the variable per iteration
+        
+    return max_so_far #return the max value after checking all indexes
+print(find_max([1, 2, 300, 5, 60]))
+        
+   #~~~~~~~~~~~~~~~
+
+def get_odd_numbers(num):
+    odd_numbers = []
+
+    for i in range(0, num):
+       if i % 2 == 1:
+           odd_numbers.append(i)
+
+    # An odd number is a number that when divided by 2, 
+    #the remainder is not 0
+
+    return odd_numbers
+    #~~~~~~~~~~~~~
+
+def get_champion_slices(champions): #slicing practice
+    return champions[3:], champions[1:4], champions[::2]
+print(get_champion_slices([11, 22, 3, 4, 555, 77, 9]))
+#❔❔❔❔❔❔
+
+# By using + you concatenate to create a new single list. Using a , would create a tuple of lists
+def concatenate_favorites(favorite_weapons, favorite_armor, favorite_items):
+    newArmoryList = favorite_weapons + favorite_armor + favorite_items
+    return newArmoryList
+#~~~~~~~~~~~~~~~
+
+def is_top_weapon(weapon):
+    top_weapons = [
+        "sword of justice",
+        "sword of slashing",
+        "stabby daggy",
+        "great axe",
+        "silver bow",
+        "spellbook",
+        "spiked knuckles",
+    ]
+
+    for wep in top_weapons:
+     if weapon == wep:
+         return True
+     
+    return False #only returns False after the loop finishes and doesn't find a match. That logic works perfectly.
+#~~~~~~~~~~~~~~
+
+def get_heroes():#using tuples
+    heroes = [
+        ("Glorfindel",
+        2093,
+        True),
+        ("Gandalf",
+        1054,
+        False),
+        ("Gimli",
+        389,
+        False),
+        ("Aragorn",
+        87,
+        False)
+    ] #unpacking tuples
+    heroesName, heroesAge, isElf = heroes[0]
+    print(heroesName)  #returns the contents of the entire variable unless[0] is added somewhere
+                          
+    #return heroes
+get_heroes()
+    #~~~~~~~~~~~~~
+school = ("Math", "Geography", "Gym") #a three value tuple can't be converted into two variabls
+schoolSubject, schoolSubject2, _ = school
+print(schoolSubject) #
+
+#~~~~~~~~~~~~
+def trim_strongholds(strongholds):
+    del strongholds[0]
+    del strongholds[-2:]
+#~~~~~~~~~~~~~~~
+
+def get_first_item(items):
+    if len(items) == 0:# 0 is always used to check if something is empty
+       return "ERROR"  
+    return items[0]
+  #~~~~~~~~~~~~~~~~~
