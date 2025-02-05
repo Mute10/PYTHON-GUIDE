@@ -1405,16 +1405,12 @@ def check_character_levels():
         if old_character_levels[i] < new_character_levels[i]: #level is higher than the old one
             print(i)    #2, 3 7          to make this more interesting, change the i, to an index number for specific comparisons
       
-def test():
+def test():#this is more like a visual inspection test. Much simpler than standard tests
     print("Character level increased at indexes:")
     check_character_levels()
     print("=====================================")
-
-
 def main():
     test()
-
-
 main()
 #~~~~~~~~~~~~~~
 
@@ -1443,7 +1439,7 @@ def get_odd_numbers(num):
     #~~~~~~~~~~~~~
 
 def get_champion_slices(champions): #slicing practice
-    return champions[3:], champions[1:4], champions[::2]
+    return champions[3:], champions[1:4], champions[::2] #counting backwards you use [::-1]
 print(get_champion_slices([11, 22, 3, 4, 555, 77, 9]))
 #❔❔❔❔❔❔
 
@@ -1507,3 +1503,401 @@ def get_first_item(items):
        return "ERROR"  
     return items[0]
   #~~~~~~~~~~~~~~~~~
+
+
+def filter_messages(messages):
+    filteredMessages = []
+    badWordCount = []
+    for mess in messages:
+        words = mess.split()
+        #Splits the message into words
+        cleanWords = []
+        counter = 0
+        for w in words: #Checks each word
+            if w == "dang":
+                counter += 1
+            else:
+                cleanWords.append(w)
+        sentence = " ".join(cleanWords) #Joins the clean words back into a sentence
+        filteredMessages.append(sentence)
+        badWordCount.append(counter)
+    return filteredMessages, badWordCount #Saves both the clean sentence and the count
+messages = ["Use some dang bloody sense", "dang you", "dang it all", "what if i say dang?lol"]
+result = filter_messages(messages)
+print(result)
+filter_messages("ok")
+#~~~~~~~~~~~~~~~
+
+definitions = "case1".upper() #lower() does the opposite
+print(definitions)
+#~~~~~~~~~
+
+def get_odds_and_evens(numbers):
+    num_odds = 0
+    num_evens = 0
+
+    for n in numbers:
+        if n % 2 == 0:
+            num_evens += 1
+        else:
+            num_odds += 1
+    return num_odds, num_evens
+
+#standard test case
+run_cases = [
+    ([1, 7, 2, 5, 3, 4], (4, 2)),
+    ([0, 99, 2, 33, 61, 44, 9, 10, 12, 240, 35, 9082, 1234], (5, 8)),
+]
+
+submit_cases = run_cases + [
+    ([], (0, 0)),
+    ([1, 3, 5, 7, 9], (5, 0)),
+    ([2, 4, 6, 8, 10], (0, 5)),
+    ([1], (1, 0)),
+    ([2], (0, 1)),
+    ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], (5, 5)),
+]
+
+
+def test(input1, expected_output):
+    print("---------------------------------")
+    print(f"Inputs: {input1}")
+    print(f"Expecting: {expected_output}")
+    result = get_odds_and_evens(input1)
+    print(f"Actual: {result}")
+    if result == expected_output:
+        print("Pass")
+        return True
+    print("Fail")
+    return False
+
+
+def main():
+    passed = 0
+    failed = 0
+    for test_case in test_cases:
+        correct = test(*test_case)
+        if correct:
+            passed += 1
+        else:
+            failed += 1
+    if failed == 0:
+        print("============= PASS ==============")
+    else:
+        print("============= FAIL ==============")
+    print(f"{passed} passed, {failed} failed")
+test_cases = submit_cases
+if "__RUN__" in globals():
+    test_cases = run_cases
+
+main()
+
+
+run_cases = [
+   
+    ([2, 3, 4], (1, 2)),
+]
+
+submit_cases = run_cases + [
+   ([6, 33, 92], (11, 22, 29))
+]
+def test(input_numbers, expected_output):
+    # Print a line to separate each test
+    print("---------------------------------")
+    
+    # Show what we're testing
+    print(f"Testing with numbers: {input_numbers}")
+    print(f"We expect: {expected_output}")
+    
+    # Run the function and get the result
+    actual_result = get_odds_and_evens(input_numbers)
+    print(f"We got: {actual_result}")
+    
+    # Check if we got what we expected
+    if actual_result == expected_output:
+        print("Test passed!")
+        return True
+    else:
+        print("Test failed!")
+        return False
+#~~~~~~~~~~~~~~
+
+
+def split_players_into_teams(players):
+    even_team = players[::2]
+    odd_team = players[1::2]
+    return even_team, odd_team
+players = (11, 22, 33, 44, 3111)#standard tuple
+badPlayers = [(77.9, 44.5, 22),  (33.333, 21.0, 0, 73)]#a list of tuples
+print(players[0])
+print(badPlayers[0]) #prints the first tupl in the list
+split_players_into_teams([9, 9.09, 9.99,  999.090])
+#BLACK  FLAG
+
+def check_ingredient_match(recipe, ingredients):
+    correct = 0 #Counts matching ingredients ✓
+    wrongIngredients = [] #Stores non-matching recipe ingredients in wrongIngredients ✓
+    for R in range(0, len(recipe)):
+        if recipe[R] == ingredients[R]: #The ingredients list is just used for comparison but never gets modified.
+          correct += 1                  #any recipe items don't match theyre recycled to wrongIngredients
+        else:
+            wrongIngredients.append(recipe[R])
+    percentage = (correct / len(recipe)) * 100 #Calculates percentage as a float ✓
+    return (percentage, wrongIngredients) #Returns the correct tuple format ✓
+check_ingredient_match(["pizza", "burger"], ["orange", "lime"])
+#~~~~~~~~~~~~~
+
+
+def validate_path(expected_path, character_path): 
+    counter = 0 #Count matches
+    for R in range(0, len(expected_path)):
+        if expected_path[R] == character_path[R + 1]:
+           counter += 1
+        #else:
+            #print("There was no match")
+    percentage = (counter / len(expected_path) * 100) #Calculate percentage
+    print(percentage)
+    return (character_path[0], percentage)#Return the result
+validate_path(["A", "B", "C", "D", "E"], ["Kaladin", "A", "X", "C", "D", "E"])
+#~~~~~~~~~~~~~~
+
+def bigMove(Michigan, Japan):
+  counter = 0
+  miles = []
+  for R in range(0, len(Michigan)):
+    if Michigan[R] == Japan[R]:
+      counter += 1
+    else:
+      miles.append(Michigan[R])
+  percentage = (counter / len(Michigan) * 100)
+  print(percentage) #20.0
+bigMove((["8", "16", "18", "80", "800"]), (["haneda", "9", "yarp", "800", "800"]))
+
+#~~~~~~~~~~
+def double_string(string):
+    emptyString = ""
+    for char in string:
+      emptyString += char * 2 
+    return emptyString
+strings = "sky diving with a parachute "
+result = ""
+for b in strings:
+  result += b * 3
+print(result) #ssskkkyyy   dddiiivvviiinnnggg   wwwiiittthhh   aaa   pppaaarrraaaccchhhuuuttteee  
+#The loop is only iterating over my_word, 
+#which stays the same length throughout the loop. Meanwhile, result is growing but we're not iterating over it.
+#furthermore, if the print statement is inside the loop, it will print with each iteration
+double_string("sky diving without a parachute")
+#~~~~~
+
+
+def get_character_record(name, server, level, rank):
+    getSomething = {
+        "name": name,
+        "server": server,
+        "level": level,
+        "rank": rank,
+        "id": f"{name}#{server}" #concatenates two parameters so people can't have the same name on a server
+    }
+    return getSomething
+get_character_record("Mike", "Jesse", 74, 1)
+#~~~~~~~~
+
+
+def count_enemies(enemy_names):
+    enemies_dict = {}
+    for enemy_name in enemy_names:
+        if enemy_name in enemies_dict: #IF it's already in the dictionary: increment its count
+         enemies_dict[enemy_name] += 1  #the bug was in the if statement. We're trying to see if we've already started 
+        else:                            #counting this enemy in our dictionary. 
+                                        #If we try to do enemies_dict[enemy_name] += 
+                                        #1 without the enemy being in the dictionary first, we'll get a KeyError 
+                                        # because we can't increment a value that doesn't exist yet
+         enemies_dict[enemy_name] = 1 #IF it's not in the dictionary: add it with an initial count of 1
+    return enemies_dict
+count_enemies(["jackal", "kobold", "soldier"])
+#~~~~~~~~~~~
+
+
+#where creativity mingles with logic, and mastery is born!
+def nachos(burrito, tortilla):
+    menuDictionary = {}
+    secondary = {}
+    for b in burrito:
+      if b in menuDictionary:
+        menuDictionary += 1
+      else:
+        menuDictionary[b] = 0  # Initialize the key with something before updating it
+        menuDictionary[b] += 3
+    for t in tortilla:   #resetting auxiliary data structures when switching loops.
+      if t in secondary:
+        secondary[t] += 1
+      else: 
+        secondary[t] = 2
+        secondary[t] *= 4 #multiples 3 by the default value in this case is 2
+    return menuDictionary, secondary                                    
+result = nachos(
+    ["cheese oz", "tomatoes oz", "onions oz", "cilantro oz", "Chili oz"],
+    ["lettuce oz", "steak oz", "hot sauce oz", "beef oz"]
+)
+print("\nFinal Result:", result) #print out how many ounces of ingredients I will have per item in result nachos
+nachos(["cheese", "bacon"], ["lettuce", "beef"])
+#~~~~~~~
+
+#Iterating Over a Dictionary
+def get_most_common_enemy(enemies_dict):
+    findMax = float("-inf")
+    countMax = None
+    for R in enemies_dict:
+        count = enemies_dict[R]
+        if count > findMax:
+            findMax = count 
+            countMax = R
+            print(findMax)#22, 33
+            #print(countMax) prints out th key names
+        else:
+            print(count)
+    return countMax
+result = get_most_common_enemy({"test": 22, "bubble": 33})
+print(result)
+get_most_common_enemy("giaganic lamp")   
+    
+    #~~~~~~~~~~~~ 
+
+def merge(dict1, dict2):
+    merging = {}
+    for key, value in dict1.items():
+        merging[key] = value
+    for key, value in dict2.items():
+        merging[key] = value
+    return merging
+dict1 = {"first_quarter": 24, "second_quarter": 31}
+dict2 = {"third_quarter": 29, "fourth_quarter": 40}
+merged = merge(dict1, dict2) #I learned a new way to callback... I like the old way better
+print(merged) 
+
+def total_score(score_dict):
+   sum = 0
+   for key, value in score_dict.items():
+       sum += value
+   return sum
+print(total_score({"third_quarter": 29, "fourth_quarter": 40}))
+
+
+def calculate_total(items_purchased, pinned_list):
+    item_prices = {
+        "health_potion": 10.00,
+        "mana_potion": 12.00,
+        "gold_dust": 5.00,
+        "dwarven_ale": 8.00,
+        "enchanted_scroll": 25.00,
+        "ice_cold_milk": 50.00,
+        "herbs": 7.00,
+        "crystal_shard": 20.00,
+        "magic_ring": 100.00,
+        "mystic_amulet": 150.00,
+    }
+
+    unpurchased_items = [] #unpurchased_items appends items from pinned_list that aren't in items_purchased. It keeps track of what the player wanted but didn't buy.
+    receipt = {} #receipt is a dictionary that stores the key name(item) and value (the number/price).
+    total = 0 #adds up the prices of only the items that were purchased (items_purchased), not all items in item_prices
+    for item in pinned_list:
+        if item not in items_purchased:
+          unpurchased_items.append(item)
+    for item in items_purchased:
+        price = item_prices[item]
+        receipt[item] = price
+        total += item_prices[item]
+    return unpurchased_items, receipt, total
+#~~~~~~~
+
+
+def remove_duplicates(spells):
+    spellTracker = set() #Creates an empty set to track spells we've seen
+    uniqueSpells = [] #Creates an empty list to store our unique spells
+    conversion = spellTracker, uniqueSpells
+    for s in spells: #s is the current spell
+       if s not in spellTracker: #spells is the whole list and Only processes spells we haven't seen before
+         spellTracker.add(s)   #Marks the current spell as "seen"
+         uniqueSpells.append(s) #Adds the unique spell to our result list
+    return uniqueSpells   
+    #~~~~~~~~~~~
+
+#list(set(spells)) converts set and back to a list. also is a quick, concise way to remove duplicates       
+
+def count_vowels(text):
+    vowels = {"a", "e", "i", "o", "u", "A", "E", "I", "O", "U"}
+    count = 0 #his variable tracks the total number of vowels found in the input string.
+    uniqueVowels = set() #Starts as an empty set. This set will store unique vowels (not duplicated) from the input string.
+    for t in text: # analyze each character individually.
+        if t in vowels:
+         count += 1
+         uniqueVowels.add(t)
+    return count, uniqueVowels
+shard = count_vowels({"a", "b", "c", "A", "B", "C"})
+print(shard)
+
+def find_missing_ids(first_ids, second_ids):
+    merge = set(first_ids)
+    baseline = set(second_ids)
+    outliers = merge - baseline
+    return list(outliers)  
+find_missing_ids()
+
+
+#try except block
+def main():
+ try:
+    print(get_player_record(1))
+    print(get_player_record(2))
+    print(get_player_record(3))
+    print(get_player_record(4))
+ except Exception as error:
+    print(error)
+
+#To raise an exception (raise) on its own, you don’t need a try
+
+def get_player_record(player_id):
+    if player_id == 1:
+        return {"name": "Slayer", "level": 128}
+    if player_id == 2:
+        return {"name": "Dorgoth", "level": 300}
+    if player_id == 3:
+        return {"name": "Saruman", "level": 4000}
+    raise Exception("player id not found")
+
+
+main()
+#~~~~~~~~~~~~~~
+
+
+#In the try block, we call get_player_record(player_id) and return its result if no error occurs.
+#If an IndexError is raised (e.g. out of bounds), the except IndexError block catches it and returns "index is too high".
+#For any other exception (negative player_id), the except Exception as e block catches it and returns the exception object (e).
+def handle_get_player_record(player_id):
+    try:
+     get_player_record(player_id)
+     return get_player_record(player_id)
+    except IndexError:
+      return "index is too high"
+    except Exception as e:
+      return e
+concise = handle_get_player_record([1, 4, 33, 0, 77])
+
+
+def get_player_record(player_id):
+    if player_id < 0:
+        raise Exception("negative ids not allowed")
+    players = [
+        {"name": "Slayer", "level": 128},
+        {"name": "Dorgoth", "level": 300},
+        {"name": "Saruman", "level": 4000},
+    ]
+    return players[player_id]
+
+print(handle_get_player_record(0))  
+print(handle_get_player_record(1))   
+print(handle_get_player_record(3))   
+print(handle_get_player_record(-1))  
+print(handle_get_player_record(10)) 
+#~~~~~~~~~
