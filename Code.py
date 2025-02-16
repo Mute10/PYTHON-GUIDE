@@ -1,5 +1,6 @@
-#🧪🗾🌎❔💬 📶🛸
-from main import *
+#❔🛸
+
+import math
 
 def newMachine(numbers, letters):
   pointA = 417.99
@@ -23,7 +24,7 @@ def newMachine(numbers, letters):
    print("null") 
 newMachine(177, "Alpha")
 #-----------------
-
+   #pass is a placeholder that does nothing lol
 def Hawaii(oahu, maui):
  honolulu = {"Kapolei": "Spam",
               "Waimanalo Beach": "surfing",
@@ -1901,3 +1902,436 @@ print(handle_get_player_record(3))
 print(handle_get_player_record(-1))  
 print(handle_get_player_record(10)) 
 #~~~~~~~~~
+
+#Unhinged Arithmetic: a cosmic tornado of data types and operations
+def outerSpace(numOfStars, planetsOnSatellite):
+   import math
+   structure = set()
+   galaxy = 0
+   stars = 11
+   planets = 7
+   moon = 17.9
+   sun = 2.100
+   i = 0
+   neptune = []
+   mars = {}
+   mars.update({"rule 1": "no cell phones", "rule 2": [22]})
+   saturn = [1, 22, 2, 4, 5] #if I call this in the if statement, 2 isn't in the list anymore
+   for star in numOfStars:
+    if i > 3:
+        break
+    i +=1
+    for planet in planetsOnSatellite:
+      if i > 3:
+        break
+      i += 1
+      if sun <= moon:
+        sun += 22
+        sun -= 100 #starts at -75.9 then jumps to 922. It's no longer a float by the second iteration 
+        moon += 333                                    
+        moon /= 3 #2.556512774515297e+18, 8.521709248384324e+17, 2.8405697494614426e+17
+        #dividing by a larger number (10 instead of 3) would make the exponent smaller, not larger!
+        #where as * would create the high numbers
+        #neptune.append(sun) #BAD CODE :)
+        #del moon = "UnboundLocalError: cannot access local variable 'moon' where it is not associated with a value"
+      if star not in structure:
+        galaxy += 100
+        galaxy *= 2**4
+        moon = int(moon)
+        #moon = float(int(moon)) changes a converted data type into a float
+        moon *= moon #interesting output: 48661191875666868481 to 2367911594760467245844106297320951247361
+        sun = math.ceil(int(sun)) * 8
+        sun += galaxy
+        neptune.append(galaxy)
+        neptune += neptune #creates a lengthy list
+        return None
+      elif planet not in structure:
+        planets -= 1 #-=1 to -= 17 changed the outcome astronomically Final iteration: 1310722, -7077854
+        planets += planets
+        stars += stars * 999
+        stars += star
+        #stars *= stars  Exceeds the limit (4300 digits)
+      else:
+        stars += star
+        sun += sun
+        moon += moon
+        galaxy += galaxy
+        structure.add(galaxy) #6,990,400 then 1,118,480,000
+   return stars
+      
+outerSpace({2, 22, 33, 55, 77}, {55, 0, .9, 46, 400})
+
+#~~~~~~~~~
+def purchase_item(price, gold_available):
+     if gold_available < price:
+         raise Exception("not enough gold")
+     return gold_available - price
+     #~~~~~~~~~~~~
+
+def process_transactions(purchase_orders):
+    leftovers = [] # this empty list was made to store successful purchases' leftover gold
+    for p in purchase_orders: # Iterates over single prices and available gold from the current order
+        price = p["price"]
+        gold_available = p["gold_available"]
+        try: # Attempts to make the purchase, If successful, it returns the remaining gold
+         leftover = purchase_item(price, gold_available)
+         leftovers.append(leftover) # Adds the remaining gold to our list
+        except Exception as e: # If purchase fails print the error and continue without adding to the list
+         print(e)
+    return leftovers #return list of successful purchases' leftover gold
+
+def main():
+    print("Processing transactions...")
+    leftovers = process_transactions(
+        [
+            {"price": 10.00, "gold_available": 125.00},
+            {"price": 5.00, "gold_available": 2.00},
+            {"price": 20.01, "gold_available": 5.20},
+            {"price": 1.04, "gold_available": 254.00},
+            {"price": 40.20, "gold_available": 6.00},
+            {"price": 16.00, "gold_available": 235.01},
+            {"price": 10.70, "gold_available": 10.70},
+            {"price": 12.00, "gold_available": 2.30},
+        ]
+    )
+    print("Transactions complete!")
+    print("Leftover amounts for successful purchases:")
+    for leftover in leftovers:
+        print(f" * {leftover:.2f}")
+
+
+def purchase_item(price, gold_available):
+    if gold_available < price:
+        raise Exception(f"{gold_available:.2f} is not enough for {price:.2f}")
+    return gold_available - price
+
+
+main()
+
+#~~~~~~~~~~~~  
+
+def number_sum(n):
+    sum = 0
+    for i in range(1, n + 1):
+      sum += i
+    return sum
+number_sum(4)
+  #~~~~~~~~
+
+def find_min(nums):
+    min = float("inf")
+    for i in nums:
+        if i < min:
+         min = i   
+    return min
+    #~~~~~~
+def factor(burger):
+  import math
+  count = math.factorial(7) #I want to make this work 
+  for b in range(1, burger +1, 2): 
+      count *= b
+      print(count)
+  return count 
+factor(25)
+
+def factor(burger):
+  import math
+  count = math.factorial(2) 
+  i = 0
+  for b in range(70, burger -1, -8): 
+      count -= b
+      i +=1
+      if i > 7:
+       break
+      print(count)
+  return count 
+factor(-2)
+
+#using subtraction with factorials doesn't calculate it,it becomes basic arithmetic
+def factor(burger):
+    if burger < 0:
+        return "Cannot calculate factorial of negative numbers"
+    return math.factorial(burger)
+    #~~~~~~~~ ty boots
+
+
+def remove_nonints(nums):
+    newList = []
+    for n in nums:
+        if type(n) == int:
+            newList.append(n)
+    return newList
+    #~~~~~~~~~~~~
+
+rectangles = [
+    {"height": 4, "width": 5},
+    {"height": 3, "width": 2}
+]
+
+def area_sum(rectangles):
+   sum = 0
+   for i in rectangles:
+        i = i["height"] * i["width"] #multiplies the numbers 4 x 5 and 3 x 2
+        sum += i #adds the numbers together
+   return sum
+
+result = area_sum(rectangles)
+print(result)  # Would print: 26 (20 + 6)
+#~~~~~~~~~~~~~~
+
+#common test during an interview
+def fizzbuzz(start, end):
+    fbList = []
+    for s in range(start, end):
+        if s % 3 == 0 and s % 5 ==0: #if this isn't in the correct place, the % 3 or 5 will skip the rest of the elifs
+             fbList.append("fizzbuzz") # mathematically it has to work this way because if %3 is false and %5 is false
+        elif s % 3 == 0:                # then %3 and %5 will be false
+             fbList.append("fizz")
+        elif s % 5 == 0:
+             fbList.append("buzz")
+        else:
+             fbList.append(s)  
+    return fbList
+#~~~~~~~~~
+
+
+# Happy 2100 lines of Python Code!
+def pour_beer(style="IPA"): #ASCII creation
+    return """
+    |~~~~|
+    |    |  *virtual honey ale*
+    |    |
+    |    |
+    [____]
+    """
+print(pour_beer())
+
+#~~~~~~~~~~~
+#this function divides nums by divisor
+def divide_list(nums, divisor):
+    newList = []
+    number = 0
+    for n in nums:
+        number = n / divisor
+        newList.append(number)
+        
+    return newList
+divide_list()
+#~~~~~~~~~~~~
+
+#this joins multiple strings as one
+def join_strings(strings):
+    myString = ""
+    for s in strings:
+         myString += s + ", " 
+    if len(myString) > 0:
+         myString = myString[:-2]
+         print(myString)
+    return myString
+join_strings(["hello", "exit", "door"])
+
+#this function puts a period on the last string
+def join_strings(strings):
+    myString = ""
+    for i in range(len(strings)): #range can be used with strings like so
+     if i == len(strings) - 1:  # if it's the last string
+            myString += strings[i] + "."  # add period to last word
+            print(myString)
+     else:
+            myString += strings[i] + ", "  # add comma and space to others
+            #print(myString)
+    return myString
+join_strings(["hello", "exit", "door"])
+#~~~~~~~~~~~~~~~~~~~
+
+
+# to create a virtual enviroment: 1. new terminal. 2. python -m venv name. 3 name\Scripts\activate
+ # Python functions can’t automatically access variables from other functions
+# "with open" takes one of three commands r(read), w(write), and a(append) r is by default
+   
+#"Chaining functions" is a neat trick, not only does it count as a function call,
+#you can change it's parameters to the function it's in.
+def fight_soldiers(soldier_one, soldier_two):  #Uses the helper function to get the calculations
+    soldier_one_dps = get_soldier_dps(soldier_one) #Takes those numbers and makes decisions
+    soldier_two_dps = get_soldier_dps(soldier_two) #Writes down (returns) who wins based on comparing the DPS values
+    if soldier_one_dps > soldier_two_dps:
+        return "soldier 1 wins"
+    if soldier_two_dps > soldier_one_dps:
+        return "soldier 2 wins"
+    return "both soldiers die"
+def get_soldier_dps(dps): #this is a helper function, it wouldn't make sense to call it at the bottom
+    soldierDmg = dps["damage"] #this function needs a soldier dictionary as an argument
+    soldierAttacks = dps["attacks_per_second"]
+    burstDmg = soldierDmg * soldierAttacks
+    return burstDmg
+#the only time you need to call a function at the bottom is when you want to run it immediately
+#~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+ #Classes are like blueprints - they just need to be defined, not called
+class Wall:
+    armor = 10
+    height = 5
+
+    def __init__(self, depth, height, width):
+        self.depth = depth
+        self.height = height
+        self.width = width
+        self.volume = self.depth * self.height * self.width 
+
+    def get_cost(self):
+        cost = self.armor * self.height
+       
+        return cost
+
+    def fortify(self):
+        self.armor *= 2
+
+
+#The self keyword is actually one of the most important concepts in object-oriented programming:
+#self refers to the specific instance (object) of the class being created. 
+# It's like saying "this particular wall" as opposed to walls in general.
+#When we add self. in front of a variable name, we're creating an "instance variable" or "property" that belongs to that specific object. 
+#Without self. we'd just be creating a local variable that falls into the void when the constructor finishes.
+
+
+def main():
+    aragorn = Brawler(4, 4, "Aragorn")
+    gimli = Brawler(2, 7, "Gimli")
+    legolas = Brawler(7, 7, "Legolas")
+    frodo = Brawler(3, 2, "Frodo")
+    fight(aragorn, gimli)
+    fight(legolas, frodo)
+   
+
+class Brawler:
+    def __init__(self, speed, strength, name):
+        self.speed = speed
+        self.strength = strength
+        self.power = speed * strength
+        self.name = name
+        
+
+def fight(f1, f2):
+    if f1.power > f2.power:
+        print(f"{f1.name} wins with {f1.power} power over {f2.name}'s {f2.power}")
+    elif f1.power < f2.power:
+        print(f"{f2.name} wins with {f2.power} power over {f1.name}'s {f1.power}")
+    else:
+        print(f"It's a tie with both contestants at {f1.power} power")
+
+
+main()
+#~~~~~~~~~~~~
+class Archer:
+    def __init__(self, name, health, num_arrows):
+        # Creates a new archer with their starting stats
+        self.name = name
+        self.health = health
+        self.num_arrows = num_arrows
+
+    def get_shot(self):
+        # First check if the archer can take damage
+        if self.health > 0:
+            self.health -= 1  # Ouch! Take one damage
+        # After taking damage, check if they've fallen
+        if self.health == 0:
+            # Our brave archer has fallen in battle!
+            raise Exception(f"{self.name} is dead")
+
+    def shoot(self, target):
+        # Can't shoot without arrows! Check the quiver first
+        if self.num_arrows == 0:
+            raise Exception(f"{self.name} can't shoot")
+         # If we have arrows, let's fire!
+        if self.num_arrows >= 1:
+            self.num_arrows -= 1  # Use one arrow
+            print(f"{self.name} shoots {target.name}")  # Twang!
+            target.get_shot()  # The target takes damage
+
+            #When calling a method on an object, we use dot notation. 
+   # this challnge focuses on Object-oriented programming with classes
+#         Instance methods and the self keyword
+#         Exception handling
+#         Conditional logic with if statements
+#         Object interaction (one archer shooting another)
+
+    def get_status(self):
+        return self.name, self.health, self.num_arrows
+
+    def print_status(self):
+        print(f"{self.name} has {self.health} health and {self.num_arrows} arrows")
+#~~~~~~~~~~~~~~
+
+
+
+#create a chaining function
+
+    #this class function has two characters in the VII section
+    #what this does is monitor their exp earned and records how any enemies they kill
+    #to level up all the way to 100. It's not the best leveling sysmtem out there
+    #I did this for simply for the exposure to building a game
+class SOLDIER:
+    def __init__(self, health, level, strength, speed, name, magic):
+        self.name = name
+        self.health = health
+        self.level = level
+        self.strength = strength
+        self.speed = speed
+        self.magic = magic
+        self.exp = 0
+        self.expToNextLevel = self.level * 20
+
+    def display_stats(self):
+        # Implement this method if it's not done yet!
+        print(f"Name: {self.name}, Level: {self.level}, Health: {self.health}, "
+              f"Strength: {self.strength}, Speed: {self.speed}, Magic: {self.magic}, EXP: {self.exp}/{self.expToNextLevel}")
+
+    def battleSystem(self, enemyLevel=None):
+        if self.level >= 100:
+            print(f"{self.name} is already at maximum level!")
+            return
+
+        if enemyLevel is None:
+            enemyLevel = self.level
+
+        # Calculate exp based on enemy level
+        enemyExp = enemyLevel * 8
+
+        if enemyLevel > self.level:
+            enemyExp *= 1.5
+
+        print(f"{self.name} defeated a level {enemyLevel} enemy and gained {int(enemyExp)} EXP!")
+        self.exp += int(enemyExp)
+        self.check_level_up()
+
+    def check_level_up(self):
+        while self.exp >= self.expToNextLevel:
+            self.exp -= self.expToNextLevel
+            self.level += 1
+            self.health += 4
+            self.strength += 3
+            self.speed += 1
+            self.expToNextLevel = self.level * 20
+            print(f"{self.name} leveled up to {self.level}")
+            self.display_stats()
+
+def VII():
+ 
+    # Create characters
+    cloud = SOLDIER(7, 1, 7, 5, "Cloud", 8)
+    tifa = SOLDIER(6, 1, 6, 7, "Tifa", 4)
+    
+    # Battle loop
+    while cloud.level < 100 and tifa.level < 100:
+     enemyLevel = max(1, (cloud.level + tifa.level) // 2)
+     cloud.battleSystem(enemyLevel=enemyLevel)
+     tifa.battleSystem(enemyLevel=enemyLevel)
+        
+
+    print("\nFinal Stats:")
+    cloud.display_stats() #displays level 100 stats
+    tifa.display_stats()
+
+VII()
