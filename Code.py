@@ -1,6 +1,7 @@
 #❔🛸
 
 import math
+import random
 
 def newMachine(numbers, letters):
   pointA = 417.99
@@ -2080,6 +2081,15 @@ print(result)  # Would print: 26 (20 + 6)
 #~~~~~~~~~~~~~~
 
 #common test during an interview
+for i in range(1, 21): print("Fizz" * (i%3==0) + "Buzz" *(i % 5 ==0) or str(i))
+#RANDOM Password Generator
+import random as r; p = 'abcdjklmonrstxyzABCDIOMRXYZ0123456789$:-=;[]<>?,./!@%^&*()_+'; 
+print(''.join(r.choices(p, k=15)))
+
+#tell time
+import datetime
+print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+
 def fizzbuzz(start, end):
     fbList = []
     for s in range(start, end):
@@ -2266,8 +2276,6 @@ class Archer:
 
 
 
-#create a chaining function
-
     #this class function has two characters in the VII section
     #what this does is monitor their exp earned and records how any enemies they kill
     #to level up all the way to 100. It's not the best leveling sysmtem out there
@@ -2335,3 +2343,1015 @@ def VII():
     tifa.display_stats()
 
 VII()
+
+
+#create a chaining function
+def phaseOne(project, endResult):
+  projectBuild = phase2(project)
+  staticBuild = phase2(endResult)
+  print(staticBuild) #25...this is planChoice 1 and 2 added together 
+  if projectBuild != 100:
+    return staticBuild
+  if staticBuild != 100:
+    return projectBuild
+  else: 
+    return endResult
+
+def phase2(plan):
+    planChoice = 12
+    planChoice2 = 13
+    result = planChoice + planChoice2
+    return result
+
+phaseOne(17, 27)
+#~~~~~~~~~~~~
+
+#class variable, good or bad?
+#Class variables can certainly behave in a way that feels "janky" 
+# especially when they are accidentally shared across all instances of a class. 
+# This happens because a class variable belongs to the class itself, 
+# not to individual instances. If changed, it affects every instance that relies on it.
+class Dragon:
+   #element = "ice"
+
+    def __init__(self, element):
+        self.element = element
+        return 
+
+    def get_breath_damage(self):
+        if self.element == "fire":
+            return 300
+        if self.element == "ice":
+            return 150
+        return 0
+#~~~~~~~~
+
+
+class Employee:
+    company_name = "Age of Dragons, Inc."
+    total_employees = 0
+    #class variables are often referred to as static variables
+
+    def __init__(self, first_name, last_name, id, position, salary):
+        self.first_name = first_name #the constructor is where the employees are created
+        self.last_name = last_name
+        self.id = id
+        self.position = position
+        self.salary = salary
+        Employee.total_employees += 1 #how to target class variables. class name, . , variable
+        
+
+    def get_name(self):
+        return self.first_name + " " + self.last_name
+#~~~~~~~~~~~~
+
+
+#these classes and functions create a library system that will allow people to add, remove, and search for books.
+class Book:
+    def __init__(self, title, author):
+        # Initialize a new book with a title and author
+        self.title = title
+        self.author = author
+
+class Library:
+    def __init__(self, name):
+        # Initialize a new library with a name and empty book list
+        self.name = name
+        self.books = []
+
+    def add_book(self, book):
+        # Add a book object to the library's collection
+        self.books.append(book)
+        return
+        
+    def remove_book(self, book):
+        # Loop through library books and remove the one that matches
+        # both title and author of the given book
+        for b in self.books:
+            if book.title == b.title and book.author == b.author:
+                self.books.remove(b)
+        return 
+        
+    def search_books(self, search_string):
+        # Create empty list to store matching books
+        results = []
+        # Loop through all books in library
+        for b in self.books: 
+            # Check if search string exists in book title or author
+            # Convert everything to lowercase for case-insensitive search
+            if search_string.lower() in b.title.lower() or search_string.lower() in b.author.lower():
+                results.append(b)
+        # Return list of all matching books
+        return results
+        #~~~~~~~~~
+
+#practice with private properties/encapsulation
+#Encapsulation is about organization, not security.
+class Wizard: 
+    def __init__(self, name, stamina, intelligence):#these are called parameters
+        self.name = name #these are instanced variables
+        self.__stamina = stamina 
+        self.health = stamina * 100
+        self.__intelligence = intelligence
+        self.mana = intelligence * 10
+#end
+
+
+# Constant values for game mechanics
+fireball_damage = 500  
+potion_mana = 100      
+fireball_cost = 50    
+
+class Wizard:
+    def __init__(self, name, stamina, intelligence):
+        self.name = name
+        self.__stamina = stamina
+        self.__intelligence = intelligence
+        self.mana = self.__intelligence * 10  # Starting mana based on intelligence
+        self.health = self.__stamina * 100    # Starting health based on stamina
+
+    def cast_fireball(self, target):
+        # - Check if there is enough mana to cast it
+        if self.mana < fireball_cost:
+            raise Exception(f"{self.name} cannot cast fireball")
+        self.mana -= fireball_cost         
+        target.get_fireballed()              
+        
+    def is_alive(self):
+        # Check if the wizard is still alive:
+        return self.health > 0
+
+    def get_fireballed(self):
+        # reduce health by fireball
+        self.health -= fireball_damage
+
+    def drink_mana_potion(self):
+        self.mana += potion_mana
+        #end 
+
+
+#start program
+#this functions like a real life bank account.
+class BankAccount:
+    def __init__(self, account_number, initial_balance):
+        self.__account_number = account_number
+        self.__balance = initial_balance #creates a new account
+
+    def get_account_number(self): #keeps record of the private acc number
+        return self.__account_number
+
+    def get_balance(self): #keeps track of the balance
+        return self.__balance 
+
+    def deposit(self, amount):#prevents faulty deposits
+        if amount <= 0:       #and adds the deposit to the balance
+            raise ValueError("cannot deposit zero or negative funds")
+        self.__balance += amount
+        
+    def withdraw(self, amount): #prevents negative imbalances
+        if amount <= 0:
+            raise ValueError("cannot withdraw zero or negative funds")
+        if amount > self.__balance: #prevents overdraft fees
+            raise ValueError("insufficient funds")
+        self.__balance -= amount
+        #END
+            
+
+#What this does is checks students scores and grades them based on their performance
+class Student:
+    def __init__(self, name):
+        self.name = name
+        self.__courses = {}
+
+    def calculate_letter_grade(self, score):
+        if score >= 90:
+            return "A"
+        elif score >= 80 :
+            return "B"
+        elif score >= 70 :
+            return "C"
+        elif score >= 60:
+            return "D"
+        else:
+            return "F"
+
+    def add_course(self, course_name, score):
+        result = self.calculate_letter_grade(score)
+        self.__courses.update({course_name:result}) #updates the dictionary on line 2514
+                                #basically adds a new course name and their grade
+
+    def get_courses(self):
+        return self.__courses 
+#END
+
+#This is an abstraction that hides the complexity of how movement happens in a 2D space
+class Human:
+    def __init__(self, pos_x, pos_y, speed):
+        self.__pos_x = pos_x
+        self.__pos_y = pos_y
+        self.__speed = speed
+#How the math works to update positions
+    def move_right(self): #and determine how many pixels a unit moves per arrow key
+        self.__pos_x += self.__speed
+
+    def move_left(self):
+        self.__pos_x -= self.__speed
+
+    def move_up(self):
+        self.__pos_y += self.__speed
+
+    def move_down(self):
+        self.__pos_y -= self.__speed
+
+    def get_position(self):
+        return (self.__pos_x, self.__pos_y)
+
+#END 
+
+
+#In this program, we have a game that grants an ability to the human race called sprint
+class Human:
+    def sprint_right(self):#from line 2564 - 2582 is checks the direction the human is moving
+        self.__raise_if_cannot_sprint()     #and checks if they have any stamina
+        self.__use_sprint_stamina()
+        self.move_right()
+        self.move_right()
+
+    def sprint_left(self):
+        self.__raise_if_cannot_sprint() 
+        self.__use_sprint_stamina()
+        self.move_left()
+        self.move_left()
+
+    def sprint_up(self):
+        self.__raise_if_cannot_sprint() 
+        self.__use_sprint_stamina()
+        self.move_up()
+        self.move_up()
+
+    def sprint_down(self):
+        self.__raise_if_cannot_sprint() 
+        self.__use_sprint_stamina()
+        self.move_down()
+        self.move_down()
+
+    def __raise_if_cannot_sprint(self): #I think == 0 rivals <= 0. 
+        if self.__stamina == 0:
+            raise Exception("not enough stamina to sprint") #you get an error message if stamina 0
+
+    def __use_sprint_stamina(self):     #if not then subtract 1 stamina per movement
+            self.__stamina -= 1
+
+
+#the below code here ties into all the above.
+    def move_right(self):
+        self.__pos_x += self.__speed
+
+    def move_left(self):
+        self.__pos_x -= self.__speed
+
+    def move_up(self):
+        self.__pos_y += self.__speed
+
+    def move_down(self):
+        self.__pos_y -= self.__speed
+
+    def get_position(self):
+        return self.__pos_x, self.__pos_y
+
+    def __init__(self, pos_x, pos_y, speed, stamina):
+        self.__pos_x = pos_x
+        self.__pos_y = pos_y
+        self.__speed = speed
+        self.__stamina = stamina
+#END
+
+
+#this obviously is going to preform calculator functions. + - * / % ** and square root
+class Calculator:
+    def __init__(self):
+        self.__result = 0
+
+    def add(self, a):
+        self.__result += a
+
+    def subtract(self, a):
+       self.__result -=  a
+
+    def multiply(self, a):
+        self.__result *= a
+
+    def divide(self, a): #self explanitory
+        if a == 0:
+            raise ValueError("cannot divide by zero")
+        self.__result /= a
+        
+    def modulo(self, a): #self explanitory
+        if a  == 0:
+            raise ValueError("cannot divide by zero")
+        self.__result %= a
+        
+    def power(self, a):
+        self.__result **= a
+
+    def square_root(self):
+        self.__result **= 0.5 
+
+    def clear(self): #resets result
+        self.__result = 0
+
+    def get_result(self):
+        return self.__result
+#END
+
+
+#deck of cards
+class DeckOfCards:
+ 
+    SUITS = ["Hearts", "Diamonds", "Clubs", "Spades"]
+    RANKS = [
+        "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King",
+    ]
+
+    def __init__(self):
+        self.__cards = []  # initialize empty private list for cards
+        self.create_deck() # fill deck with 52 cards
+        
+    def create_deck(self):
+        for suit in DeckOfCards.SUITS:
+            for rank in DeckOfCards.RANKS:
+             self.__cards.append((rank, suit))  # add each card as (rank, suit) tuple
+
+    def shuffle_deck(self):
+        random.shuffle(self.__cards)  # randomly reorder all cards in deck
+
+    def deal_card(self):
+        if len(self.__cards) > 0:
+            return self.__cards.pop()  # pop and return top card from deck
+        else:
+            return None  # return None if deck is empty
+
+    def __str__(self):
+        return f"The deck has {len(self.__cards)} cards"
+        #END
+
+    
+
+#expamples of inheritance from parent to descendant/subclass
+class Human:
+    def __init__(self, name):
+        self.__name = name
+
+    def get_name(self):
+        return self.__name
+
+class Archer(Human):
+    def __init__(self, name, num_arrows):
+        # Set archer-specific property first
+        self.__num_arrows = num_arrows
+        # Call parent (Human) constructor with name parameter
+        super().__init__(name) #super() calls what ever class is above another
+
+class Ranger(Archer):
+    def __init__(self, name, num_arrows, stealth_level):   # Ranger knows all three
+        super().__init__(name, num_arrows)   # name is a human cass trait, num_arrows is Archer
+        self.__stealth_level = stealth_level   # Handles its own 'stealth_level'
+
+    def get_num_arrows(self):
+        return self.__num_arrows 
+        #END
+
+
+#inheritance heirarchy: A subclass can't access a private property of its parent class. It has to use a getter.
+class Human: #remember self is the core of accessing attributes and methods within a class.
+    def __init__(self, name):
+        self.__name = name
+
+    def get_name(self):
+        return self.__name
+
+
+class Archer(Human):
+    def __init__(self, name, num_arrows):
+        super().__init__(name)#pulls trait from human
+        self.__num_arrows = num_arrows
+
+    def get_num_arrows(self): #getter method to reach the private self.__num_arrows variable
+        return self.__num_arrows
+
+    def use_arrows(self, num):
+        if num > self.__num_arrows: #determines your quiver size
+            raise Exception("not enough arrows")
+        else:
+            self.__num_arrows -= num
+
+class Crossbowman(Archer):
+    def __init__(self, name, num_arrows):
+        super().__init__(name, num_arrows)#inherits traits from Human and Archer
+        
+    def triple_shot(self, target): #no need to create an instanced variable
+        self.use_arrows(3)
+        return f"{target.get_name()} was shot by 3 crossbow bolts" #this is a string expression
+        #END
+
+
+#here, is a small snippet that determines how much damage a Hero would take from a single arrow
+class Hero:
+    def __init__(self, name, health):
+        self.__name = name
+        self.__health = health
+
+    def get_name(self):
+        return self.__name
+
+    def get_health(self):
+        return self.__health
+
+    def take_damage(self, damage):
+        self.__health -= damage
+
+
+class Archer(Hero):
+    def __init__(self, name, health, num_arrows):
+        super().__init__(name, health)
+        self.__num_arrows = num_arrows
+
+    def shoot(self, target):
+        if self.__num_arrows == 0:
+            raise Exception("not enough arrows")
+        self.__num_arrows -= 1
+        target.take_damage(10) #pulls the take_damage from line 2762
+#END
+
+
+#similar to the above, testing wizard damage and mana pool
+class Hero:
+    def __init__(self, name, health):
+        self.__name = name
+        self.__health = health
+
+    def get_name(self):
+         return self.__name
+        
+
+    def get_health(self):
+         return self.__health
+        
+
+    def take_damage(self, damage):
+        self.__health -= damage
+
+
+class Archer(Hero):
+    def __init__(self, name, health, num_arrows):
+        super().__init__(name, health)
+        self.__num_arrows = num_arrows
+
+    def shoot(self, target):
+        if self.__num_arrows <= 0:
+            raise Exception("not enough arrows")
+        self.__num_arrows -= 1
+        target.take_damage(10)
+
+
+class Wizard(Hero):
+    def __init__(self, name, health, mana):
+        super().__init__(name, health)
+        self.__mana = mana
+        
+
+    def cast(self, target):
+        if self.__mana < 25:
+            raise Exception("not enough mana")
+        self.__mana -= 25
+        target.take_damage(25)
+#END
+
+
+
+#Fire breathing Dragon
+class Unit:
+    def __init__(self, name, pos_x, pos_y):
+        #spawns units
+        self.name = name
+        self.pos_x = pos_x
+        self.pos_y = pos_y
+
+    def in_area(self, x_1, y_1, x_2, y_2):
+        if (self.pos_x >= x_1 and self.pos_x <= x_2 and self.pos_y >= y_1 and
+        self.pos_y <= y_2):
+            #checks if the units are within striking distance of the dragon's breath
+            return True
+        return False
+
+class Dragon(Unit):
+    def __init__(self, name, pos_x, pos_y, fire_range):
+         # Initialize a dragon with unit properties and its fire range
+        super().__init__(name, pos_x, pos_y)
+        self.__fire_range = fire_range #striking distance
+
+    def breathe_fire(self, x, y, units):
+        #Returns a list of all units caught within the 
+        #dragon's fire breath area
+        unitsHit = []
+        for unit in units:
+           if unit.in_area(
+               x - self.__fire_range,
+               y - self.__fire_range,
+               x + self.__fire_range,
+               y + self.__fire_range
+           ):
+             unitsHit.append(unit)
+        return unitsHit
+#END
+
+
+
+def main():
+    dragons = [ #objects list
+        Dragon("Green Dragon", 0, 0, 1),
+        Dragon("Red Dragon", 2, 2, 2),
+        Dragon("Blue Dragon", 4, 3, 3),
+        Dragon("Black Dragon", 5, -1, 4),
+    ]
+
+
+    for dragon in dragons: 
+        describe(dragon)
+    for d in range(len(dragons)):
+        currentDragon = dragons[d] #targets dragons by index value
+        remainingDragons = dragons.copy() #creates a copy of the list
+        del remainingDragons[d] #removes current dragon to avoid damaging itself
+        #describe(dragons[0])
+        currentDragon.breathe_fire(x=3, y=3, units=remainingDragons)
+        # Makes the current dragon breathe fire at all other dragons
+            
+             
+def describe(dragon):
+    # dragon's name and x/y coordinates
+    print(f"{dragon.name} is at {dragon.pos_x}/{dragon.pos_y}")
+
+
+class Unit: #base class for any game unit
+    def __init__(self, name, pos_x, pos_y):
+        self.name = name
+        self.pos_x = pos_x
+        self.pos_y = pos_y
+
+    def in_area(self, x_1, y_1, x_2, y_2):
+        #checks if unit is inside a rectangular area defined by two corner points
+        return (
+            self.pos_x >= x_1 #greater than or equal to left boundary
+            and self.pos_x <= x_2 #less than or equal to right boundary
+            and self.pos_y >= y_1 #greater than or equal to bottom boundary
+            and self.pos_y <= y_2 #less than or equal to top boundary
+        )
+
+
+class Dragon(Unit):
+    def __init__(self, name, pos_x, pos_y, fire_range):
+        super().__init__(name, pos_x, pos_y) #calls upin the parent Unit class
+        self.__fire_range = fire_range
+
+    def breathe_fire(self, x, y, units):
+        print(f"{self.name} breathes fire at {x}/{y} with range {self.__fire_range}")
+        print("====================================")
+        for unit in units: #says what dragons are ht by fire
+            in_area = unit.in_area(
+                x - self.__fire_range,
+                y - self.__fire_range,
+                x + self.__fire_range,
+                y + self.__fire_range,
+            )
+            if in_area:
+                print(f"{unit.name} is hit by the fire")
+main()
+#END
+
+
+#find the witdh and length of a rectangle
+class Rectangle:
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
+
+    def get_area(self):
+        return self.length * self.width
+
+    def get_perimeter(self): 
+        return 2 * (self.length + self.width)
+        
+class Square(Rectangle): #Creates a square as a special type of rectangle
+    def __init__(self, length):  #Uses the parent class's initialization to set both sides equal
+        super().__init__(length, length) #Inherits all the area and perimeter calculations from Rectangle
+    
+  #END      
+
+
+#seige math...will write comments later
+class Siege:
+    def __init__(self, max_speed, efficiency):
+        self.max_speed = max_speed
+        self.efficiency = efficiency
+
+    def get_trip_cost(self, distance, food_price):
+        foodForEnergy = (distance / self.efficiency) * food_price
+        return foodForEnergy
+
+    def get_cargo_volume(self):
+        pass
+
+
+class BatteringRam(Siege):
+    def __init__(
+        self,
+        max_speed,
+        efficiency,
+        load_weight,
+        bed_area
+    ):
+        super().__init__(max_speed, efficiency)
+        self.load_weight = load_weight
+        self.bed_area = bed_area
+
+    def get_trip_cost(self, distance, food_price):
+        return super().get_trip_cost(distance, food_price) + (self.load_weight * 0.01)
+        
+
+    def get_cargo_volume(self):
+        return self.bed_area * 2 
+        
+class Catapult(Siege):
+    def __init__(self, max_speed, efficiency, cargo_volume):
+       self.cargo_volume = cargo_volume 
+       super().__init__(max_speed, efficiency)
+
+    def get_cargo_volume(self):
+        return self.cargo_volume
+#END
+
+#get edges, polymorphism
+class Rectangle:
+    def __init__(self, x1, y1, x2, y2):
+        self.__x1 = x1
+        self.__y1 = y1
+        self.__x2 = x2
+        self.__y2 = y2
+
+    def get_left_x(self):
+        return min(self.__x1, self.__x2)
+
+    def get_right_x(self):
+        return max(self.__x1, self.__x2)
+
+    def get_top_y(self):
+        return max(self.__y1, self.__y2)
+
+    def get_bottom_y(self):
+        return min(self.__y1, self.__y2)
+
+
+
+    def __repr__(self):
+        return f"Rectangle({self.__x1}, {self.__y1}, {self.__x2}, {self.__y2})"
+#END
+
+
+#Checking If Rectangles Overlap
+class Rectangle:
+    def overlaps(self, rect):
+        if (
+            self.get_left_x() <= rect.get_right_x() and 
+            self.get_right_x() >= rect.get_left_x() and 
+            self.get_top_y() >= rect.get_bottom_y() and 
+            self.get_bottom_y() <= rect.get_top_y()
+        ):
+            return True
+        return False
+
+    def __init__(self, x1, y1, x2, y2):
+        self.__x1 = x1
+        self.__y1 = y1
+        self.__x2 = x2
+        self.__y2 = y2
+
+    def get_left_x(self):
+        if self.__x1 < self.__x2:
+            return self.__x1
+        return self.__x2
+
+    def get_right_x(self):
+        if self.__x1 > self.__x2:
+            return self.__x1
+        return self.__x2
+
+    def get_top_y(self):
+        if self.__y1 > self.__y2:
+            return self.__y1
+        return self.__y2
+
+    def get_bottom_y(self):
+        if self.__y1 < self.__y2:
+            return self.__y1
+        return self.__y2
+
+    def __repr__(self):
+        return f"Rectangle({self.__x1}, {self.__y1}, {self.__x2}, {self.__y2})"
+
+#END
+
+
+#combining rectangles with the dragon class
+class Unit:
+    def __init__(self, name, pos_x, pos_y):
+        self.name = name
+        self.pos_x = pos_x
+        self.pos_y = pos_y
+
+    def in_area(self, x1, y1, x2, y2):
+        pass
+
+
+class Dragon(Unit):
+    def __init__(self, name, pos_x, pos_y, height, width, fire_range):
+        super().__init__(name, pos_x, pos_y)
+        self.fire_range = fire_range
+        self.height = height
+        self.width = width
+        half_height = height /2
+        half_width = width / 2
+        self.__hit_box = Rectangle(
+            pos_x - half_width,
+            pos_y - half_height,
+            pos_x + half_width,
+            pos_y + half_height
+            )
+        
+    def in_area(self, x1, y1, x2, y2):
+       area = Rectangle(x1, y1, x2, y2) 
+       return area.overlaps(self.__hit_box) 
+
+
+class Rectangle:
+    def overlaps(self, rect):
+        return (
+            self.get_left_x() <= rect.get_right_x()
+            and self.get_right_x() >= rect.get_left_x()
+            and self.get_top_y() >= rect.get_bottom_y()
+            and self.get_bottom_y() <= rect.get_top_y()
+        )
+
+    def __init__(self, x1, y1, x2, y2):
+        self.__x1 = x1
+        self.__y1 = y1
+        self.__x2 = x2
+        self.__y2 = y2
+
+    def get_left_x(self):
+        if self.__x1 < self.__x2:
+            return self.__x1
+        return self.__x2
+
+    def get_right_x(self):
+        if self.__x1 > self.__x2:
+            return self.__x1
+        return self.__x2
+
+    def get_top_y(self):
+        if self.__y1 > self.__y2:
+            return self.__y1
+        return self.__y2
+
+    def get_bottom_y(self):
+        if self.__y1 < self.__y2:
+            return self.__y1
+        return self.__y2
+#END
+
+
+#Operator Overload
+class Sword:
+    def __init__(self, sword_type):
+        self.sword_type = sword_type
+
+    def __add__(self, other):
+
+        if self.sword_type == "bronze" and other.sword_type == "bronze":
+            return Sword('iron') #crafts two bronze sword to make an iron sword
+        if self.sword_type == "iron" and other.sword_type == "iron":
+            return Sword('steel') #2 iron swords make a steel sword
+        else:
+            raise Exception("cannot craft") #cannot combine bronze with iron, etc.
+
+ #test cases
+
+run_cases = [
+    (Sword("bronze"), Sword("bronze"), "iron", None),
+    (Sword("bronze"), Sword("iron"), None, "cannot craft"),
+]
+
+submit_cases = run_cases + [
+    (Sword("steel"), Sword("steel"), None, "cannot craft"),
+    (Sword("iron"), Sword("iron"), "steel", None),
+    (Sword("bronze"), Sword("steel"), None, "cannot craft"),
+]
+
+
+def test(sword1, sword2, expected_result, expected_err):
+    try:
+        print("---------------------------------")
+        print(
+            f"Crafting a {sword1.sword_type} sword with a {sword2.sword_type} sword..."
+        )
+        result = sword1 + sword2
+
+        if expected_err:
+            print(f"Expected Exception: {expected_err}")
+            print("Actual: no exception raised")
+            print("Fail")
+            return False
+
+        print(f"Expected: {expected_result}")
+        print(f"Actual: {result.sword_type}")
+        print(f"A new {result.sword_type} sword was crafted!")
+        if result.sword_type != expected_result:
+            print("Fail")
+            return False
+
+    except Exception as e:
+        print(f"Expected Exception: {expected_err}")
+        print(f"Actual Exception: {e}")
+        if expected_err != str(e):
+            print("Fail")
+            return False
+
+    print("Pass")
+    return True
+
+
+def main():
+    passed = 0
+    failed = 0
+    for test_case in test_cases:
+        correct = test(*test_case)
+        if correct:
+            passed += 1
+        else:
+            failed += 1
+    if failed == 0:
+        print("============= PASS ==============")
+    else:
+        print("============= FAIL ==============")
+    print(f"{passed} passed, {failed} failed")
+
+
+test_cases = submit_cases
+if "__RUN__" in globals():
+    test_cases = run_cases
+
+main()
+
+#END
+
+#Last test of OOP for now...
+class Dragon:
+    def __init__(self, name, color):
+        self.name = name
+        self.color = color
+
+    def __str__(self):
+        return f"I am {self.name}, the {self.color} dragon"
+#test cases
+run_cases = [
+    (Dragon("Smaug", "red"), "I am Smaug, the red dragon"),
+    (Dragon("Saphira", "blue"), "I am Saphira, the blue dragon"),
+]
+
+submit_cases = run_cases + [
+    (Dragon("Nefarian", "black"), "I am Nefarian, the black dragon"),
+    (Dragon("Toothless", "blackish"), "I am Toothless, the blackish dragon"),
+    (Dragon("", "colorless"), "I am , the colorless dragon"),
+    (Dragon("Glaurung", "gold"), "I am Glaurung, the gold dragon"),
+    (Dragon("Fafnir", "green"), "I am Fafnir, the green dragon"),
+]
+
+
+def test(input1, expected_output):
+    try:
+        print("---------------------------------")
+        print(f"Input: {input1}")
+        print(f"Expecting: {expected_output}")
+        result = str(input1)
+        print(f"Actual: {result}")
+        if result == expected_output:
+            print("Pass")
+            return True
+        print("Fail")
+        return False
+    except Exception as e:
+        print(f"Error: {e}")
+        print("Fail")
+        return False
+
+
+def main():
+    passed = 0
+    failed = 0
+    for test_case in test_cases:
+        correct = test(*test_case)
+        if correct:
+            passed += 1
+        else:
+            failed += 1
+    if failed == 0:
+        print("============= PASS ==============")
+    else:
+        print("============= FAIL ==============")
+    print(f"{passed} passed, {failed} failed")
+
+
+test_cases = submit_cases
+if "__RUN__" in globals():
+    test_cases = run_cases
+
+main()
+#END
+
+#Fisher-Yates shuffle algorithm with Mega Man
+#shuffle t doesn't work with sort() directly 
+#It doesn't work with slicing... slicing creates a new list, and shuffle() modifies the original 
+#so slice the list before shuffling and shuffle only works with lists(str or int)
+import random
+import time
+
+class Protoman:
+    def __init__(self, health, barrier):
+        self.health = health
+        self.barrier = barrier
+    def protoAbilities(self):
+        protoBuster = "Proto buster base damage: 100"
+        protoBusterCharged = "Charged proto buster damage: 350"
+        slideAttack = "slide deals 50 damage"
+        combo = [protoBuster, protoBusterCharged, slideAttack]
+        random.shuffle(combo)
+        print(combo)
+
+class DrWily:
+        def __init__(self, health, tech):
+            self.health = health
+            self.tech = tech
+            self.ElectricShieldUse = 0
+            self.shieldCooldown = 15
+            self.shield_active = False  # Track if shield is currently up
+            self.shield_duration = 10 
+
+        def useElectricShield(self):
+            currentTime = time.time()
+            time_since_shield = currentTime - self.ElectricShieldUse
+            if time_since_shield >= self.shieldCooldown:
+                self.shield_active = True
+                self.ElectricShieldUse = currentTime
+                return True
+            return False
+
+        def take_damage(self, damage):
+            if self.shield_active:
+                if time.time() - self.ElectricShieldUse:
+                    self.shield_activve = False
+                    self.health -= damage
+                else: 
+                    return "Immune"
+            else: 
+                self.health -= damage
+
+        def scientificMechanisms(self):
+            electricBolt = "Shock dmg: 50"
+            summonRobot = "Health = 10, missile attack dmg: 200"
+            electricShield = "immune for ten seconds, contact dmg: 50"
+            attacks = [electricBolt, summonRobot, electricShield]
+            random.shuffle(attacks)
+            print(attacks)
+
+class MegaMan:
+    advancedTech = "Bio Blaster dmg: 350"
+    enemies = [Protoman(400, 100), DrWily(101, 300)]
+    def __init__(self, health, power_up):
+        self.health = health
+        self.power_up = power_up
+    def blasterMods(self, scissor, fire):
+        self.scissor = scissor
+        self.fire = fire
+        water, drill, tornado, light = "water blast dmg: 80", "Drill Blast dmg: 150", "tornado dmg: 180", "Light Beam dmg: 170"
+        modShift = [light, self.fire, water, drill, MegaMan.advancedTech, tornado]
+        random.shuffle(modShift)
+        print(modShift)
+
+mega = MegaMan(500, "Power Boost")#creates an outside instance variable to avoid editing self.
+mega.blasterMods(140, 200)
+
+proto = Protoman(400, 100)
+proto.protoAbilities()
+
+doctor = DrWily(101, 300)
+doctor.scientificMechanisms()
+
