@@ -1,5 +1,3 @@
-#❔🛸
-
 import math
 import random
 
@@ -3065,35 +3063,45 @@ class Rectangle:
 class Unit:
     def __init__(self, name, pos_x, pos_y):
         self.name = name
-        self.pos_x = pos_x
-        self.pos_y = pos_y
+        self.pos_x = pos_x  # x coordinate of unit's center
+        self.pos_y = pos_y  # y coordinate of unit's center
 
     def in_area(self, x1, y1, x2, y2):
+        # Abstract method to be implemented by child classes
         pass
 
 
+# Dragon unit with rectangular hitbox and fire range capabilities 
 class Dragon(Unit):
     def __init__(self, name, pos_x, pos_y, height, width, fire_range):
+        # Initialize parent class attributes
         super().__init__(name, pos_x, pos_y)
         self.fire_range = fire_range
         self.height = height
         self.width = width
-        half_height = height /2
+        
+        # Calculate hitbox dimensions from center point
+        half_height = height / 2
         half_width = width / 2
+        
+        # Create rectangular hitbox centered on dragon's position
         self.__hit_box = Rectangle(
-            pos_x - half_width,
-            pos_y - half_height,
-            pos_x + half_width,
-            pos_y + half_height
-            )
+            pos_x - half_width,   # left edge
+            pos_y - half_height,  # bottom edge
+            pos_x + half_width,   # right edge
+            pos_y + half_height   # top edge
+        )
         
     def in_area(self, x1, y1, x2, y2):
-       area = Rectangle(x1, y1, x2, y2) 
-       return area.overlaps(self.__hit_box) 
+        # Check if dragon's hitbox overlaps with given rectangular area
+        area = Rectangle(x1, y1, x2, y2) 
+        return area.overlaps(self.__hit_box) 
 
 
+# Utility class for handling rectangular areas and collision detection
 class Rectangle:
     def overlaps(self, rect):
+        # Check if rectangles overlap using separating axis theorem
         return (
             self.get_left_x() <= rect.get_right_x()
             and self.get_right_x() >= rect.get_left_x()
@@ -3102,30 +3110,35 @@ class Rectangle:
         )
 
     def __init__(self, x1, y1, x2, y2):
-        self.__x1 = x1
-        self.__y1 = y1
-        self.__x2 = x2
-        self.__y2 = y2
+    # Store coordinates of rectangle corners as private variables
+        self.__x1 = x1  # First x coordinate
+        self.__y1 = y1  # First y coordinate 
+        self.__x2 = x2  # Second x coordinate
+        self.__y2 = y2  # Second y coordinate
 
-    def get_left_x(self):
-        if self.__x1 < self.__x2:
-            return self.__x1
-        return self.__x2
+def get_left_x(self):
+    # Return the smaller x value (leftmost edge)
+    if self.__x1 < self.__x2:
+        return self.__x1
+    return self.__x2
 
-    def get_right_x(self):
-        if self.__x1 > self.__x2:
-            return self.__x1
-        return self.__x2
+def get_right_x(self):
+    # Return the larger x value (rightmost edge)
+    if self.__x1 > self.__x2:
+        return self.__x1
+    return self.__x2
 
-    def get_top_y(self):
-        if self.__y1 > self.__y2:
-            return self.__y1
-        return self.__y2
+def get_top_y(self):
+    # Return the larger y value (top edge)
+    if self.__y1 > self.__y2:
+        return self.__y1
+    return self.__y2
 
-    def get_bottom_y(self):
-        if self.__y1 < self.__y2:
-            return self.__y1
-        return self.__y2
+def get_bottom_y(self):
+    # Return the smaller y value (bottom edge)
+    if self.__y1 < self.__y2:
+        return self.__y1
+    return self.__y2
 #END
 
 
@@ -3213,7 +3226,7 @@ main()
 
 #END
 
-#Last test of OOP for now...
+#target each dragon in the test cases and print their name and color
 class Dragon:
     def __init__(self, name, color):
         self.name = name
@@ -3221,6 +3234,7 @@ class Dragon:
 
     def __str__(self):
         return f"I am {self.name}, the {self.color} dragon"
+
 #test cases
 run_cases = [
     (Dragon("Smaug", "red"), "I am Smaug, the red dragon"),
@@ -3284,11 +3298,11 @@ main()
 
 #Fisher-Yates shuffle algorithm with Mega Man
 # and some clean explanations of abilities
-#and enemy abilities
+#and enemy abilitiesaccompanied by a match between Mega Man vs an enemy
 import random
 import time
 
-class Protoman:
+class Protoman: #enemy
     def __init__(self, health, barrier):
         self.health = health
         self.barrier = barrier
@@ -3300,7 +3314,7 @@ class Protoman:
         random.shuffle(combo)
         print(combo)
 
-class DrWily:
+class DrWily: #enemy
         def __init__(self, health, tech):
             self.health = health
             self.tech = tech #health and immunnity shield
@@ -3319,14 +3333,12 @@ class DrWily:
             return False
 
         def take_damage(self, damage):
-            if self.shield_active: 
-                if time.time() - self.ElectricShieldUse: # Check if the shield is still up based on time
-                    self.shield_activve = False #the shield expires and damamge can be applied
-                    self.health -= damage
-                else: 
-                    return "Immune" #shield up
-            else: 
-                self.health -= damage # no shield up
+            # Check if shield is active and within duration period
+            if self.shield_active and (time.time() - self.ElectricShieldUse) < self.shield_duration:
+                return "Immune"
+            self.health -= damage # If shield isn't active or has expired, take damage
+            # Return message about damage taken
+            return f"Took {damage} damage! Remaining health: {self.health}"
 
         def scientificMechanisms(self):
             electricBolt = "Shock dmg: 50" #Dr Wily's attacks
@@ -3336,13 +3348,20 @@ class DrWily:
             random.shuffle(attacks)
             print(attacks)
 
-class MegaMan: #megaman's stats and attacks
+class MegaMan: #megaman's stats and attacks 
     advancedTech = "Bio Blaster dmg: 350"
     enemies = [Protoman(400, 100), DrWily(101, 300)] #enemy stats
     def __init__(self, health, power_up):
         self.health = health
         self.power_up = power_up
-    def blasterMods(self, scissor, fire):
+
+    def attack(self, target, damage): #fight between MegaMan and Dr. Wily
+        if isinstance(target, DrWily) and target.shield_active:
+            return "Shield Immunity Active"
+        target.health -= damage
+        return f"Dealt {damage} damage! Target health: {target.health}"
+
+    def blasterMods(self, scissor, fire):#for Mega Man
         self.scissor = scissor
         self.fire = fire
         water, drill, tornado, light = "water blast dmg: 80", "Drill Blast dmg: 150", "tornado dmg: 180", "Light Beam dmg: 170"
@@ -3358,4 +3377,11 @@ proto.protoAbilities()
 
 doctor = DrWily(101, 300) #hp and damage in one cycle
 doctor.scientificMechanisms()
+
+print("\n=== Combat Test ===")
+print(mega.attack(doctor, 50))  # Should deal damage
+print("Dr. Wily activates shield!")
+doctor.useElectricShield()
+print(mega.attack(doctor, 50))  # Should be blocked
+#END
 
