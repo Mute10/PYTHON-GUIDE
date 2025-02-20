@@ -3277,10 +3277,14 @@ if "__RUN__" in globals():
 main()
 #END
 
-#Fisher-Yates shuffle algorithm with Mega Man
+
 #shuffle t doesn't work with sort() directly 
 #It doesn't work with slicing... slicing creates a new list, and shuffle() modifies the original 
 #so slice the list before shuffling and shuffle only works with lists(str or int)
+
+#Fisher-Yates shuffle algorithm with Mega Man
+# and some clean explanations of abilities
+#and enemy abilities
 import random
 import time
 
@@ -3288,7 +3292,7 @@ class Protoman:
     def __init__(self, health, barrier):
         self.health = health
         self.barrier = barrier
-    def protoAbilities(self):
+    def protoAbilities(self):#health and attacks
         protoBuster = "Proto buster base damage: 100"
         protoBusterCharged = "Charged proto buster damage: 350"
         slideAttack = "slide deals 50 damage"
@@ -3299,42 +3303,42 @@ class Protoman:
 class DrWily:
         def __init__(self, health, tech):
             self.health = health
-            self.tech = tech
+            self.tech = tech #health and immunnity shield
             self.ElectricShieldUse = 0
-            self.shieldCooldown = 15
+            self.shieldCooldown = 15 #5 seconds of vunerablility
             self.shield_active = False  # Track if shield is currently up
             self.shield_duration = 10 
 
-        def useElectricShield(self):
+        def useElectricShield(self):#Track time since last shield activation: time.time()
             currentTime = time.time()
-            time_since_shield = currentTime - self.ElectricShieldUse
-            if time_since_shield >= self.shieldCooldown:
+            time_since_shield = currentTime - self.ElectricShieldUse #subtracts the timestamp of the last shield activation
+            if time_since_shield >= self.shieldCooldown: #checks cooldown time
                 self.shield_active = True
                 self.ElectricShieldUse = currentTime
-                return True
+                return True #return the results
             return False
 
         def take_damage(self, damage):
-            if self.shield_active:
-                if time.time() - self.ElectricShieldUse:
-                    self.shield_activve = False
+            if self.shield_active: 
+                if time.time() - self.ElectricShieldUse: # Check if the shield is still up based on time
+                    self.shield_activve = False #the shield expires and damamge can be applied
                     self.health -= damage
                 else: 
-                    return "Immune"
+                    return "Immune" #shield up
             else: 
-                self.health -= damage
+                self.health -= damage # no shield up
 
         def scientificMechanisms(self):
-            electricBolt = "Shock dmg: 50"
+            electricBolt = "Shock dmg: 50" #Dr Wily's attacks
             summonRobot = "Health = 10, missile attack dmg: 200"
             electricShield = "immune for ten seconds, contact dmg: 50"
             attacks = [electricBolt, summonRobot, electricShield]
             random.shuffle(attacks)
             print(attacks)
 
-class MegaMan:
+class MegaMan: #megaman's stats and attacks
     advancedTech = "Bio Blaster dmg: 350"
-    enemies = [Protoman(400, 100), DrWily(101, 300)]
+    enemies = [Protoman(400, 100), DrWily(101, 300)] #enemy stats
     def __init__(self, health, power_up):
         self.health = health
         self.power_up = power_up
@@ -3347,11 +3351,11 @@ class MegaMan:
         print(modShift)
 
 mega = MegaMan(500, "Power Boost")#creates an outside instance variable to avoid editing self.
-mega.blasterMods(140, 200)
+mega.blasterMods(140, 200)   #500 hp not sure what to do with the string
 
-proto = Protoman(400, 100)
-proto.protoAbilities()
+proto = Protoman(400, 100)#protman's hp and barrier
+proto.protoAbilities() 
 
-doctor = DrWily(101, 300)
+doctor = DrWily(101, 300) #hp and damage in one cycle
 doctor.scientificMechanisms()
 
