@@ -1,5 +1,8 @@
 import math
 import random
+#import string: provides tools for string manipulation.
+#import requests: fetches data from web pages.
+#from bs4 import BeautifulSoup: parses HTML and extracts content for analysis.
 
 def newMachine(numbers, letters):
   pointA = 417.99
@@ -86,7 +89,7 @@ def carShield(toyota, honda):
   print(prototype) #why does print proto return 97? because it returns the last iteration
   print(new_prototype)
 carShield(11, 12)
- #--------------
+ #END 
 
 def aeroProject(stellar, power):
  bluePrints = 200
@@ -114,7 +117,7 @@ def aeroProject(stellar, power):
  else:
   print('null')
 aeroProject(77.01, 500)
-#-------------
+#END 
 
 janToJunRain = 1.93 + 0.17 + 3.53 + 3.04 + 3.90 + 4.40
 annualRain = janToJunRain
@@ -123,18 +126,18 @@ annualRain += july #concatenation
 augToDec = 2.0 + 4.00 + 1.90 + 3.4 + 2.17
 annualRain += augToDec
 print(annualRain)
-#------------
+#END 
 
 haiku = """ At the old pond,
 a frog jumped out of the water:
 It's now on a lilypad."""  #multiline string
-#---------
+#END 
 
 #string formatting, when % formatting the values need to be in a tuple ()
 string1 = "block"
 string2 = 3.0
 print("the value of %s is around %s" % (string1, str(string2)))
-#----------
+#END 
 
 def knight(swordDmg, knightHP):
   spellBook = None
@@ -162,7 +165,7 @@ def knight(swordDmg, knightHP):
       print('Your wallet is looking good.')
 knight(28, 150)
 #lesson learned: AVOID DEEP NESTING, meaning make sure all if and elif and else statements are linear
-#--------
+#END 
 
 def cycloneRadius(big, small): #something's wrong with this one
   tornado = "Joe"
@@ -174,13 +177,13 @@ def cycloneRadius(big, small): #something's wrong with this one
   new_tornado = int(tornado)
   print("I got blown away by a " + new_data + " a month ago." + new_tornado + "was it's name.") 
 cycloneRadius(1000, 20000)
-#----------
+#END 
 
 puffin = "Icelandic bird"
 print(len(puffin))
 print(puffin[9]) #space
 
-#_________________________
+#END 
 
 def blastFurnace(controlSystem, centralUnit): #let's focus on lists, control flow, and booleans
   controlSystem = ["temperature sensor", 'pressure sensor', 'level', 'gas analysis']
@@ -213,6 +216,8 @@ def blastFurnace(controlSystem, centralUnit): #let's focus on lists, control flo
   conveyor = conicalBells**4  #2 x 2 x 2 x 2 (number, ** how many times to multiply it by itself)
   print(conveyor) #16
 blastFurnace("Control System", "Central Unit")
+#END 
+
 
 #now focus for loops and dictionaries
 #stopping point
@@ -239,7 +244,7 @@ def kitchen(fridge, myFreezer):
    print((iceCubes / iceCubeTrays) + glasses - cups) #-7.5
    print(everything + everything) #105.0/625.0  when I change glasses + cups to glasses * cups
 kitchen("fridges", "freezer")
-#--------------
+#END 
 
 def mathProblems(low, high): #python can't preform arithmitic operations between an int and a list
   prob = [7, 14, 21]
@@ -248,7 +253,7 @@ def mathProblems(low, high): #python can't preform arithmitic operations between
   print(max(prob)) #max/min takes 2 or more arguments. since prob has a list of 3 ints, it targets the max int which is 21
   print(min(prob2))   #and the minimum about in prob2 is 15
   print(low * high) #2178
-  print(abs(prob3)) #instead of -900 you get 900.I'm guessing it would remove a decimal point too
+  print(abs(prob3)) #instead of -900 you get 900. no decimal point 
 mathProblems(33, 66)
 
 #________________ https://github.com/Mute10?tab=repositories
@@ -258,7 +263,7 @@ def math(multiplication, division):
  oddNums = [3, 7, 9, 11, 13, 15, 17, 21, 23, 25, 27, 29, 31]
  del oddNums[3] #removes the desired index, so 11 is deleted
  evenNums = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26 , 28, 30]
- del evenNums[1:7] #removes index 1-6 index 7 (16) is still in the list. This is like a slice method
+ del evenNums[1:7] #removes index 1-6 index 7 (16) is xclusive. This is like a slice method
   # the first index is deleted up to the 2nd index which isn't deleted, only before it.
  thisVarIsBad = 0
  del thisVarIsBad #deletes an entire variable
@@ -269,6 +274,8 @@ def math(multiplication, division):
  area = max(squares, circles) #circles is the winner
  area2 = min(rectangle, pentagon) #pentagon has the most minimum number
 math(22, 0)
+#END 
+
 
 #Control flow
 def planet(Saturn, Mars):
@@ -284,6 +291,7 @@ def planet(Saturn, Mars):
    else:                            #since the first values in Saturn and Mars are greater than 0 the return statement
      return result + 1              # activates on the first iteration
 print(planet([1, 75, 44, 0], [4, 4, 5, 0, 9]))
+#END 
 
 def planet2(Saturn, Mars):
   timeFlow = 1  #initialization
@@ -300,6 +308,7 @@ def planet2(Saturn, Mars):
   return timeStop + timeFlow + result * 4  #so timeStop is 81, timeflow becomes 21 and result becomes 40 multiply is by 4 and you get 262           
 print(planet2([1, 75, 44, 0], [4, 4, 5, 0, 9]))
 #lesson learned: always concatenate in for loops to make proper updates
+#END 
 
 def negative(surface, gravity):
   depth = 100
@@ -320,6 +329,7 @@ print(negative([22, 22, 22, 29, 22], [11, -11, -22, -33, -44]))
 #final calculation:after the variables have updated many times
 #if result has decreased significantly and magnify has grown exponentially, their difference results
 #in a exceptionally large negative value
+#END 
 
 def solarSystem(Sun, Moon):
   cloud = 3   
@@ -373,7 +383,8 @@ def motorcycle2(power, fuel): #my greatest challenge yet...It was printing the s
      print("No solution found")
 print(motorcycle2([2200, 2200, 2000, 1000, 10], [130, 140, -200, 300, 30, 9]))
 
-#______________
+#END 
+
 def windRatio(high):
   storm = 50
   hurricane = 20
@@ -396,7 +407,7 @@ def windRatio(high):
       return result # the purpose of a return statement is to stop iteration once certain conditions are met
 windRatio([2, 3, 55, 5, 9, 0, 22, 1])   #without return, the for loop would iterate over ever value in the function parameters.
 
-#___________________
+#END 
 
 
 def greenTeaBags(dozen, gross):
@@ -419,7 +430,7 @@ def greenTeaBags(dozen, gross):
      continue
   return "No Solution Found"
 print(greenTeaBags([12, 12, 12], [144, 144, 109]))
-
+#END 
 
 
 #call functions inside functions and use del, .pop(), and .remove()
@@ -447,7 +458,8 @@ def airPlane(engine, landing):
       return result 
 airPlane([2, 2, 3], [ 4, 4, 4])
 
-#____________________
+#END 
+
 def nintendo(console, controller):
    donkey = {"name": "Donkey Kong",
   "strength": "185", 
@@ -480,9 +492,7 @@ def nintendo(console, controller):
     print(key[2]) #targets the m in name
     return bowser # this allows me to print his strength (200) once instead of many keys a dictionary has
 nintendo([22, 33, 44], [1, 2, 3])
-
-
-#🦈🐋🐳🐬🐟 
+#END 
 
 
 def atlantic(marine, submarine):
@@ -504,7 +514,7 @@ def broken(fuse, world):
 print(benjamin([1, 2, 3, 11, 22, 33], [80, 80, 33, 22, 101]))  #91
 print(broken(now, later))    
 
-############
+#END 
 
 def computer(microsoft, sony):
   result = 0
@@ -521,7 +531,7 @@ def computer(microsoft, sony):
       return result 
 computer([300, 111, 34, 66, 230, 1], [21, 221, 421, 55, 190])
 
-#Ég mun flytja fjöll
+##END 
 
 def robotics(arx, dro):
     mainframe = 77
@@ -546,7 +556,7 @@ def robotics(arx, dro):
         print(2**8)
         return result
 print(robotics([11, 276, 343, 11, 22], [90, 0, 878, 33, 5]))
-#одиссея
+#END 
 
 
 def knightsArmor(cloud, meteor):
@@ -572,7 +582,7 @@ def knightsArmor(cloud, meteor):
       print (char),
 print
 knightsArmor(1, 2)
-#исход
+#END 
 
 
 def odyssey(iceland, norway):
@@ -612,8 +622,7 @@ def odyssey(iceland, norway):
      print(spaceCraft)
     else: 
      print(exodus)
-    break
-     
+    break  
   
   for f in forest:
     if forest <= jungle:
@@ -644,7 +653,7 @@ def odyssey(iceland, norway):
   else: 
     print(oceanDepth)
 odyssey(7, 777)
-#HORROR
+#END 
 
 
 def figuration(power, cut):
@@ -676,7 +685,7 @@ def figuration(power, cut):
   else: 
    print([crystal ]+ [crypto])
 figuration([111, 44, 3, 5, 88], [22, 23, 77, 8, 9])
-
+#END 
 
 
 def park(thorgarth, crowley):
@@ -696,7 +705,7 @@ def park(thorgarth, crowley):
  print(result)
  return result #my guess is when the " is reached in thorgarth it ends the loop
 park("Anything", "parking lot")
-
+#END 
 
 
 
@@ -720,6 +729,7 @@ def numsss(num1, num2):
         print("Hey", staticNum +  [result])
         return result
 numsss([22, 220, 343, 590, 40], -1000)
+#END 
 
 #range and continue
 def farm_house(crops, stable):
@@ -742,7 +752,8 @@ def farm_house(crops, stable):
      print(0.0)
 farm_house(17, 17)
 
-#--------------
+#END 
+
 #devleoper training: starting with f-string syntax
 player_health = 100
 player_has_magic = True
@@ -772,7 +783,7 @@ space = " "
 print(f"{quest_start}")
 print(f"{quest_middle}")
 print(f"{quest_end} {quest_objective}")
-#---------------
+#END 
 
 #finding the average score between four players
 game_one_score = 97
@@ -785,7 +796,7 @@ average_score = (game_one_score + game_two_score + game_three_score +
 
 
 print(round(average_score))
-#--------------
+#END 
 
 #magic of f
 name = "Lopen"
@@ -810,7 +821,7 @@ print(
 print(
     f"account_active: {type(account_active).__name__}"
 )
-#-------------
+#END 
 
 #length of weapons, call function in the function, not just at the end
 def area_of_circle(radius):
@@ -827,7 +838,7 @@ print("Sword length:", sword_length, "meters.")
 print("Sword attack area:", sword_area, "square meters")
 print("Spear length:", spear_length, "meters.")
 print("Spear attack area:", spear_area, "square meters")
-#----------
+#END 
 
 def triple_attack(damage_one, damage_two, damage_three):
     total = damage_one + damage_two + damage_three
@@ -849,7 +860,7 @@ second_triple_attack_damage = triple_attack(attack_four, attack_five, attack_six
 
 print("Getting damage for", attack_four, attack_five, "and", attack_six, "...")
 print(second_triple_attack_damage, "points of damage dealt!")
-#--------------
+#END 
 
 #fahrenheit to celsius converter
 def to_celsius(f):
@@ -864,7 +875,7 @@ test(100)
 test(88)
 test(104)
 test(112)
-#------------
+#END 
 
 #hours to seconds conversion
 def hours_to_seconds(hours):
@@ -880,7 +891,7 @@ test(1)
 test(25)
 test(100)
 test(33)
-#--------------
+#END 
 
 def become_warrior(full_name, power):
     title = f"{full_name} the warrior"
@@ -897,7 +908,7 @@ def test(input1, input2):
     print(result1, "has a power level of:", result2)
 main()
 
-#_________
+#END 
 
 #this code calculates how much health a player has left after getting punched or slashed
 #the armor resistance effects this
@@ -927,7 +938,7 @@ test(400, 5)
 test(300, 3)
 test(200, 1)
 
-#---------------
+#END 
 
 def curse(weapon_damage = 100):
     lesser_cursed = weapon_damage * 0.5
@@ -947,7 +958,7 @@ def main():
     test(500)
     test(1000)
 main()
-#--------------
+#END 
 
 #damage testing with enchanted weapons subtracted from health pool
 def enchant_and_attack(target_health, damage, weapon):
@@ -968,7 +979,7 @@ def main():
     test(500, 100, "axe")
     test(1000, 250, "bow")
 main()
-
+#END 
 
 
 
@@ -1022,7 +1033,7 @@ def newLanguage(GO, STOP):
 newLanguage(33, 34)
 main(10.100, 20)
 
-#🛺
+#END 
 
 def scientists(hp, damage, weapon):
     beaker = 9
@@ -1045,7 +1056,7 @@ def tester():
     test(1000, 29, "chemicals")
     test(1000, 200, "Powered Up Beaker")
 tester()
-#)))))
+#END 
 
 #global variables can be used in any scope in the program
 
@@ -1055,7 +1066,7 @@ def total_xp(level, xp_to_add): # a unit test that calculates how much exp you'l
    return xp
 total_xp(1, 100)
 
-#)
+#END 
 
 def take_magic_damage(health, resist, amp, spell_power):
     totalMaximumDamage = (spell_power * amp) - resist
@@ -1079,7 +1090,7 @@ def update_player_score(current_score, increment):
     print(bigScore) #352
     return score
 update_player_score(22, 2)
-#0000000
+#END 
 
 #practice using & bitwise and operator with binary numbers
 #which functions return True or False?
@@ -1111,7 +1122,7 @@ def get_edit_bits(user_permissions):
     userInput = can_edit_guild & user_permissions
     return userInput
 get_edit_bits(0b0101)
-#000000
+#END 
 
 #practice using bitwise | operator (or)
 def calculate_guild_perms(glorfindel, galadriel, elendil, elrond):
@@ -1139,6 +1150,7 @@ def dontSub():
     else: 
       return None
 dontSub()
+#END 
 
 #dataloader = torch.utils.DataLoader(dataset, batch_size=1, suffle=False)
 
@@ -1199,7 +1211,7 @@ def should_serve_customer(customer_age, on_break, time):
      return True
     return False
 should_serve_customer(21, True, 7)
-#?????
+#END 
 
 def has_enough_energy(energy_available, distance_one_way, meters_per_energy):
     energy_needed = (distance_one_way * 2) / meters_per_energy #by dividing meters by the distance you'll correctly calculate
@@ -1384,7 +1396,7 @@ def get_item_counts(items):
          shortsword_count +=1
 
     return potion_count, bread_count, shortsword_count
-#~~~~~~~~~~
+#END 
 
 def contains_leather_scraps(items):
     found = False
@@ -1394,7 +1406,7 @@ def contains_leather_scraps(items):
             found = True
 
     return found
-    #~~~~~~~~~~~~~~
+    #END 
 
 
 def check_character_levels(): 
@@ -1412,7 +1424,7 @@ def test():#this is more like a visual inspection test. Much simpler than standa
 def main():
     test()
 main()
-#~~~~~~~~~~~~~~
+#END 
 
 def find_max(nums): #how to find the maximum value in a list
     max_so_far = float("-inf") #here's the baseline
@@ -1423,7 +1435,7 @@ def find_max(nums): #how to find the maximum value in a list
     return max_so_far #return the max value after checking all indexes
 print(find_max([1, 2, 300, 5, 60]))
         
-   #~~~~~~~~~~~~~~~
+  #END 
 
 def get_odd_numbers(num):
     odd_numbers = []
@@ -1436,7 +1448,7 @@ def get_odd_numbers(num):
     #the remainder is not 0
 
     return odd_numbers
-    #~~~~~~~~~~~~~
+    #END 
 
 def get_champion_slices(champions): #slicing practice
     return champions[3:], champions[1:4], champions[::2] #counting backwards you use [::-1]
@@ -1447,7 +1459,7 @@ print(get_champion_slices([11, 22, 3, 4, 555, 77, 9]))
 def concatenate_favorites(favorite_weapons, favorite_armor, favorite_items):
     newArmoryList = favorite_weapons + favorite_armor + favorite_items
     return newArmoryList
-#~~~~~~~~~~~~~~~
+#END 
 
 def is_top_weapon(weapon):
     top_weapons = [
@@ -1465,7 +1477,7 @@ def is_top_weapon(weapon):
          return True
      
     return False #only returns False after the loop finishes and doesn't find a match. That logic works perfectly.
-#~~~~~~~~~~~~~~
+#END 
 
 def get_heroes():#using tuples
     heroes = [
@@ -1487,22 +1499,23 @@ def get_heroes():#using tuples
                           
     #return heroes
 get_heroes()
-    #~~~~~~~~~~~~~
+    #END 
+
 school = ("Math", "Geography", "Gym") #a three value tuple can't be converted into two variabls
 schoolSubject, schoolSubject2, _ = school
 print(schoolSubject) #
 
-#~~~~~~~~~~~~
+#END 
 def trim_strongholds(strongholds):
     del strongholds[0]
     del strongholds[-2:]
-#~~~~~~~~~~~~~~~
+#END 
 
 def get_first_item(items):
     if len(items) == 0:# 0 is always used to check if something is empty
        return "ERROR"  
     return items[0]
-  #~~~~~~~~~~~~~~~~~
+  #END 
 
 
 def filter_messages(messages):
@@ -1526,11 +1539,11 @@ messages = ["Use some dang bloody sense", "dang you", "dang it all", "what if i 
 result = filter_messages(messages)
 print(result)
 filter_messages("ok")
-#~~~~~~~~~~~~~~~
+#END 
 
 definitions = "case1".upper() #lower() does the opposite
 print(definitions)
-#~~~~~~~~~
+#END 
 
 def get_odds_and_evens(numbers):
     num_odds = 0
@@ -1620,7 +1633,7 @@ def test(input_numbers, expected_output):
     else:
         print("Test failed!")
         return False
-#~~~~~~~~~~~~~~
+#END 
 
 
 def split_players_into_teams(players):
@@ -1645,7 +1658,7 @@ def check_ingredient_match(recipe, ingredients):
     percentage = (correct / len(recipe)) * 100 #Calculates percentage as a float ✓
     return (percentage, wrongIngredients) #Returns the correct tuple format ✓
 check_ingredient_match(["pizza", "burger"], ["orange", "lime"])
-#~~~~~~~~~~~~~
+#END 
 
 
 def validate_path(expected_path, character_path): 
@@ -1659,7 +1672,7 @@ def validate_path(expected_path, character_path):
     print(percentage)
     return (character_path[0], percentage)#Return the result
 validate_path(["A", "B", "C", "D", "E"], ["Kaladin", "A", "X", "C", "D", "E"])
-#~~~~~~~~~~~~~~
+#END 
 
 def bigMove(Michigan, Japan):
   counter = 0
@@ -1673,7 +1686,7 @@ def bigMove(Michigan, Japan):
   print(percentage) #20.0
 bigMove((["8", "16", "18", "80", "800"]), (["haneda", "9", "yarp", "800", "800"]))
 
-#~~~~~~~~~~
+#END 
 def double_string(string):
     emptyString = ""
     for char in string:
@@ -1688,7 +1701,7 @@ print(result) #ssskkkyyy   dddiiivvviiinnnggg   wwwiiittthhh   aaa   pppaaarrraa
 #which stays the same length throughout the loop. Meanwhile, result is growing but we're not iterating over it.
 #furthermore, if the print statement is inside the loop, it will print with each iteration
 double_string("sky diving without a parachute")
-#~~~~~
+#END 
 
 
 def get_character_record(name, server, level, rank):
@@ -1701,7 +1714,7 @@ def get_character_record(name, server, level, rank):
     }
     return getSomething
 get_character_record("Mike", "Jesse", 74, 1)
-#~~~~~~~~
+#END 
 
 
 def count_enemies(enemy_names):
@@ -1716,7 +1729,7 @@ def count_enemies(enemy_names):
          enemies_dict[enemy_name] = 1 #IF it's not in the dictionary: add it with an initial count of 1
     return enemies_dict
 count_enemies(["jackal", "kobold", "soldier"])
-#~~~~~~~~~~~
+#END 
 
 
 #where creativity mingles with logic, and mastery is born!
@@ -1742,7 +1755,7 @@ result = nachos(
 )
 print("\nFinal Result:", result) #print out how many ounces of ingredients I will have per item in result nachos
 nachos(["cheese", "bacon"], ["lettuce", "beef"])
-#~~~~~~~
+#END 
 
 #Iterating Over a Dictionary
 def get_most_common_enemy(enemies_dict):
@@ -1762,7 +1775,7 @@ result = get_most_common_enemy({"test": 22, "bubble": 33})
 print(result)
 get_most_common_enemy("giaganic lamp")   
     
-    #~~~~~~~~~~~~ 
+    #END 
 
 def merge(dict1, dict2):
     merging = {}
@@ -1809,7 +1822,7 @@ def calculate_total(items_purchased, pinned_list):
         receipt[item] = price
         total += item_prices[item]
     return unpurchased_items, receipt, total
-#~~~~~~~
+#END 
 
 
 def remove_duplicates(spells):
@@ -1821,7 +1834,7 @@ def remove_duplicates(spells):
          spellTracker.add(s)   #Marks the current spell as "seen"
          uniqueSpells.append(s) #Adds the unique spell to our result list
     return uniqueSpells   
-    #~~~~~~~~~~~
+    #END 
 
 #list(set(spells)) converts set and back to a list. also is a quick, concise way to remove duplicates       
 
@@ -1868,7 +1881,7 @@ def get_player_record(player_id):
 
 
 main()
-#~~~~~~~~~~~~~~
+#END 
 
 
 #In the try block, we call get_player_record(player_id) and return its result if no error occurs.
@@ -1900,7 +1913,7 @@ print(handle_get_player_record(1))
 print(handle_get_player_record(3))   
 print(handle_get_player_record(-1))  
 print(handle_get_player_record(10)) 
-#~~~~~~~~~
+#END 
 
 #Unhinged Arithmetic: a cosmic tornado of data types and operations
 def outerSpace(numOfStars, planetsOnSatellite):
@@ -1960,12 +1973,12 @@ def outerSpace(numOfStars, planetsOnSatellite):
       
 outerSpace({2, 22, 33, 55, 77}, {55, 0, .9, 46, 400})
 
-#~~~~~~~~~
+#END 
 def purchase_item(price, gold_available):
      if gold_available < price:
          raise Exception("not enough gold")
      return gold_available - price
-     #~~~~~~~~~~~~
+     #END 
 
 def process_transactions(purchase_orders):
     leftovers = [] # this empty list was made to store successful purchases' leftover gold
@@ -2007,7 +2020,7 @@ def purchase_item(price, gold_available):
 
 main()
 
-#~~~~~~~~~~~~  
+#END 
 
 def number_sum(n):
     sum = 0
@@ -2015,7 +2028,7 @@ def number_sum(n):
       sum += i
     return sum
 number_sum(4)
-  #~~~~~~~~
+  #END 
 
 def find_min(nums):
     min = float("inf")
@@ -2023,7 +2036,7 @@ def find_min(nums):
         if i < min:
          min = i   
     return min
-    #~~~~~~
+    #END 
 def factor(burger):
   import math
   count = math.factorial(7) #I want to make this work 
@@ -2051,7 +2064,7 @@ def factor(burger):
     if burger < 0:
         return "Cannot calculate factorial of negative numbers"
     return math.factorial(burger)
-    #~~~~~~~~ ty boots
+    #END 
 
 
 def remove_nonints(nums):
@@ -2060,7 +2073,7 @@ def remove_nonints(nums):
         if type(n) == int:
             newList.append(n)
     return newList
-    #~~~~~~~~~~~~
+    #END 
 
 rectangles = [
     {"height": 4, "width": 5},
@@ -2076,12 +2089,14 @@ def area_sum(rectangles):
 
 result = area_sum(rectangles)
 print(result)  # Would print: 26 (20 + 6)
-#~~~~~~~~~~~~~~
+#END 
 
 #common test during an interview
 for i in range(1, 21): print("Fizz" * (i%3==0) + "Buzz" *(i % 5 ==0) or str(i))
 #RANDOM Password Generator
-import random as r; p = 'abcdjklmonrstxyzABCDIOMRXYZ0123456789$:-=;[]<>?,./!@%^&*()_+'; 
+import random as r; p = 'icBJkKMNRvVxXyYzZ02345789$:-=;[]<>?./|!@%^&*)_+'; 
+print(''.join(r.choices(p, k=15)))
+print(''.join(r.choices(p, k=15)))
 print(''.join(r.choices(p, k=15)))
 
 #tell time
@@ -2100,7 +2115,7 @@ def fizzbuzz(start, end):
         else:
              fbList.append(s)  
     return fbList
-#~~~~~~~~~
+#END 
 
 
 # Happy 2100 lines of Python Code!
@@ -2114,7 +2129,8 @@ def pour_beer(style="IPA"): #ASCII creation
     """
 print(pour_beer())
 
-#~~~~~~~~~~~
+#END 
+
 #this function divides nums by divisor
 def divide_list(nums, divisor):
     newList = []
@@ -2125,7 +2141,7 @@ def divide_list(nums, divisor):
         
     return newList
 divide_list()
-#~~~~~~~~~~~~
+#END 
 
 #this joins multiple strings as one
 def join_strings(strings):
@@ -2150,7 +2166,7 @@ def join_strings(strings):
             #print(myString)
     return myString
 join_strings(["hello", "exit", "door"])
-#~~~~~~~~~~~~~~~~~~~
+#END 
 
 
 # to create a virtual enviroment: 1. new terminal. 2. python -m venv name. 3 name\Scripts\activate
@@ -2173,7 +2189,7 @@ def get_soldier_dps(dps): #this is a helper function, it wouldn't make sense to 
     burstDmg = soldierDmg * soldierAttacks
     return burstDmg
 #the only time you need to call a function at the bottom is when you want to run it immediately
-#~~~~~~~~~~~~~~~~~~~~~~~
+#END 
 
 
 
@@ -2231,7 +2247,7 @@ def fight(f1, f2):
 
 
 main()
-#~~~~~~~~~~~~
+#END 
 class Archer:
     def __init__(self, name, health, num_arrows):
         # Creates a new archer with their starting stats
@@ -2270,7 +2286,7 @@ class Archer:
 
     def print_status(self):
         print(f"{self.name} has {self.health} health and {self.num_arrows} arrows")
-#~~~~~~~~~~~~~~
+#END 
 
 
 
@@ -2362,7 +2378,7 @@ def phase2(plan):
     return result
 
 phaseOne(17, 27)
-#~~~~~~~~~~~~
+#END 
 
 #class variable, good or bad?
 #Class variables can certainly behave in a way that feels "janky" 
@@ -2382,7 +2398,7 @@ class Dragon:
         if self.element == "ice":
             return 150
         return 0
-#~~~~~~~~
+#END 
 
 
 class Employee:
@@ -2401,7 +2417,7 @@ class Employee:
 
     def get_name(self):
         return self.first_name + " " + self.last_name
-#~~~~~~~~~~~~
+#END 
 
 
 #these classes and functions create a library system that will allow people to add, remove, and search for books.
@@ -2441,7 +2457,7 @@ class Library:
                 results.append(b)
         # Return list of all matching books
         return results
-        #~~~~~~~~~
+       #END 
 
 #practice with private properties/encapsulation
 #Encapsulation is about organization, not security.
@@ -2452,7 +2468,7 @@ class Wizard:
         self.health = stamina * 100
         self.__intelligence = intelligence
         self.mana = intelligence * 10
-#end
+#END 
 
 
 # Constant values for game mechanics
@@ -2485,7 +2501,7 @@ class Wizard:
 
     def drink_mana_potion(self):
         self.mana += potion_mana
-        #end 
+        #END 
 
 
 #start program
@@ -2661,38 +2677,6 @@ class Calculator:
     def get_result(self):
         return self.__result
 #END
-
-
-#deck of cards
-class DeckOfCards:
- 
-    SUITS = ["Hearts", "Diamonds", "Clubs", "Spades"]
-    RANKS = [
-        "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King",
-    ]
-
-    def __init__(self):
-        self.__cards = []  # initialize empty private list for cards
-        self.create_deck() # fill deck with 52 cards
-        
-    def create_deck(self):
-        for suit in DeckOfCards.SUITS:
-            for rank in DeckOfCards.RANKS:
-             self.__cards.append((rank, suit))  # add each card as (rank, suit) tuple
-
-    def shuffle_deck(self):
-        random.shuffle(self.__cards)  # randomly reorder all cards in deck
-
-    def deal_card(self):
-        if len(self.__cards) > 0:
-            return self.__cards.pop()  # pop and return top card from deck
-        else:
-            return None  # return None if deck is empty
-
-    def __str__(self):
-        return f"The deck has {len(self.__cards)} cards"
-        #END
-
     
 
 #expamples of inheritance from parent to descendant/subclass
@@ -2778,7 +2762,7 @@ class Archer(Hero):
         if self.__num_arrows == 0:
             raise Exception("not enough arrows")
         self.__num_arrows -= 1
-        target.take_damage(10) #pulls the take_damage from line 2762
+        target.take_damage(10) #pulls the take_damage from line 2779
 #END
 
 
@@ -2864,7 +2848,6 @@ class Dragon(Unit):
 #END
 
 
-
 def main():
     dragons = [ #objects list
         Dragon("Green Dragon", 0, 0, 1),
@@ -2946,48 +2929,6 @@ class Square(Rectangle): #Creates a square as a special type of rectangle
   #END      
 
 
-#seige math...will write comments later
-class Siege:
-    def __init__(self, max_speed, efficiency):
-        self.max_speed = max_speed
-        self.efficiency = efficiency
-
-    def get_trip_cost(self, distance, food_price):
-        foodForEnergy = (distance / self.efficiency) * food_price
-        return foodForEnergy
-
-    def get_cargo_volume(self):
-        pass
-
-
-class BatteringRam(Siege):
-    def __init__(
-        self,
-        max_speed,
-        efficiency,
-        load_weight,
-        bed_area
-    ):
-        super().__init__(max_speed, efficiency)
-        self.load_weight = load_weight
-        self.bed_area = bed_area
-
-    def get_trip_cost(self, distance, food_price):
-        return super().get_trip_cost(distance, food_price) + (self.load_weight * 0.01)
-        
-
-    def get_cargo_volume(self):
-        return self.bed_area * 2 
-        
-class Catapult(Siege):
-    def __init__(self, max_speed, efficiency, cargo_volume):
-       self.cargo_volume = cargo_volume 
-       super().__init__(max_speed, efficiency)
-
-    def get_cargo_volume(self):
-        return self.cargo_volume
-#END
-
 #get edges, polymorphism
 class Rectangle:
     def __init__(self, x1, y1, x2, y2):
@@ -3008,14 +2949,12 @@ class Rectangle:
     def get_bottom_y(self):
         return min(self.__y1, self.__y2)
 
-
-
     def __repr__(self):
         return f"Rectangle({self.__x1}, {self.__y1}, {self.__x2}, {self.__y2})"
 #END
 
 
-#Checking If Rectangles Overlap
+#Checking if Rectangles Overlap
 class Rectangle:
     def overlaps(self, rect):
         if (
@@ -3157,7 +3096,6 @@ class Sword:
             raise Exception("cannot craft") #cannot combine bronze with iron, etc.
 
  #test cases
-
 run_cases = [
     (Sword("bronze"), Sword("bronze"), "iron", None),
     (Sword("bronze"), Sword("iron"), None, "cannot craft"),
@@ -3223,8 +3161,9 @@ if "__RUN__" in globals():
     test_cases = run_cases
 
 main()
-
 #END
+
+
 
 #target each dragon in the test cases and print their name and color
 class Dragon:
@@ -3298,7 +3237,7 @@ main()
 
 #Fisher-Yates shuffle algorithm with Mega Man
 # and some clean explanations of abilities
-#and enemy abilitiesaccompanied by a match between Mega Man vs an enemy
+#and enemy abilities accompanied by a match between Mega Man vs an enemy
 import random
 import time
 
@@ -3385,3 +3324,488 @@ doctor.useElectricShield()
 print(mega.attack(doctor, 50))  # Should be blocked
 #END
 
+
+#deck of cards
+class DeckOfCards:
+ 
+    SUITS = ["Hearts", "Diamonds", "Clubs", "Spades"]
+    RANKS = [
+        "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King",
+    ]
+
+    def __init__(self):
+        self.__cards = []  # initialize empty private list for cards
+        self.create_deck() # fill deck with 52 cards
+        
+    def create_deck(self):
+        for suit in DeckOfCards.SUITS:
+            for rank in DeckOfCards.RANKS:
+             self.__cards.append((rank, suit))  # add each card as (rank, suit) tuple
+
+    def shuffle_deck(self):
+        random.shuffle(self.__cards)  # randomly reorder all cards in deck
+
+    def deal_card(self):
+        if len(self.__cards) > 0:
+            return self.__cards.pop()  # pop and return top card from deck
+        else:
+            return None  # return None if deck is empty
+
+    def __str__(self):
+        return f"The deck has {len(self.__cards)} cards"
+        #END
+
+
+#deck of cards 2 with overloading
+# Overloading is smply to compare objects with operators < > == and, or
+import random
+
+SUITS = ["Clubs", "Diamonds", "Hearts", "Spades"]
+
+RANKS = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
+
+
+class Card: #Creates a card with its rank and suit, and calculates their indexes
+    def __init__(self, rank, suit):
+        self.rank = rank
+        self.suit = suit
+        self.suit_index = SUITS.index(suit)
+        self.rank_index = RANKS.index(rank)
+        
+
+    def __eq__(self, other):#Returns True if both rank and suit indexes match
+        if self.rank_index == other.rank_index and self.suit_index == other.suit_index:
+            return True
+        return False
+
+    def __lt__(self, other):#Compares ranks first, and only compares suits if ranks are equal
+        if self.rank_index == other.rank_index:
+            return self.suit_index < other.suit_index
+        return self.rank_index < other.rank_index
+
+    def __gt__(self, other):#Same logic as __lt__ but for "greater than" comparisons
+        if self.rank_index == other.rank_index:
+            return self.suit_index > other.suit_index
+        return self.rank_index > other.rank_index
+   
+
+    def __str__(self):
+        return f"{self.rank} of {self.suit}"
+
+        
+
+#test cases
+SUITS = ["Clubs", "Diamonds", "Hearts", "Spades"]
+
+RANKS = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
+
+run_cases = [
+    ("Ace", "Hearts", "Queen", "Hearts", False, True),
+    ("2", "Spades", "2", "Hearts", False, True),
+]
+
+submit_cases = run_cases + [
+    ("Ace", "Spades", "Ace", "Spades", True, False),
+    ("3", "Diamonds", "7", "Clubs", False, False),
+    ("King", "Clubs", "King", "Hearts", False, False),
+    ("Queen", "Diamonds", "Jack", "Spades", False, True),
+    ("10", "Hearts", "10", "Hearts", True, False),
+]
+
+
+def test(rank_1, suit_1, rank_2, suit_2, expected_eq, expected_gt):
+    print("---------------------------------")
+    print(f"Inputs: {rank_1} of {suit_1}, {rank_2} of {suit_2}")
+    print("Expected:")
+    print(f" * Equal: {expected_eq}")
+    print(f" * Greater than: {expected_gt}")
+    print(f" * Less than: {not (expected_eq or expected_gt)}")
+
+    card_1 = Card(rank_1, suit_1)
+    card_2 = Card(rank_2, suit_2)
+    result_eq = card_1 == card_2
+    result_gt = card_1 > card_2
+    result_lt = card_1 < card_2
+    print("Actual:")
+    print(f" * Equal: {result_eq}")
+    if result_eq != expected_eq:
+        print("Fail")
+        return False
+    print(f" * Greater than: {result_gt}")
+    if result_gt != expected_gt:
+        print("Fail")
+        return False
+    print(f" * Less than: {result_lt}")
+    if result_lt == (expected_eq or expected_gt or None):
+        print("Fail")
+        return False
+    print("Pass")
+    return True
+
+
+def main():
+    passed = 0
+    failed = 0
+    for test_case in test_cases:
+        correct = test(*test_case)
+        if correct:
+            passed += 1
+        else:
+            failed += 1
+    if failed == 0:
+        print("============= PASS ==============")
+    else:
+        print("============= FAIL ==============")
+    print(f"{passed} passed, {failed} failed")
+
+
+test_cases = submit_cases
+if "__RUN__" in globals():
+    test_cases = run_cases
+
+main()
+#END
+
+
+import random
+class CardGame:
+    def __init__(self):
+       self.deck = DeckOfCards() #Initialize the deck by creating an instance of DeckOfCards
+       self.deck.shuffle_deck()
+        
+    def play(self):
+        print("Nothing to play...")
+
+
+class War(CardGame):
+    def __init__(self):
+        super().__init__()#Call the parent (CardGame) constructor
+        self.player1_hand = [] #creatign empty player hands
+        self.player2_hand = []
+
+    def __deal_hand(self, hand):
+        for i in range(5): #Deals 5 cards
+            card = self.deck.deal_card()
+            hand.append(card)
+            
+    def play(self): #after both players have 5 cards the game starts
+        self.__deal_hand(self.player1_hand)
+        self.__deal_hand(self.player2_hand)
+        self.__battle()
+        
+    #test cases
+    def __battle(self):
+        player1_pile = []
+        player2_pile = []
+        player1_score = 0
+        player2_score = 0
+        ties = 0
+        while len(self.player1_hand) > 0 or len(self.player2_hand) > 0:
+            if len(self.player1_hand) == 0:
+                random.shuffle(player1_pile)
+                self.player1_hand = player1_pile.copy()
+                player1_pile.clear()
+            if len(self.player2_hand) == 0:
+                random.shuffle(player2_pile)
+                self.player2_hand = player2_pile.copy()
+                player2_pile.clear()
+            card1 = self.player1_hand.pop()
+            card2 = self.player2_hand.pop()
+            print(f"{card1} vs {card2}")
+            if card1 > card2:
+                player1_pile.append(card1)
+                player1_pile.append(card2)
+                player1_score += 1
+                print(f"Player 1 wins with {card1}")
+            elif card2 > card1:
+                player2_pile.append(card1)
+                player2_pile.append(card2)
+                player2_score += 1
+                print(f"Player 2 wins with {card2}")
+            else:
+                ties += 1
+                print("Tie! Both players draw a card and play again")
+        print("------------------------------------------")
+        print("Game over!")
+        print("------------------------------------------")
+        print(f"Player 1: {player1_score}")
+        print(f"Player 2: {player2_score}")
+        print(f"Ties: {ties}")
+        print("==========================================")
+
+
+SUITS = ["Clubs", "Diamonds", "Hearts", "Spades"]
+
+RANKS = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
+
+
+def index_of(lst, item):
+    for i in range(len(lst)):
+        if lst[i] == item:
+            return i
+    return None
+
+
+class Card:
+    def __init__(self, rank, suit):
+        self.rank = rank
+        self.suit = suit
+
+    def __cmp(self, other):
+        self_suit_i = index_of(SUITS, self.suit)
+        other_suit_i = index_of(SUITS, other.suit)
+        self_rank_i = index_of(RANKS, self.rank)
+        other_rank_i = index_of(RANKS, other.rank)
+        if self_rank_i > other_rank_i:
+            return "gt"
+        if self_rank_i < other_rank_i:
+            return "lt"
+        if self_suit_i > other_suit_i:
+            return "gt"
+        if self_suit_i < other_suit_i:
+            return "lt"
+        return "eq"
+
+    def __eq__(self, other):
+        return self.__cmp(other) == "eq"
+
+    def __gt__(self, other):
+        return self.__cmp(other) == "gt"
+
+    def __lt__(self, other):
+        return self.__cmp(other) == "lt"
+
+    def __str__(self):
+        return f"{self.rank} of {self.suit}"
+
+
+class DeckOfCards:
+    def __init__(self):
+        self.__cards = []
+        self.create_deck()
+
+    def create_deck(self):
+        for suit in SUITS:
+            for rank in RANKS:
+                self.__cards.append(Card(rank, suit))
+
+    def shuffle_deck(self):
+        random.shuffle(self.__cards)
+
+    def deal_card(self):
+        if len(self.__cards) == 0:
+            return None
+        return self.__cards.pop(0)
+
+
+def test(seed):
+    random.seed(seed)
+    war = War()
+    war.play()
+
+
+def main():
+    test(1)
+    test(2)
+
+
+main()
+#END
+
+
+#seige math...will write comments later
+class Siege:
+    def __init__(self, max_speed, efficiency):
+        self.max_speed = max_speed
+        self.efficiency = efficiency
+
+    def get_trip_cost(self, distance, food_price):
+        foodForEnergy = (distance / self.efficiency) * food_price
+        return foodForEnergy
+
+    def get_cargo_volume(self):
+        pass
+
+
+class BatteringRam(Siege):
+    def __init__(
+        self,
+        max_speed,
+        efficiency,
+        load_weight,
+        bed_area
+    ):
+        super().__init__(max_speed, efficiency)
+        self.load_weight = load_weight
+        self.bed_area = bed_area
+
+    def get_trip_cost(self, distance, food_price):
+        return super().get_trip_cost(distance, food_price) + (self.load_weight * 0.01)
+        
+
+    def get_cargo_volume(self):
+        return self.bed_area * 2 
+        
+class Catapult(Siege):
+    def __init__(self, max_speed, efficiency, cargo_volume):
+       self.cargo_volume = cargo_volume 
+       super().__init__(max_speed, efficiency)
+
+    def get_cargo_volume(self):
+        return self.cargo_volume
+#END
+
+
+
+
+# "Handle with care" Robot for tech enthusiasts combined witg Good Programming Practices:
+#Clear comments explaining the code, Meaningful variable names, Organized code structure and,
+# Creative naming conventions for robots
+
+class Machine:
+    def __init__(self, power_source):
+        self.power_source = power_source
+
+class Robot(Machine): #Object-Oriented Programming: inheritence
+    functions = [] #empty list soon to be filled with strings
+       #Robot.functions will be shared by all Robot instances  
+    def __init__(self, batteries, robot_type):
+        super().__init__(power_source=batteries)
+        self.type = robot_type
+        self.possibleMalfunctions = [] #Each robot gets its own malfunctions list (Data Structures)
+        self.instructions = {  #The safety instructions are nicely formatted with indentation
+            "Takes 5 double A batteries": "batteries not included", 
+            "Flammable": "don't ask why", 
+            "Possible injury": "keep out of reach of children", 
+            "Do not leave outside in rain": "may spontaneously combust.." 
+        }
+    def __str__(self): #custom string representation of Robot objects
+        return f"Robot(type={self.type}, power_source={self.power_source}, functions={Robot.functions})"
+
+       
+    def manual(self):
+        #Control Flow:
+        if not Robot.functions:  #if list is empty
+            Robot.functions.append("Built in calculator")
+            self.possibleMalfunctions.append("May shutdown if overheated")
+        elif len(Robot.functions) == 1: 
+            Robot.functions.append("Built in AC")
+            self.possibleMalfunctions.append("AC may stop workin properly. If so, carefully remove the AC unit")
+        elif len(Robot.functions) == 2:  
+            Robot.functions.append("Built in verbal AI assistant")
+            self.possibleMalfunctions.append("Built in memory records everything you say.")
+            print("Added AI assistant:", Robot.functions)
+            print("Malfunctions:", self.possibleMalfunctions)
+            print("FOR SAFETY:", )
+            for warning, detail in self.instructions.items():
+                print(f"    {warning}: {detail}")  
+        else: 
+            print("Please Re-read the instruction manual")
+
+            
+robot1 = Robot("battery1", "∞R") #mini-specification for what type
+robot1.manual() #Robot.functions gets populated through the manual() calls.
+robot1.manual() #nothing else shuld go before this
+robot1.manual()
+
+robot2 = Robot("Runs on Gasoline", "GR505")
+print("\nNew Robot2:")
+print(robot2)
+
+
+        
+
+
+
+class Jenova:
+    def __init__(self, project, data):
+        self.project = project
+        self.data = data
+    def supplyCost(self, materials, other):
+        budget = 7500
+        finalCost = (materials + self.project) * other
+        result = budget - finalCost
+        return result
+    def timeConstraints(self):
+        pass
+
+
+class Research(Jenova): 
+
+    NE = ["hysteria", "loss of memory", "uncommunicative", "enlarged lungs"]
+    PE = ["increased strength", "faster healing", "enhanced focus", "improved stamina"]
+
+    def __init__(self, cells, positiveEffects, negativeEffects, project, data):
+        super().__init__(project, data) #self should never be passed in super. it handles the parameter automatically
+        self.cells = cells
+        self.sideEffects = positiveEffects 
+        self.negativeEffects = negativeEffects
+
+    def calculate_severity(self, effect):
+       severity_map = { 
+          "hysteria" : "high",
+          "enlarged lungs": "high",
+          "loss of memory" : "medium",
+          "uncommunicative": "medium"
+       }
+       return severity_map.get(effect, "low")
+   
+    def compare_results(self):
+        results = []  
+
+    
+        for effect in self.NE:
+            severity = self.calculate_severity(effect) 
+            if severity == "high":
+                results.append(f"WARNING: {effect} is severely negative")
+            else:
+                results.append(f"{effect} is under control")
+
+    
+        for effect in self.PE:
+            if self.sideEffects > self.negativeEffects:  
+                results.append(f"{effect} is active and beneficial")
+            else:
+                results.append(f"{effect} is suppressed")
+    
+        return results  
+    
+
+    def supplyCost(self, materials, other): 
+        base_result = super().supplyCost(materials, other)
+        energyCosts = (materials + self.negativeEffects) * other
+        labFees = self.cells * 10
+        total = base_result + labFees + energyCosts
+        return total
+    
+    def timeConstraints(self):
+         
+        baseTime = self.sideEffects * 3  
+        extraTime = 0 #starts at 0
+        for effect in self.NE:
+           severity = self.calculate_severity(effect)
+           if severity == "high":
+              extraTime += 15  
+           elif severity == "medium":
+              extraTime += 5  
+
+        if self.sideEffects > self.negativeEffects:
+           baseTime -= 10
+        return baseTime      
+
+class Final_Results(Jenova): #ok, what can I do to make these final results contribute to the rest of the code?
+    def __init__(self, project, data, malfunctions):
+        self.malfunctions = malfunctions 
+        super().__init__(project, data)
+
+    def timeConstraints(self):
+        return self.negativeEffects
+
+project_instance = Jenova(1000, "Some_Data")
+result = project_instance.supplyCost(100, 2)
+print(f"Budget remaining: {result}")
+
+research_instance = Research(50, 10, 2, 1000, "Research_Data")
+effects = research_instance.compare_results()
+for result in effects:
+    print(result)
