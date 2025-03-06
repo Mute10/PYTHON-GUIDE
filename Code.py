@@ -63,7 +63,8 @@ def bigVirus(number, string):
   defrag[1] = 32
   print(sorted(defrag)) #same as defrag.sort()
   print(defrag[10])
-bigVirus(121, "this")
+  print(sorted(number))
+bigVirus([77, 55, 4, 909, 44, 1, 3, 34], "this")
 #--------------
 
 def Japan(tokyo, kyoto):
@@ -3657,7 +3658,6 @@ class Catapult(Siege):
 
 
 
-
 # "Handle with care" Robot for tech enthusiasts combined witg Good Programming Practices:
 #Clear comments explaining the code, Meaningful variable names, Organized code structure and,
 # Creative naming conventions for robots
@@ -3712,43 +3712,46 @@ robot2 = Robot("Runs on Gasoline", "GR505")
 print("\nNew Robot2:")
 print(robot2)
 
-
+#END
         
 
-
-
-class Jenova:
-    def __init__(self, project, data):
+class Jenova: # Base class for project management and resource tracking
+    def __init__(self, project, data): # Initialize with project cost and project data
         self.project = project
         self.data = data
     def supplyCost(self, materials, other):
+        #Calculate remaining budget after accounting for expenses
         budget = 7500
         finalCost = (materials + self.project) * other
         result = budget - finalCost
         return result
     def timeConstraints(self):
+        # Empty method to be overridden by sub classes
+        # This is a form of polymorphism - creating a common interface
         pass
 
 
-class Research(Jenova): 
+class Research(Jenova):  #Specialized class for research-specific functionality, inherits from Jenova
 
     NE = ["hysteria", "loss of memory", "uncommunicative", "enlarged lungs"]
     PE = ["increased strength", "faster healing", "enhanced focus", "improved stamina"]
 
     def __init__(self, cells, positiveEffects, negativeEffects, project, data):
-        super().__init__(project, data) #self should never be passed in super. it handles the parameter automatically
+        # Initialize the parent class with project and data
+        super().__init__(project, data) #self should never be passed in super. 
         self.cells = cells
         self.sideEffects = positiveEffects 
         self.negativeEffects = negativeEffects
 
     def calculate_severity(self, effect):
+       # Map each negative effect to its severity level
        severity_map = { 
           "hysteria" : "high",
           "enlarged lungs": "high",
           "loss of memory" : "medium",
           "uncommunicative": "medium"
        }
-       return severity_map.get(effect, "low")
+       return severity_map.get(effect, "low") # Default to "low" if effect not found
    
     def compare_results(self):
         results = []  
@@ -3793,13 +3796,15 @@ class Research(Jenova):
            baseTime -= 10
         return baseTime      
 
-class Final_Results(Jenova): #ok, what can I do to make these final results contribute to the rest of the code?
-    def __init__(self, project, data, malfunctions):
+class Final_Results(Research): #what can I do to make these final results contribute to the rest of the code?
+    def __init__(self, cells, positiveEffects, negativeEffects, project, data, malfunctions):
+        super().__init__(cells, positiveEffects, negativeEffects, project, data)
         self.malfunctions = malfunctions 
-        super().__init__(project, data)
+        
 
     def timeConstraints(self):
-        return self.negativeEffects
+        base_time = super().timeContraints()
+        return base_time + (self.malfunctions * 3)
 
 project_instance = Jenova(1000, "Some_Data")
 result = project_instance.supplyCost(100, 2)
@@ -3809,3 +3814,22 @@ research_instance = Research(50, 10, 2, 1000, "Research_Data")
 effects = research_instance.compare_results()
 for result in effects:
     print(result)
+    #END
+
+
+#a string in a tuple
+    def add_prefix(document, documents):
+     prefix = f"{len(documents)}. "
+     new_doc = prefix + document
+     newTup = documents + (new_doc,)
+     return newTup
+    #END
+
+    #clever index trick to find eve and odd numbers. or the smallest of comparable numbers
+    def get_median_font_size(font_sizes):
+        result = sorted(font_sizes)
+        smallestNum = (len(result)-1) //2
+        if len(result) > 0 : #len should always be used to check the contents of a list 
+            return result[smallestNum]   #you can also use "if not parameter:"
+        return None
+#END
