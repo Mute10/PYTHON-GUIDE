@@ -1,8 +1,7 @@
 import math
 import random
 #import string: provides tools for string manipulation.
-#import requests: fetches data from web pages.
-#from bs4 import BeautifulSoup: parses HTML and extracts content for analysis.
+
 
 def newMachine(numbers, letters):
   pointA = 417.99
@@ -39,6 +38,19 @@ def Hawaii(oahu, maui):
 Hawaii("oahu", "maui")
 #--------------
 
+def Japan(tokyo, kyoto):
+  shinto = {
+    "shrine" : "pond",
+    "sushi" : 7.50,
+    "ayaka": "strange",
+    "shinzo": "comedian",
+    "katana" : "sword"
+  }
+  for key in shinto: #because there's 5 keys it prints 5 times. So don't target a specific value unless needed
+    print(shinto[key]) #using print(key) just brings out all the names of the keys. shinto[key] prints out all the values
+Japan('Tokyo', 'Kyoto')
+#END
+
 def dimensions(theory, practice):
      day1 = 71
      day2 = 11
@@ -66,19 +78,6 @@ def bigVirus(number, string):
   print(sorted(number))
 bigVirus([77, 55, 4, 909, 44, 1, 3, 34], "this")
 #--------------
-
-def Japan(tokyo, kyoto):
-  shinto = {
-    "shrine" : "pond",
-    "sushi" : 7.50,
-    "ayaka": "strange",
-    "shinzo": "comedian",
-    "katana" : "sword"
-  }
-  for key in shinto: #because there's 5 keys it prints 5 times. So don't target a specific value unless needed
-    print(shinto[key]) #using print(key) just brings out all the names of the keys. shinto[key] prints out all the values
-Japan('Tokyo', 'Kyoto')
-#-------------
 
 def carShield(toyota, honda):
   prototype = [7, 77, 55, 18, 94, 43, 20, 20, 33, 37, 8, 87, 50, 97]
@@ -3817,19 +3816,161 @@ for result in effects:
     #END
 
 
-#a string in a tuple
-    def add_prefix(document, documents):
+#a string converted to a tuple
+def add_prefix(document, documents):
+     if isinstance(documents, str):
+        documents = (documents,)
+     if isinstance(document, str):
+        document = (document,)
+
      prefix = f"{len(documents)}. "
-     new_doc = prefix + document
-     newTup = documents + (new_doc,)
-     return newTup
+     #new_doc = prefix + document
+     if document:
+        new_doc = (prefix +  document[0],) + document[1:]
+     else: 
+        new_doc = ()
+
+     return documents + new_doc
+result = add_prefix(("document", "funds"), ("I put the docuemnts in the paper shredder to annoy my boss lol",))
+print(result)
     #END
 
     #clever index trick to find eve and odd numbers. or the smallest of comparable numbers
-    def get_median_font_size(font_sizes):
+def get_median_font_size(font_sizes):
         result = sorted(font_sizes)
-        smallestNum = (len(result)-1) //2
+        smallestNum = (len(result)-1) //2 #Floor division divides and then rounds down to the nearest integer.
         if len(result) > 0 : #len should always be used to check the contents of a list 
             return result[smallestNum]   #you can also use "if not parameter:"
         return None
+
+print(get_median_font_size([13, 12, 15, 16, 777, 320, 99, 65, 43, 101, 3343]))
+#65 becomes the fifth index after being sorted
 #END
+
+
+class Colorado:
+   aspen = ["high crime"]
+   def __init__(self, miles):
+      self.miles = miles
+ 
+   def xyz(self, problems):
+         #In Python, when you define a method inside a class, 
+         # it must include self as the first parameter if it's meant to be called on an instance
+        x = 175
+        y = 909
+        z = 708
+        q = ["high tide"]
+        Colorado.aspen.append(q)
+        print(Colorado.aspen)
+        if x <= y:
+           x *= x * z + y * y / problems #69882225.0
+           print(f"x equals:{x}")
+        elif y <= z:
+           y +=y / x * x - z
+           print(y)
+        elif z <= x:
+           z *= z + z + x / y
+        else:
+           return None
+        return x, y, z
+   
+c = Colorado(10)#defines miles
+result = c.xyz(3) # class call and calling instanced within that class
+print(f"here's the results of x, y, and z: {result}")
+#END
+
+
+what = (4444,)
+when = 1222
+how = {"hard work": "perseversence",
+       "skill":"brain training",
+       "relaxation": "sleep time"
+       }
+why = [12, 12, 12, 14, 44]
+wackyTaffy = [23.0, 23.4, 7, 88.9, 11, 978, 22, 2.2]
+
+class Infrastructure:
+   def __init__(self, production, cloudDev):
+       self.production = production
+       self.cloudDev = cloudDev
+   def newTask(self, job):
+       self.job = job
+   def machine(self):
+       global what
+       global when
+       global how
+       global why
+       global wackyTaffy
+       what.add(33)
+       when += when**8
+       how.update({"most used tool":"SQL"})
+       why.append([33, 44, 55])
+       print(sorted(why))
+       wackyTaffy.sort()
+
+class secondPhase(Infrastructure):
+    #super().__init__(Infrastructure.newTask())
+    def results(self):
+       input = 707
+       output = 200
+       test = "change data type"
+       doNotChange = 22.999
+       tabMeIn = ("logged in", "give me a prize!")
+       ilovecoding = [2, 3, 4, 55, 60, 303, 310, 3223, 33, 99, 400, 481, 787, 19.00]
+       ilivetocode = [2, 3, 4, 55, 60, 303, 310, 3223, 33, 99, 400, 481, 787, 19.00]
+       ifinetunecode = [9, 10, 7.7, 333, 4007, 2.02, 56.56, 101, 994, 553, 91.10]
+       for i in range(0, len(ilovecoding), 10):
+          print(ilovecoding)
+          print(i)
+          break
+       for l, indexes in enumerate(ilivetocode):
+           print(ilivetocode[l])
+           break
+       for f in ifinetunecode:
+          print(ifinetunecode[0:13:2])
+          break
+       if input > output:
+          input += input * output ** 17
+          print(input)
+       elif input > doNotChange //2:
+          doNotChange += input * output * 7 **7
+          print(doNotChange)
+       else:
+          pass 
+       return ilovecoding, ilivetocode, ifinetunecode
+
+class architect(secondPhase):
+   def __init__(self, stuff):
+       super().__init__(secondPhase.results)
+        
+   def starsInTheSky(self): #cosmic scale thinking
+      counter = 1
+      measurement1 = 30388
+      measurement2 = 404
+      stars = 2 * 10 **22
+      blackHoles = "???"# if string values don't have a numeric value an error will occur
+      strangeFinding = float(counter)
+      newDiscovery = set(blackHoles)
+      if measurement1 % 2 == 0:
+         counter += 2 **11 + measurement2
+         stars *= 2
+         print(counter)
+         print(stars)
+      else: 
+         pass
+
+ii = Infrastructure(22, 22)
+      
+#END
+
+#class Parent:
+    #def __init__(self, x, y):
+        #self.x = x
+        #self.y = y
+
+#class Child(Parent):
+    #def __init__(self, x, y, z):
+        # Call Parent's __init__ with proper parameters
+        #super().__init__(x, y)  
+        # Now add Child-specific initialization
+        #self.z = z
