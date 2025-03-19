@@ -1,7 +1,9 @@
 import math
 import random
 #import string: provides tools for string manipulation.
-
+# .append() is for lists
+# .add() is for sets
+# .update() updates the current set, list, tuple, or dictionary
 
 def newMachine(numbers, letters):
   pointA = 417.99
@@ -3901,7 +3903,10 @@ class Infrastructure:
        global how
        global why
        global wackyTaffy
-       what.add(33)
+       what = list(what) #Convert to list, modify, convert back
+       what.append(33)
+       what = tuple(what)
+       #what = what + (33,) #Create new tuple by concatenation
        when += when**8
        how.update({"most used tool":"SQL"})
        why.append([33, 44, 55])
@@ -3909,7 +3914,12 @@ class Infrastructure:
        wackyTaffy.sort()
 
 class secondPhase(Infrastructure):
-    #super().__init__(Infrastructure.newTask())
+    #When you use super(), you're often trying to either call the constructor 
+    #or extend an existing method from the parent.
+    def __init__(self, production, cloudDev): 
+       
+        super().__init__(production, cloudDev)#targets parent constructors
+        super().machine() #target specific classes
     def results(self):
        input = 707
        output = 200
@@ -3922,26 +3932,28 @@ class secondPhase(Infrastructure):
        for i in range(0, len(ilovecoding), 10):
           print(ilovecoding)
           print(i)
-          break
+
        for l, indexes in enumerate(ilivetocode):
-           print(ilivetocode[l])
-           break
+          print(ilivetocode[l])
+    
        for f in ifinetunecode:
           print(ifinetunecode[0:13:2])
-          break
+          
        if input > output:
           input += input * output ** 17
           print(input)
+          return tabMeIn
        elif input > doNotChange //2:
           doNotChange += input * output * 7 **7
           print(doNotChange)
        else:
           pass 
-       return ilovecoding, ilivetocode, ifinetunecode
+       return ilovecoding, ilivetocode, ifinetunecode 
 
 class architect(secondPhase):
-   def __init__(self, stuff):
-       super().__init__(secondPhase.results)
+   def __init__(self, stuff, production, cloudDev):
+    super().__init__(production, cloudDev)  #for super to get parent elements, the subclass constructor must include them
+    self.stuff = stuff         
         
    def starsInTheSky(self): #cosmic scale thinking
       counter = 1
@@ -3959,18 +3971,92 @@ class architect(secondPhase):
       else: 
          pass
 
-ii = Infrastructure(22, 22)
-      
+ii = Infrastructure(22, 22) 
+sp = secondPhase(10, 10)
+a = architect(12, 3, 44)
 #END
 
-#class Parent:
-    #def __init__(self, x, y):
-        #self.x = x
-        #self.y = y
 
-#class Child(Parent):
-    #def __init__(self, x, y, z):
-        # Call Parent's __init__ with proper parameters
-        #super().__init__(x, y)  
-        # Now add Child-specific initialization
-        #self.z = z
+#figure out how to user capitalize(), upper(), strip(), rstrip(), lstrip(), replace("", "")
+def format_line(line):
+    egg = "You will      give me an egg  !" #strings are immutable, so you need to assign this result to egg
+    egg = egg.replace("i", "b").replace(" ", "").upper().strip()
+    egg = ' '.join(egg.split()) #incase of more than 3 spaces apart.
+    print(egg)
+    return f"{line.strip().upper().replace('.', '')}..."
+print(format_line("I forgot the test file."))
+#END
+
+def toggle_case(line):
+    if line.istitle():
+        return line.upper() + "!!!"
+    if line.isupper():
+        return line.capitalize().rstrip("!")
+    if len(line) > 0 and line[1:].islower():
+        return line.title()
+    return line
+#END
+
+def hex_to_rgb(hex_color):
+    if not is_hexadecimal(hex_color) or len(hex_color) != 6:
+        raise Exception("not a hex color string")
+    else:
+        pass
+        
+    r = int(hex_color[0:2], 16)
+    g = int(hex_color[2:4], 16)
+    b = int(hex_color[4:6], 16)
+    return r, g, b
+
+def is_hexadecimal(hex_string):
+    try:
+        int(hex_string, 16)
+        return True
+    except Exception:
+        return False
+    #END
+
+
+def deduplicate_lists(lst1, lst2, reverse=False):
+
+        newList = set(lst1 + lst2)#merge
+    
+        return sorted(newList, reverse = reverse)
+#sorts the deduplicated elements in descending order when reverse=True
+#END
+
+#functions as values
+def file_to_prompt(file, to_string):
+    notAVar = to_string(file)
+    return f"```\n{notAVar}\n```"
+#END
+
+def file_type_getter(file_extension_tuples):
+    dict = {}
+    for f in file_extension_tuples:# f is a tuple like ("document", [".doc", ".docx"])
+        type = f[0]
+        extensions = f[1]
+        for x in extensions: # loop through the extensions list
+            dict[x] = type
+    return lambda q: dict.get(q, "Unknown")# Return lambda that looks up extensions and returns "Unknown" if not found
+#END
+
+
+#map()
+def change_bullet_style(document):
+    newLine = document.split("\n")
+    conversion = map(convert_line, newLine)
+    #how map works: The first argument is the function to apply (which is convert_line in our case)
+#The second argument is the iterable (which is our list of lines)
+    return "\n".join(conversion)
+
+def convert_line(line):
+    old_bullet = "-"
+    new_bullet = "*"
+    if len(line) > 0 and line[0] == old_bullet:
+        return new_bullet + line[1:]
+    return line
+#END
+
+#today I learned how to pass functions into variables, anonymous functions,
+#further abilities of split, join and reverse and map
