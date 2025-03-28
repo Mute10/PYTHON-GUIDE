@@ -1,9 +1,36 @@
 import math
 import random
-#import string: provides tools for string manipulation.
+import string 
+from functools import reduce
 # .append() is for lists
 # .add() is for sets
 # .update() updates the current set, list, tuple, or dictionary
+def generate_random_string(length=10, character_set=None):
+  
+    if character_set is None:
+        # Default to letters and digits
+        character_set = string.ascii_letters + string.digits
+    
+    # Use random.choices to select characters
+    random_chars = random.choices(character_set, k=length)
+    
+    # Join the characters into a string
+    return ''.join(random_chars)
+
+# Generate a 10-character alphanumeric string
+random_string = generate_random_string()
+print(random_string)  # e.g. "aB3xF9tZ0p"
+
+# Generate an 8-character string with only lowercase letters
+lowercase_string = generate_random_string(8, string.ascii_lowercase)
+print(lowercase_string)  # e.g. "abcdefgh"
+
+# Generate a 12-character password with letters, digits, and punctuation
+password = generate_random_string(12, string.ascii_letters + string.digits + string.punctuation)
+print(password)  # e.g. "a@3xF9!Z0p&*
+#END
+
+
 
 def newMachine(numbers, letters):
   pointA = 417.99
@@ -204,7 +231,7 @@ def blastFurnace(controlSystem, centralUnit): #let's focus on lists, control flo
     print("The Cast house has ", len(castHouse), "components and the Control System has ",len(controlSystem), "components. " \
       "Central Unit has", len(centralUnit), "components")
   else: 
-    print("Cast House has " + len(castHouse) + "only.")
+    print("Cast House has " + str(len(castHouse)) + "only.")
 
   if hotBlastStove >= BFG_Gas_Cleaning_Plant:
     print("the Hot Blast Stove has", len(hotBlastStove), "components.")
@@ -362,8 +389,8 @@ print(solarSystem([-50, -25], [10.45, 1.90]))
 #lesson learned: turn down the coefficience during initialization phase...
 
 
-def motorcycle2(power, fuel): #my greatest challenge yet...It was printing the same number 30 times followed by a printed None.
-  fineTuning = 3              #to Solve this I simply added some return statements. Empty return statements return None.
+def motorcycle2(power, fuel): #my greatest challenge yet...It was printing the same number 30 times followed by None.
+  fineTuning = 3              #to Solve this I simply added a return statement. Empty return statements return None.
   dynoTuning = 78.78          # and maybe don't make the function parameters have so many list items.
   flashTuning = -40.0
   minorAdjustments = 12**3
@@ -379,7 +406,7 @@ def motorcycle2(power, fuel): #my greatest challenge yet...It was printing the s
      print(fineTuning * dynoTuning * flashTuning)
     elif minorAdjustments <= finalTune:
      minorAdjustments -= 100
-     print(finalTune * fineTuning) # this codition is true, 5,309.34 is the answer, but where is None being printed from?
+     print(finalTune * fineTuning) # this codition is true, 5,309.34 
      return result + 2
     else: 
      print("No solution found")
@@ -996,7 +1023,7 @@ def main(battery, deal):
     else: 
       return None
 
-def calendar(month, day): # \ can start a new line
+def calendar(month, day): # \n can start a new line
     what_day, what_month, solution = "Between 1 and 20 every month we'll hold a beer festival!", "Except January.", \
       "January is a sad month lmao..." 
     print(f"{what_day} {what_month} {solution}")
@@ -1154,7 +1181,6 @@ def dontSub():
 dontSub()
 #END 
 
-#dataloader = torch.utils.DataLoader(dataset, batch_size=1, suffle=False)
 
 def binary_string_to_int(num_servers, num_players, num_admins):
     newData = int(num_servers, 2)
@@ -2104,6 +2130,16 @@ print(''.join(r.choices(p, k=15)))
 #tell time
 import datetime
 print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+#another way to configure time
+def formatted(dateString):
+    month, day, year = dateString.split("-")
+    return year + month + day
+    
+def sort_dates(dates):
+    return sorted(dates, key = formatted)
+#dates.sort(key=formatted)
+#return dates
+#END
 
 def fizzbuzz(start, end):
     fbList = []
@@ -4060,3 +4096,566 @@ def convert_line(line):
 
 #today I learned how to pass functions into variables, anonymous functions,
 #further abilities of split, join and reverse and map
+
+#filter practice
+def remove_invalid_lines(document):
+    nextLine = document.split("\n")
+    conversion = filter(lambda x: not x.startswith("-"), nextLine)
+    
+    return "\n".join(conversion)
+#END
+
+
+#reduce practice
+import functools
+
+
+def join(doc_so_far, sentence):
+    return doc_so_far + ". " + sentence
+
+
+def join_first_sentences(sentences, n):
+    if n == 0:
+        return ""
+    return functools.reduce(join, sentences[:n]) + "."
+#END
+
+#intersection
+def get_common_formats(formats1, formats2):
+    newFormat = set(formats1).intersection(set(formats2))
+    return newFormat
+#END
+
+
+#zip
+valid_formats = [
+    "docx",
+    "pdf",
+    "txt",
+    "pptx",
+    "ppt",
+    "md",
+]
+
+def pair_document_with_format(doc_names, doc_formats):
+    docx = list(zip(doc_names, doc_formats))
+    newFolder = list(filter(lambda x: x[1] in valid_formats, docx))
+    return newFolder
+#END
+
+#Data cleaning technique
+def restore_documents(originals, backups):
+    return set(filter(lambda x: not x.isdigit(), map(lambda x: x.upper(), originals + backups)))
+
+#In real-world data processing, you often receive data from different sources that need to be:
+#Normalized - making data consistent (like converting everything to uppercase)
+#Filtered - removing invalid or corrupt data (like filtering out those numeric strings)
+#Deduplicated - removing redundant information (using a set to ensure uniqueness)
+#END
+
+
+#this is a pure function. anything that doesn't use global variables.
+#Once a global variable s called and updated, it stays with that current value
+def convert_file_format(filename, target_format):
+    current_format = filename.split(".")[-1]
+    valid_extensions = ["docx", "pdf", "txt", "pptx", "ppt", "md"]
+    
+    valid_conversions = {
+    "docx": ["pdf", "txt", "md"],
+    "pdf": ["docx", "txt", "md"],
+    "txt": ["docx", "pdf", "md"],
+    "pptx": ["ppt", "pdf"],
+    "ppt": ["pptx", "pdf"],
+    "md": ["docx", "pdf", "txt"],
+}
+    if (
+        current_format in valid_extensions
+        and target_format in valid_conversions[current_format]
+    ):
+        return filename.replace(current_format, target_format)
+    return None
+#END
+
+
+#reference vs value
+def add_format(default_formats, new_format):
+    newDict = default_formats.copy()
+    newDict[new_format] = True
+    return newDict
+
+
+def remove_format(default_formats, old_format):
+    oldDict = default_formats.copy()
+    oldDict[old_format] = False
+    return oldDict
+    #END 
+
+
+#No-op: an operation that does nothing.
+def remove_emphasis_from_word(word):
+    return word.strip("*")
+
+
+def remove_emphasis_from_line(line):
+    words = map(remove_emphasis_from_word, line.split())
+    return " ".join(words)
+    
+
+def remove_emphasis(doc_content):
+    lines = doc_content.split("\n")
+    updatedLines = map(remove_emphasis_from_line, lines)
+    return "\n".join(updatedLines)
+#END
+
+#Memoizaton
+def word_count_memo(document, memos):
+    newMem = memos.copy()
+    if document in newMem:
+        return newMem[document], newMem
+
+    count =  word_count(document)
+    newMem[document] = count
+    return count, newMem
+
+
+def word_count(document):
+    count = len(document.split())
+    return count
+#END
+
+
+#custom commands
+default_commands = {}
+default_formats = ["txt", "md", "html"]
+saved_documents = {}
+
+
+def add_custom_command(commands, new_command, function):
+    newCommand = commands.copy()
+    newCommand[new_command] = function
+    return newCommand
+
+
+def add_format(formats, format):
+    newList = formats.copy()
+    newList.append(format)
+    return newList
+
+
+def save_document(docs, file_name, doc):
+    newDoc = docs.copy()
+    newDoc[file_name] = doc
+    return newDoc
+
+
+def add_line_break(line):
+    newLine = line + "\n\n"
+    return newLine
+#END
+
+
+#organizing keywords
+def map_keywords(document, document_map):
+    newMap = document_map.copy()#Make a copy of the document_map
+    if document in newMap:#Check if the document exists in the copy
+        return newMap[document], newMap #If it exists, return the keywords from the copy (not the original)
+    found_keywords = find_keywords(document)
+    newMap[document] = found_keywords #If it doesn't exist, add it to the copy (not the original)
+    return found_keywords, newMap #return the found keywords and the copy
+
+
+def find_keywords(document):
+    keywords = [
+    "functional",
+    "immutable",
+    "declarative",
+    "higher-order",
+    "lambda",
+    "deterministic",
+    "side-effects",
+    "memoization",
+    "referential transparency",
+]
+    searchCase = document.lower()
+    return list(filter(lambda x: x.lower() in searchCase, keywords))
+   #END
+
+#factorials
+def factorial_r(x):
+    if x == 0:
+        return 1
+
+    return x * factorial_r(x - 1)
+#END
+
+#recursive practice
+def zipmap(keys, values):
+    result = {}
+    if len(keys) == 0 or len(values) == 0:
+        return result
+    result = zipmap(keys[1:], values[1:])
+    result[keys[0]] = values[0]
+    return result
+    #END
+
+
+#nested sum
+def sum_nested_list(lst):
+    totalSize = 0
+    for i in lst:
+        if isinstance(i, int):
+          totalSize += i
+        elif isinstance(i, list):
+          totalSize += sum_nested_list(i)
+    return totalSize
+#END 
+
+#Tree recursion
+def list_files(parent_directory, current_filepath=""):
+    filePath = [] #You create an empty list to store the file paths
+    for i in parent_directory: #You loop through each key in the parent directory
+        outputPath = current_filepath + "/" + i
+        #You properly construct the new path by concatenating the current path, a slash, and the key
+        
+        if parent_directory[i] is None: #For files (where the value is None), you add the path to your list
+            filePath.append(outputPath)
+        else: #For directories, you recursively call the function and extend your list with the results
+            filePath.extend(list_files(parent_directory[i], outputPath)) 
+    return filePath #return the complete list
+#END
+
+#count nested levels
+def count_nested_levels(nested_documents, target_document_id, level=1):
+    for id in nested_documents:
+        if id == target_document_id:
+            return level
+        if nested_documents[id]:
+            foundLevel = count_nested_levels(nested_documents[id], target_document_id, level + 1)
+            if foundLevel != -1:
+                return foundLevel
+    return -1  
+#END
+
+#recursve string reversal
+def reverse_string(s):
+      if len(s) == 0:
+          return s
+      else:
+          return reverse_string(s[1:]) + s[0]
+       #END
+
+def find_longest_word(document, longest_word=""):
+    if len(document) == 0:#base case runs through
+        return longest_word
+    words = document.split(maxsplit=1) #splits the document into two files
+
+    if len(words) < 1:#defensive check to handle empty documents w/whitespace
+        return longest_word
+    first_word = words[0] #gets the first word from split
+    if len(first_word) > len(longest_word):#checks if this word is longer than longest
+        longest_word = first_word
+    if len(words) < 2: #base case: if there's only one word left return the current longest
+        return longest_word
+    return find_longest_word(words[1], longest_word)#recursive call with the rest of the document
+#recursion is similar to a for loop:
+#The function calls itself from within itself. so long as it has a base case you won't get an infinite reccursion
+#Thus creates multiple function calls on the call stack
+def find_longest_word_loop(document):
+    longest_word = ""
+    words = document.split()
+    for word in words:
+        if len(word) > len(longest_word):
+            longest_word = word
+    return longest_word
+
+#END
+
+
+#function transformation
+def get_logger(formatter):
+    def logger(first, second):
+        print(formatter(first, second))
+    return logger
+
+
+def test(first, errors, formatter):
+    print("Logs:")
+    logger = get_logger(formatter)
+    for err in errors:
+        logger(first, err)
+    print("====================================")
+
+
+def colon_delimit(first, second):
+    return f"{first}: {second}"
+
+
+def dash_delimit(first, second):
+    return f"{first} - {second}"
+
+
+def main():
+    db_errors = [
+        "out of memory",
+        "cpu is pegged",
+        "networking issue",
+        "invalid syntax",
+    ]
+    test("Doc2Doc FATAL", db_errors, colon_delimit)
+
+    mail_errors = [
+        "email too large",
+        "non alphanumeric symbols found",
+    ]
+    test("Doc2Doc WARNING", mail_errors, dash_delimit)
+
+
+main()
+#END
+
+
+#filter commands
+def get_filter_cmd(filter_one, filter_two):
+    def filter_cmd(content, option="--one"):
+       if option == "--one":
+           return filter_one(content)
+       if option == "--two":
+           return filter_two(content)
+       if option == "--three":
+           filtered_content = filter_one(content)
+           return filter_two(filtered_content)
+       else:
+           raise Exception("invalid option")
+
+
+    return filter_cmd
+
+
+def replace_bad(text):
+    return text.replace("bad", "good")
+
+
+def replace_ellipsis(text):
+    return text.replace("..", "...")
+
+
+def fix_ellipsis(text):
+    return text.replace("....", "...")
+#END
+
+
+#upgrade filter command
+def get_filter_cmd(filters):
+    def filter_cmd(content, options, word_pairs):
+        if not len(options):#We check if options is empty at the beginning
+            raise Exception("missing options")
+        result = content#We initialize a result variable with the original content
+
+        for option in options:
+            if option in filters:#For each option, we check if it exists in filters
+                result = filters[option](result, word_pairs)#If it does, we apply the filter function to our current result
+            else:
+                raise Exception("invalid option")
+        return result
+    return filter_cmd
+        
+
+def replace_words(content, word_pairs):
+    for pair in word_pairs:
+        content = content.replace(pair[0], pair[1])
+    return content
+
+
+def remove_words(content, word_pairs):
+    for pair in word_pairs:
+        content = content.replace(pair[0], "")
+    return content
+
+
+def capitalize_sentences(content, word_pairs):
+    return ". ".join(map(str.capitalize, content.split(". ")))
+
+
+def uppercase_words(content, word_pairs):
+    for pair in word_pairs:
+        content = content.replace(pair[0], pair[0].upper())
+    return content
+
+
+filters = {
+    "--replace": replace_words,
+    "--remove": remove_words,
+    "--capitalize": capitalize_sentences,
+    "--uppercase": uppercase_words,
+}
+#END
+
+
+#Closures
+def word_count_aggregator():
+    count = 0
+    def counter(word):
+        nonlocal count
+        newString = len(word.split())
+        count += newString
+        return count
+    return counter
+#END
+
+
+#More closure practice
+def new_collection(initial_docs):
+    closure = initial_docs.copy()
+    def collection(someString):
+        closure.append(someString)
+        return closure
+    return collection
+
+
+run_cases = [
+    (["Dan Evans"], ["Charlie Prince"], ["Dan Evans", "Charlie Prince"]),
+    (
+        ["Dan Evans", "Ben Wade"],
+        ["Alice Evans"],
+        ["Dan Evans", "Ben Wade", "Alice Evans"],
+    ),
+    (
+        ["Dan Evans", "Ben Wade", "Alice Evans"],
+        ["Doc Potter", "Butterfield"],
+        ["Dan Evans", "Ben Wade", "Alice Evans", "Doc Potter", "Butterfield"],
+    ),
+]
+
+submit_cases = run_cases + [
+    (
+        ["Dan Evans", "Ben Wade", "Alice Evans"],
+        [],
+        ["Dan Evans", "Ben Wade", "Alice Evans"],
+    ),
+    ([], ["William Evans"], ["William Evans"]),
+    (
+        ["Dan Evans", "Ben Wade"],
+        ["Charlie Prince", "Butterfield"],
+        ["Dan Evans", "Ben Wade", "Charlie Prince", "Butterfield"],
+    ),
+]
+
+
+def test(initial_docs, docs_to_add, expected_output):
+    print("---------------------------------")
+    print(f"Initial documents: {initial_docs}")
+    print(f"Documents to add: {docs_to_add}")
+    print(f"Expecting: {expected_output}")
+    copy_of_initial_docs = initial_docs.copy()
+    add_doc = new_collection(initial_docs)
+    result = initial_docs.copy()
+    for doc in docs_to_add:
+        result = add_doc(doc)
+    print(f"Actual: {result}")
+    if copy_of_initial_docs != initial_docs:
+        print("Fail: You should not modify the initial list")
+        return False
+    if result != expected_output:
+        print("Fail: Unexpected result")
+        return False
+    print("Pass")
+    return True
+
+
+def main():
+    passed = 0
+    failed = 0
+    skipped = len(submit_cases) - len(test_cases)
+    for test_case in test_cases:
+        correct = test(*test_case)
+        if correct:
+            passed += 1
+        else:
+            failed += 1
+    if failed == 0:
+        print("============= PASS ==============")
+    else:
+        print("============= FAIL ==============")
+    if skipped > 0:
+        print(f"{passed} passed, {failed} failed, {skipped} skipped")
+    else:
+        print(f"{passed} passed, {failed} failed")
+
+
+test_cases = submit_cases
+if "__RUN__" in globals():
+    test_cases = run_cases
+
+main()
+#END
+
+
+#copy/paste 
+def new_clipboard(initial_clipboard):
+    copyCat = initial_clipboard.copy()
+    def copy_to_clipboard(key, value):#correctly takes a key and value and adds them to your copy of the clipboard.
+        nonlocal copyCat
+        copyCat[key] = value
+    def paste_from_clipboard(key):#correctly checks if a key exists in the clipboard
+        if key in copyCat:
+            return copyCat[key]
+        else:
+            return ""
+    return copy_to_clipboard, paste_from_clipboard
+#END
+
+
+#user words
+def user_words(initial_words):
+    clown_words = initial_words
+    def add_word(word):
+        nonlocal clown_words
+        #adding the new word to the end of the tuple 
+        clown_words = clown_words + (word,)
+        return clown_words
+    return add_word
+#END
+
+
+#CSS F***
+def css_styles(initial_styles):
+    styles = initial_styles.copy()
+    def add_style(selector, property, value):
+        if selector not in styles:
+            styles[selector] = {}
+        styles[selector][property] = value
+        return styles
+    return add_style
+    #END
+
+
+    #Line breaking
+    
+
+
+def lineator(line_length):
+    def lineate(document):
+        words = document.split()
+
+        def add_word_to_lines(lines, word):
+            
+            if len(lines) == 0:
+                return [word]
+            current_line = lines[-1]
+            if len(current_line) + len(word) +1 > line_length:
+                lines.append(word)
+            else:
+                lines[-1] = current_line + " " + word
+            return lines
+            
+
+        return reduce(add_word_to_lines, words, [])
+
+    return lineate
+#END
+
+
+
+
+    # raiseValueError(f""), split(maxsplit=1), if blank not list, nonlocal/closure(calls variables from different scopes), concatter()
+    #copy, filter without filter(), function transformation, get()
