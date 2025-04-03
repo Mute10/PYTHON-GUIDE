@@ -1,10 +1,13 @@
 import math
 import random
 import string 
-from functools import reduce
+import functools
+#import markdown
+
 # .append() is for lists
 # .add() is for sets
 # .update() updates the current set, list, tuple, or dictionary
+# + adds to strings(concatenation)
 def generate_random_string(length=10, character_set=None):
   
     if character_set is None:
@@ -4107,9 +4110,6 @@ def remove_invalid_lines(document):
 
 
 #reduce practice
-import functools
-
-
 def join(doc_so_far, sentence):
     return doc_so_far + ". " + sentence
 
@@ -4655,7 +4655,352 @@ def lineator(line_length):
 #END
 
 
+#currying: how currying works - you're breaking a multi-parameter function into a chain of single-parameter functions.
+def converted_font_size(font_size):
+    def innerFunction(doc_type):
+        if doc_type == "txt":
+            return font_size
+        if doc_type == "md":
+            return font_size * 2
+        if doc_type == "docx":
+            return font_size * 3
+        raise ValueError("invalid doc type")
+    return innerFunction
 
 
-    # raiseValueError(f""), split(maxsplit=1), if blank not list, nonlocal/closure(calls variables from different scopes), concatter()
-    #copy, filter without filter(), function transformation, get()
+#More currying practice
+def lines_with_sequence(char):
+    def with_char(length):
+        sequence = char * length
+        counter  = 0
+        def with_length(doc):
+            doctype = doc.split("\n")
+            nonlocal counter
+            for d in doctype:
+                if sequence in d:
+                    counter += 1
+            return counter
+        return with_length
+
+    return with_char
+#END
+
+
+from functools import reduce
+def create_tagger(tag):
+    def tagger(content):
+        return f"<{tag}>{content}</{tag}>"
+
+    return tagger
+
+
+def create_accumulator(tagger):
+    def accumulate(items):
+        return reduce(lambda acc, item: acc + tagger(item), items, "")
+
+    return accumulate
+
+
+tag_data = create_tagger("td")
+tag_header = create_tagger("th")
+tag_row = create_tagger("tr")
+tag_table = create_tagger("table")
+
+accumulate_data_cells = create_accumulator(tag_data)
+accumulate_rows = create_accumulator(tag_row)
+accumulate_headers = create_accumulator(tag_header)
+
+
+def create_html_table(data_rows):
+    rows = accumulate_rows(map(accumulate_data_cells, data_rows))
+
+    def create_table_headers(headers):
+        nonlocal rows
+        header_cells = accumulate_headers(headers)
+        header_row = tag_row(header_cells)
+        rows = header_row + rows
+        table = tag_table(rows)
+        return table
+    return create_table_headers
+
+run_cases = [
+    (
+        [
+            ["Scooby Doo", "Lassie"],
+            ["Blue", "Wishbone"],
+        ],
+        ["Cartoon TV Dogs", "Real TV Dogs"],
+        "<table><tr><th>Cartoon TV Dogs</th><th>Real TV Dogs</th></tr><tr><td>Scooby Doo</td><td>Lassie</td></tr><tr><td>Blue</td><td>Wishbone</td></tr></table>",
+    ),
+]
+
+submit_cases = run_cases + [
+    (
+        [
+            ["Garfield", "Salem"],
+            ["Tom", "Mr. Bigglesworth"],
+        ],
+        ["Cartoon TV Cats", "Real TV Cats"],
+        "<table><tr><th>Cartoon TV Cats</th><th>Real TV Cats</th></tr><tr><td>Garfield</td><td>Salem</td></tr><tr><td>Tom</td><td>Mr. Bigglesworth</td></tr></table>",
+    ),
+]
+
+
+def test(data_rows, headers, expected_output):
+    print("---------------------------------")
+    print(f"Data Rows: {data_rows}")
+    print(f"Headers: {headers}")
+    print(f"Expecting:\n{expected_output}")
+    result = create_html_table(data_rows)(headers)
+    print(f"Actual:\n{result}")
+    if result == expected_output:
+        print("Pass")
+        return True
+    print("Fail")
+    return False
+
+
+def main():
+    passed = 0
+    failed = 0
+    skipped = len(submit_cases) - len(test_cases)
+    for test_case in test_cases:
+        correct = test(*test_case)
+        if correct:
+            passed += 1
+        else:
+            failed += 1
+    if failed == 0:
+        print("============= PASS ==============")
+    else:
+        print("============= FAIL ==============")
+    if skipped > 0:
+        print(f"{passed} passed, {failed} failed, {skipped} skipped")
+    else:
+        print(f"{passed} passed, {failed} failed")
+
+
+test_cases = submit_cases
+if "__RUN__" in globals():
+    test_cases = run_cases
+
+main()
+#END
+
+#resizing image
+def new_resizer(max_width, max_height):
+    def inner(min_width=0, min_height=0):
+        if min_width > max_width or min_height > max_height:
+                raise Exception("minimum size cannot exceed maximum size")
+        def innerSanctum(width, height):
+            newWidth = min(max(width, min_width), max_width)
+            newHeight = min(max(height, min_height), max_height)
+            return newWidth, newHeight
+        return innerSanctum
+    return inner
+#end
+
+
+#decorator
+def file_type_aggregator(func_to_decorate):
+    counts = {}
+   
+
+    def wrapper(doc, file_type):
+        nonlocal counts
+
+        if file_type not in counts:
+            counts[file_type] = 0
+        counts[file_type] += 1
+        result = func_to_decorate(doc, file_type)
+
+        return result, counts
+
+    return wrapper
+
+@file_type_aggregator
+def process_doc(doc, file_type):
+    process = f"Processing doc: '{doc}'. File Type: {file_type}"
+    return process
+#end
+
+
+
+#configure plugin
+def configure_plugin_decorator(func):
+    def wrapper(*args):
+        argsConversion = dict(args)#correctly converts *args (a tuple of key-value pairs) into a dictionary
+        functhewrapper = func(**argsConversion)#called with the unpacked dictionary,
+        return functhewrapper
+    return wrapper
+#end
+
+#escape html
+def replacer(old, new):
+    def replace(decorated_func):
+        def wrapper(text):
+            result = text.replace(old, new)
+            return decorated_func(result)
+        return wrapper
+    return replace
+
+@replacer("&", "&amp;")  
+@replacer("<", "&lt;")
+@replacer(">", "&gt;")
+@replacer('"', "&quot;")
+@replacer("'", "&#x27;")
+def tag_pre(text):
+    return f"<pre>{text}</pre>"
+#end
+
+
+#lrucache
+from functools import lru_cache
+
+@lru_cache
+def is_palindrome(word):
+    if len(word) <= 1:
+        return True
+    if word[0] == word[-1]:
+        return is_palindrome(word[1:-1])
+    else:
+        return False
+#end
+
+#
+from enum import Enum
+Doctype = Enum('Doctype', ['PDF','TXT', 'DOCX', 'MD', 'HTML'])
+#end
+
+
+#Match
+from enum import Enum
+
+
+class DocFormat(Enum):
+    PDF = 1
+    TXT = 2
+    MD = 3
+    HTML = 4
+
+
+
+def convert_format(content, from_format, to_format):
+    match (from_format, to_format):
+        case (DocFormat.MD, DocFormat.HTML):
+            return content.replace("# ", "<h1>") + "</h1>"
+        case (DocFormat.TXT, DocFormat.PDF):
+            return f"[PDF] {content} [PDF]"
+        case (DocFormat.HTML, DocFormat.MD):
+            return content.replace("<h1>", "# ").replace("</h1>", "")
+        case _:
+            raise Exception("invalid type")
+#end
+
+
+#Export CSV
+from enum import Enum
+
+
+class CSVExportStatus(Enum):
+    PENDING = 1
+    PROCESSING = 2
+    SUCCESS = 3
+    FAILURE = 4
+
+
+def get_csv_status(status, data):
+    match status:
+        case CSVExportStatus.PENDING:
+            processed_data = list(map(lambda row: list(map(str, row)), data))
+            return "Pending...", processed_data
+        case CSVExportStatus.PROCESSING:
+            csv_string = "\n".join(map(lambda row: ",".join(row), data))
+            return "Processing...", csv_string
+        case CSVExportStatus.SUCCESS:
+            return "Success!", data
+        case CSVExportStatus.FAILURE:
+            prepared_data = list(map(lambda row: list(map(str, row)), data))
+            csv_string = "\n".join(map(lambda row: ",".join(row), prepared_data))
+            return "Unknown error, retrying...", csv_string
+        case _:
+            raise Exception("unknown export status")
+#end
+
+
+
+#edit document
+from enum import Enum
+
+
+class EditType(Enum):
+    NEWLINE = 1
+    SUBSTITUTE = 2
+    INSERT = 3
+    DELETE = 4
+
+
+def handle_edit(document, edit_type, edit):
+    match edit_type:
+         case EditType.NEWLINE:
+             return newline(document, **edit)
+         case EditType.SUBSTITUTE:
+             return substitute(document, **edit)
+         case EditType.INSERT:
+             return insert(document, **edit)
+         case EditType.DELETE:
+             return delete(document, **edit)
+         case _:
+             raise Exception("unknown edit type")
+
+def newline(document, line_number):
+    lines = document.split("\n")
+    line = lines[line_number]#specific line to modify
+    lines[line_number] = line + "\n" #new line to the end of the line
+    return "\n".join(lines) #joins all the lines w/ newlines between
+def substitute(document, insert_text, line_number, start, end):
+    lines = document.split("\n")
+    line = lines[line_number]
+    #Modifies that line by taking everything before start, adding the insert_text, 
+    #and then adding everything after end
+    lines[line_number] = line[:start] + insert_text + line[end:]
+    return "\n".join(lines)
+    
+def insert(document, insert_text, line_number, start):
+    #code reuse
+    return substitute(document, insert_text, line_number, start, start)
+    
+def delete(document, line_number, start, end):
+    return substitute(document, "", line_number, start, end)
+    #END
+
+
+    # raiseValueError(f""),  if blank not list, nonlocal/closure(calls variables from different scopes), concatter()
+    #function transformation, get(), reduce()
+    #string_list = ["apple", "banana", "apricot", "kiwi", "avocado"]
+#filtered_list = [s for s in string_list if s.startswith("a")]
+class Dinner:
+    def __init__(self, meat, vegetables):
+        self.meat = meat
+        self.vegetables = vegetables
+    def menu(steak, cauliflower):
+       steak = " Tenderloin: medium, rare, medium rare, well done"
+       cauliflower = " Stirfry"
+       print(steak + "." + cauliflower)
+    menu(2, "cost")
+    def carrotJuice(sugar, vitaminC):
+        sugar.split()
+        vitaminC.split(maxsplit=1)
+        for s in range(0, len(sugar)):
+           if s >= vitaminC:
+              carrotClone = vitaminC.copy()
+              cClone = carrotClone + carrotClone
+              print(cClone)
+           elif s < vitaminC:
+              sweetooth = "".join(filter(lambda x: x.isalpha(), sugar))
+              print(sweetooth)
+           else: 
+              raise ValueError("We ran out of the product")
+    carrotJuice("don't eat too much of me", "you don't consume enough of me")
+              
+chefChoice = Dinner("chocolate mousse", "broccoli")
