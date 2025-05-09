@@ -1972,7 +1972,7 @@ def outerSpace(numOfStars, planetsOnSatellite):
         sun += 22
         sun -= 100 #starts at -75.9 then jumps to 922. It's no longer a float by the second iteration 
         moon += 333                                    
-        moon /= 3 #2.556512774515297e+18, 8.521709248384324e+17, 2.8405697494614426e+17
+        moon /= 3 
         #dividing by a larger number (10 instead of 3) would make the exponent smaller, not larger!
         #where as * would create the high numbers
         #neptune.append(sun) #BAD CODE :)
@@ -2098,29 +2098,6 @@ def factor(burger):
     #END 
 
 
-def remove_nonints(nums):
-    newList = []
-    for n in nums:
-        if type(n) == int:
-            newList.append(n)
-    return newList
-    #END 
-
-rectangles = [
-    {"height": 4, "width": 5},
-    {"height": 3, "width": 2}
-]
-
-def area_sum(rectangles):
-   sum = 0
-   for i in rectangles:
-        i = i["height"] * i["width"] #multiplies the numbers 4 x 5 and 3 x 2
-        sum += i #adds the numbers together
-   return sum
-
-result = area_sum(rectangles)
-print(result)  # Would print: 26 (20 + 6)
-#END 
 
 #common test during an interview
 for i in range(1, 21): print("Fizz" * (i%3==0) + "Buzz" *(i % 5 ==0) or str(i))
@@ -2172,17 +2149,6 @@ print(pour_beer())
 
 #END 
 
-#this function divides nums by divisor
-def divide_list(nums, divisor):
-    newList = []
-    number = 0
-    for n in nums:
-        number = n / divisor
-        newList.append(number)
-        
-    return newList
-divide_list()
-#END 
 
 #this joins multiple strings as one
 def join_strings(strings):
@@ -2210,131 +2176,9 @@ join_strings(["hello", "exit", "door"])
 #END 
 
 
-# to create a virtual enviroment: 1. new terminal. 2. python -m venv name. 3 name\Scripts\activate
- # Python functions can’t automatically access variables from other functions
-# "with open" takes one of three commands r(read), w(write), and a(append) r is by default
-   
-#"Chaining functions" is a neat trick, not only does it count as a function call,
-#you can change it's parameters to the function it's in.
-def fight_soldiers(soldier_one, soldier_two):  #Uses the helper function to get the calculations
-    soldier_one_dps = get_soldier_dps(soldier_one) #Takes those numbers and makes decisions
-    soldier_two_dps = get_soldier_dps(soldier_two) #Writes down (returns) who wins based on comparing the DPS values
-    if soldier_one_dps > soldier_two_dps:
-        return "soldier 1 wins"
-    if soldier_two_dps > soldier_one_dps:
-        return "soldier 2 wins"
-    return "both soldiers die"
-def get_soldier_dps(dps): #this is a helper function, it wouldn't make sense to call it at the bottom
-    soldierDmg = dps["damage"] #this function needs a soldier dictionary as an argument
-    soldierAttacks = dps["attacks_per_second"]
-    burstDmg = soldierDmg * soldierAttacks
-    return burstDmg
-#the only time you need to call a function at the bottom is when you want to run it immediately
-#END 
 
 
-
- #Classes are like blueprints - they just need to be defined, not called
-class Wall:
-    armor = 10
-    height = 5
-
-    def __init__(self, depth, height, width):
-        self.depth = depth
-        self.height = height
-        self.width = width
-        self.volume = self.depth * self.height * self.width 
-
-    def get_cost(self):
-        cost = self.armor * self.height
-       
-        return cost
-
-    def fortify(self):
-        self.armor *= 2
-
-
-#The self keyword is actually one of the most important concepts in object-oriented programming:
-#self refers to the specific instance (object) of the class being created. 
-# It's like saying "this particular wall" as opposed to walls in general.
-#When we add self. in front of a variable name, we're creating an "instance variable" or "property" that belongs to that specific object. 
-#Without self. we'd just be creating a local variable that falls into the void when the constructor finishes.
-
-
-def main():
-    aragorn = Brawler(4, 4, "Aragorn")
-    gimli = Brawler(2, 7, "Gimli")
-    legolas = Brawler(7, 7, "Legolas")
-    frodo = Brawler(3, 2, "Frodo")
-    fight(aragorn, gimli)
-    fight(legolas, frodo)
-   
-
-class Brawler:
-    def __init__(self, speed, strength, name):
-        self.speed = speed
-        self.strength = strength
-        self.power = speed * strength
-        self.name = name
-        
-
-def fight(f1, f2):
-    if f1.power > f2.power:
-        print(f"{f1.name} wins with {f1.power} power over {f2.name}'s {f2.power}")
-    elif f1.power < f2.power:
-        print(f"{f2.name} wins with {f2.power} power over {f1.name}'s {f1.power}")
-    else:
-        print(f"It's a tie with both contestants at {f1.power} power")
-
-
-main()
-#END 
-class Archer:
-    def __init__(self, name, health, num_arrows):
-        # Creates a new archer with their starting stats
-        self.name = name
-        self.health = health
-        self.num_arrows = num_arrows
-
-    def get_shot(self):
-        # First check if the archer can take damage
-        if self.health > 0:
-            self.health -= 1  # Ouch! Take one damage
-        # After taking damage, check if they've fallen
-        if self.health == 0:
-            # Our brave archer has fallen in battle!
-            raise Exception(f"{self.name} is dead")
-
-    def shoot(self, target):
-        # Can't shoot without arrows! Check the quiver first
-        if self.num_arrows == 0:
-            raise Exception(f"{self.name} can't shoot")
-         # If we have arrows, let's fire!
-        if self.num_arrows >= 1:
-            self.num_arrows -= 1  # Use one arrow
-            print(f"{self.name} shoots {target.name}")  # Twang!
-            target.get_shot()  # The target takes damage
-
-            #When calling a method on an object, we use dot notation. 
-   # this challnge focuses on Object-oriented programming with classes
-#         Instance methods and the self keyword
-#         Exception handling
-#         Conditional logic with if statements
-#         Object interaction (one archer shooting another)
-
-    def get_status(self):
-        return self.name, self.health, self.num_arrows
-
-    def print_status(self):
-        print(f"{self.name} has {self.health} health and {self.num_arrows} arrows")
-#END 
-
-
-
-    #this class function has two characters in the VII section
-    #what this does is monitor their exp earned and records how any enemies they kill
-    #to level up all the way to 100. It's not the best leveling sysmtem out there
-    #I did this for simply for the exposure to building a game
+    #this monitors their exp earned and records how any enemies they kill
 class SOLDIER:
     def __init__(self, health, level, strength, speed, name, magic):
         self.name = name
@@ -2398,7 +2242,7 @@ def VII():
     tifa.display_stats()
 
 VII()
-
+#END
 
 #create a chaining function
 def phaseOne(project, endResult):
@@ -2421,27 +2265,8 @@ def phase2(plan):
 phaseOne(17, 27)
 #END 
 
-#class variable, good or bad?
-#Class variables can certainly behave in a way that feels "janky" 
-# especially when they are accidentally shared across all instances of a class. 
-# This happens because a class variable belongs to the class itself, 
-# not to individual instances. If changed, it affects every instance that relies on it.
-class Dragon:
-   #element = "ice"
 
-    def __init__(self, element):
-        self.element = element
-        return 
-
-    def get_breath_damage(self):
-        if self.element == "fire":
-            return 300
-        if self.element == "ice":
-            return 150
-        return 0
-#END 
-
-
+#static variables
 class Employee:
     company_name = "Age of Dragons, Inc."
     total_employees = 0
@@ -2461,7 +2286,7 @@ class Employee:
 #END 
 
 
-#these classes and functions create a library system that will allow people to add, remove, and search for books.
+#a create a library system that will allow people to add, remove, and search for books.
 class Book:
     def __init__(self, title, author):
         # Initialize a new book with a title and author
@@ -2499,17 +2324,6 @@ class Library:
         # Return list of all matching books
         return results
        #END 
-
-#practice with private properties/encapsulation
-#Encapsulation is about organization, not security.
-class Wizard: 
-    def __init__(self, name, stamina, intelligence):#these are called parameters
-        self.name = name #these are instanced variables
-        self.__stamina = stamina 
-        self.health = stamina * 100
-        self.__intelligence = intelligence
-        self.mana = intelligence * 10
-#END 
 
 
 # Constant values for game mechanics
@@ -2599,88 +2413,6 @@ class Student:
         return self.__courses 
 #END
 
-#This is an abstraction that hides the complexity of how movement happens in a 2D space
-class Human:
-    def __init__(self, pos_x, pos_y, speed):
-        self.__pos_x = pos_x
-        self.__pos_y = pos_y
-        self.__speed = speed
-#How the math works to update positions
-    def move_right(self): #and determine how many pixels a unit moves per arrow key
-        self.__pos_x += self.__speed
-
-    def move_left(self):
-        self.__pos_x -= self.__speed
-
-    def move_up(self):
-        self.__pos_y += self.__speed
-
-    def move_down(self):
-        self.__pos_y -= self.__speed
-
-    def get_position(self):
-        return (self.__pos_x, self.__pos_y)
-
-#END 
-
-
-#In this program, we have a game that grants an ability to the human race called sprint
-class Human:
-    def sprint_right(self):#from line 2564 - 2582 is checks the direction the human is moving
-        self.__raise_if_cannot_sprint()     #and checks if they have any stamina
-        self.__use_sprint_stamina()
-        self.move_right()
-        self.move_right()
-
-    def sprint_left(self):
-        self.__raise_if_cannot_sprint() 
-        self.__use_sprint_stamina()
-        self.move_left()
-        self.move_left()
-
-    def sprint_up(self):
-        self.__raise_if_cannot_sprint() 
-        self.__use_sprint_stamina()
-        self.move_up()
-        self.move_up()
-
-    def sprint_down(self):
-        self.__raise_if_cannot_sprint() 
-        self.__use_sprint_stamina()
-        self.move_down()
-        self.move_down()
-
-    def __raise_if_cannot_sprint(self): #I think == 0 rivals <= 0. 
-        if self.__stamina == 0:
-            raise Exception("not enough stamina to sprint") #you get an error message if stamina 0
-
-    def __use_sprint_stamina(self):     #if not then subtract 1 stamina per movement
-            self.__stamina -= 1
-
-
-#the below code here ties into all the above.
-    def move_right(self):
-        self.__pos_x += self.__speed
-
-    def move_left(self):
-        self.__pos_x -= self.__speed
-
-    def move_up(self):
-        self.__pos_y += self.__speed
-
-    def move_down(self):
-        self.__pos_y -= self.__speed
-
-    def get_position(self):
-        return self.__pos_x, self.__pos_y
-
-    def __init__(self, pos_x, pos_y, speed, stamina):
-        self.__pos_x = pos_x
-        self.__pos_y = pos_y
-        self.__speed = speed
-        self.__stamina = stamina
-#END
-
 
 #this obviously is going to preform calculator functions. + - * / % ** and square root
 class Calculator:
@@ -2717,137 +2449,6 @@ class Calculator:
 
     def get_result(self):
         return self.__result
-#END
-    
-
-#expamples of inheritance from parent to descendant/subclass
-class Human:
-    def __init__(self, name):
-        self.__name = name
-
-    def get_name(self):
-        return self.__name
-
-class Archer(Human):
-    def __init__(self, name, num_arrows):
-        # Set archer-specific property first
-        self.__num_arrows = num_arrows
-        # Call parent (Human) constructor with name parameter
-        super().__init__(name) #super() calls what ever class is above another
-
-class Ranger(Archer):
-    def __init__(self, name, num_arrows, stealth_level):   # Ranger knows all three
-        super().__init__(name, num_arrows)   # name is a human cass trait, num_arrows is Archer
-        self.__stealth_level = stealth_level   # Handles its own 'stealth_level'
-
-    def get_num_arrows(self):
-        return self.__num_arrows 
-        #END
-
-
-#inheritance heirarchy: A subclass can't access a private property of its parent class. It has to use a getter.
-class Human: #remember self is the core of accessing attributes and methods within a class.
-    def __init__(self, name):
-        self.__name = name
-
-    def get_name(self):
-        return self.__name
-
-
-class Archer(Human):
-    def __init__(self, name, num_arrows):
-        super().__init__(name)#pulls trait from human
-        self.__num_arrows = num_arrows
-
-    def get_num_arrows(self): #getter method to reach the private self.__num_arrows variable
-        return self.__num_arrows
-
-    def use_arrows(self, num):
-        if num > self.__num_arrows: #determines your quiver size
-            raise Exception("not enough arrows")
-        else:
-            self.__num_arrows -= num
-
-class Crossbowman(Archer):
-    def __init__(self, name, num_arrows):
-        super().__init__(name, num_arrows)#inherits traits from Human and Archer
-        
-    def triple_shot(self, target): #no need to create an instanced variable
-        self.use_arrows(3)
-        return f"{target.get_name()} was shot by 3 crossbow bolts" #this is a string expression
-        #END
-
-
-#here, is a small snippet that determines how much damage a Hero would take from a single arrow
-class Hero:
-    def __init__(self, name, health):
-        self.__name = name
-        self.__health = health
-
-    def get_name(self):
-        return self.__name
-
-    def get_health(self):
-        return self.__health
-
-    def take_damage(self, damage):
-        self.__health -= damage
-
-
-class Archer(Hero):
-    def __init__(self, name, health, num_arrows):
-        super().__init__(name, health)
-        self.__num_arrows = num_arrows
-
-    def shoot(self, target):
-        if self.__num_arrows == 0:
-            raise Exception("not enough arrows")
-        self.__num_arrows -= 1
-        target.take_damage(10) #pulls the take_damage from line 2779
-#END
-
-
-#similar to the above, testing wizard damage and mana pool
-class Hero:
-    def __init__(self, name, health):
-        self.__name = name
-        self.__health = health
-
-    def get_name(self):
-         return self.__name
-        
-
-    def get_health(self):
-         return self.__health
-        
-
-    def take_damage(self, damage):
-        self.__health -= damage
-
-
-class Archer(Hero):
-    def __init__(self, name, health, num_arrows):
-        super().__init__(name, health)
-        self.__num_arrows = num_arrows
-
-    def shoot(self, target):
-        if self.__num_arrows <= 0:
-            raise Exception("not enough arrows")
-        self.__num_arrows -= 1
-        target.take_damage(10)
-
-
-class Wizard(Hero):
-    def __init__(self, name, health, mana):
-        super().__init__(name, health)
-        self.__mana = mana
-        
-
-    def cast(self, target):
-        if self.__mana < 25:
-            raise Exception("not enough mana")
-        self.__mana -= 25
-        target.take_damage(25)
 #END
 
 
@@ -2889,238 +2490,6 @@ class Dragon(Unit):
 #END
 
 
-def main():
-    dragons = [ #objects list
-        Dragon("Green Dragon", 0, 0, 1),
-        Dragon("Red Dragon", 2, 2, 2),
-        Dragon("Blue Dragon", 4, 3, 3),
-        Dragon("Black Dragon", 5, -1, 4),
-    ]
-
-
-    for dragon in dragons: 
-        describe(dragon)
-    for d in range(len(dragons)):
-        currentDragon = dragons[d] #targets dragons by index value
-        remainingDragons = dragons.copy() #creates a copy of the list
-        del remainingDragons[d] #removes current dragon to avoid damaging itself
-        #describe(dragons[0])
-        currentDragon.breathe_fire(x=3, y=3, units=remainingDragons)
-        # Makes the current dragon breathe fire at all other dragons
-            
-             
-def describe(dragon):
-    # dragon's name and x/y coordinates
-    print(f"{dragon.name} is at {dragon.pos_x}/{dragon.pos_y}")
-
-
-class Unit: #base class for any game unit
-    def __init__(self, name, pos_x, pos_y):
-        self.name = name
-        self.pos_x = pos_x
-        self.pos_y = pos_y
-
-    def in_area(self, x_1, y_1, x_2, y_2):
-        #checks if unit is inside a rectangular area defined by two corner points
-        return (
-            self.pos_x >= x_1 #greater than or equal to left boundary
-            and self.pos_x <= x_2 #less than or equal to right boundary
-            and self.pos_y >= y_1 #greater than or equal to bottom boundary
-            and self.pos_y <= y_2 #less than or equal to top boundary
-        )
-
-
-class Dragon(Unit):
-    def __init__(self, name, pos_x, pos_y, fire_range):
-        super().__init__(name, pos_x, pos_y) #calls upin the parent Unit class
-        self.__fire_range = fire_range
-
-    def breathe_fire(self, x, y, units):
-        print(f"{self.name} breathes fire at {x}/{y} with range {self.__fire_range}")
-        print("====================================")
-        for unit in units: #says what dragons are ht by fire
-            in_area = unit.in_area(
-                x - self.__fire_range,
-                y - self.__fire_range,
-                x + self.__fire_range,
-                y + self.__fire_range,
-            )
-            if in_area:
-                print(f"{unit.name} is hit by the fire")
-main()
-#END
-
-
-#find the witdh and length of a rectangle
-class Rectangle:
-    def __init__(self, length, width):
-        self.length = length
-        self.width = width
-
-    def get_area(self):
-        return self.length * self.width
-
-    def get_perimeter(self): 
-        return 2 * (self.length + self.width)
-        
-class Square(Rectangle): #Creates a square as a special type of rectangle
-    def __init__(self, length):  #Uses the parent class's initialization to set both sides equal
-        super().__init__(length, length) #Inherits all the area and perimeter calculations from Rectangle
-    
-  #END      
-
-
-#get edges, polymorphism
-class Rectangle:
-    def __init__(self, x1, y1, x2, y2):
-        self.__x1 = x1
-        self.__y1 = y1
-        self.__x2 = x2
-        self.__y2 = y2
-
-    def get_left_x(self):
-        return min(self.__x1, self.__x2)
-
-    def get_right_x(self):
-        return max(self.__x1, self.__x2)
-
-    def get_top_y(self):
-        return max(self.__y1, self.__y2)
-
-    def get_bottom_y(self):
-        return min(self.__y1, self.__y2)
-
-    def __repr__(self):
-        return f"Rectangle({self.__x1}, {self.__y1}, {self.__x2}, {self.__y2})"
-#END
-
-
-#Checking if Rectangles Overlap
-class Rectangle:
-    def overlaps(self, rect):
-        if (
-            self.get_left_x() <= rect.get_right_x() and 
-            self.get_right_x() >= rect.get_left_x() and 
-            self.get_top_y() >= rect.get_bottom_y() and 
-            self.get_bottom_y() <= rect.get_top_y()
-        ):
-            return True
-        return False
-
-    def __init__(self, x1, y1, x2, y2):
-        self.__x1 = x1
-        self.__y1 = y1
-        self.__x2 = x2
-        self.__y2 = y2
-
-    def get_left_x(self):
-        if self.__x1 < self.__x2:
-            return self.__x1
-        return self.__x2
-
-    def get_right_x(self):
-        if self.__x1 > self.__x2:
-            return self.__x1
-        return self.__x2
-
-    def get_top_y(self):
-        if self.__y1 > self.__y2:
-            return self.__y1
-        return self.__y2
-
-    def get_bottom_y(self):
-        if self.__y1 < self.__y2:
-            return self.__y1
-        return self.__y2
-
-    def __repr__(self):
-        return f"Rectangle({self.__x1}, {self.__y1}, {self.__x2}, {self.__y2})"
-
-#END
-
-
-#combining rectangles with the dragon class
-class Unit:
-    def __init__(self, name, pos_x, pos_y):
-        self.name = name
-        self.pos_x = pos_x  # x coordinate of unit's center
-        self.pos_y = pos_y  # y coordinate of unit's center
-
-    def in_area(self, x1, y1, x2, y2):
-        # Abstract method to be implemented by child classes
-        pass
-
-
-# Dragon unit with rectangular hitbox and fire range capabilities 
-class Dragon(Unit):
-    def __init__(self, name, pos_x, pos_y, height, width, fire_range):
-        # Initialize parent class attributes
-        super().__init__(name, pos_x, pos_y)
-        self.fire_range = fire_range
-        self.height = height
-        self.width = width
-        
-        # Calculate hitbox dimensions from center point
-        half_height = height / 2
-        half_width = width / 2
-        
-        # Create rectangular hitbox centered on dragon's position
-        self.__hit_box = Rectangle(
-            pos_x - half_width,   # left edge
-            pos_y - half_height,  # bottom edge
-            pos_x + half_width,   # right edge
-            pos_y + half_height   # top edge
-        )
-        
-    def in_area(self, x1, y1, x2, y2):
-        # Check if dragon's hitbox overlaps with given rectangular area
-        area = Rectangle(x1, y1, x2, y2) 
-        return area.overlaps(self.__hit_box) 
-
-
-# Utility class for handling rectangular areas and collision detection
-class Rectangle:
-    def overlaps(self, rect):
-        # Check if rectangles overlap using separating axis theorem
-        return (
-            self.get_left_x() <= rect.get_right_x()
-            and self.get_right_x() >= rect.get_left_x()
-            and self.get_top_y() >= rect.get_bottom_y()
-            and self.get_bottom_y() <= rect.get_top_y()
-        )
-
-    def __init__(self, x1, y1, x2, y2):
-    # Store coordinates of rectangle corners as private variables
-        self.__x1 = x1  # First x coordinate
-        self.__y1 = y1  # First y coordinate 
-        self.__x2 = x2  # Second x coordinate
-        self.__y2 = y2  # Second y coordinate
-
-def get_left_x(self):
-    # Return the smaller x value (leftmost edge)
-    if self.__x1 < self.__x2:
-        return self.__x1
-    return self.__x2
-
-def get_right_x(self):
-    # Return the larger x value (rightmost edge)
-    if self.__x1 > self.__x2:
-        return self.__x1
-    return self.__x2
-
-def get_top_y(self):
-    # Return the larger y value (top edge)
-    if self.__y1 > self.__y2:
-        return self.__y1
-    return self.__y2
-
-def get_bottom_y(self):
-    # Return the smaller y value (bottom edge)
-    if self.__y1 < self.__y2:
-        return self.__y1
-    return self.__y2
-#END
-
 
 #Operator Overload
 class Sword:
@@ -3136,72 +2505,6 @@ class Sword:
         else:
             raise Exception("cannot craft") #cannot combine bronze with iron, etc.
 
- #test cases
-run_cases = [
-    (Sword("bronze"), Sword("bronze"), "iron", None),
-    (Sword("bronze"), Sword("iron"), None, "cannot craft"),
-]
-
-submit_cases = run_cases + [
-    (Sword("steel"), Sword("steel"), None, "cannot craft"),
-    (Sword("iron"), Sword("iron"), "steel", None),
-    (Sword("bronze"), Sword("steel"), None, "cannot craft"),
-]
-
-
-def test(sword1, sword2, expected_result, expected_err):
-    try:
-        print("---------------------------------")
-        print(
-            f"Crafting a {sword1.sword_type} sword with a {sword2.sword_type} sword..."
-        )
-        result = sword1 + sword2
-
-        if expected_err:
-            print(f"Expected Exception: {expected_err}")
-            print("Actual: no exception raised")
-            print("Fail")
-            return False
-
-        print(f"Expected: {expected_result}")
-        print(f"Actual: {result.sword_type}")
-        print(f"A new {result.sword_type} sword was crafted!")
-        if result.sword_type != expected_result:
-            print("Fail")
-            return False
-
-    except Exception as e:
-        print(f"Expected Exception: {expected_err}")
-        print(f"Actual Exception: {e}")
-        if expected_err != str(e):
-            print("Fail")
-            return False
-
-    print("Pass")
-    return True
-
-
-def main():
-    passed = 0
-    failed = 0
-    for test_case in test_cases:
-        correct = test(*test_case)
-        if correct:
-            passed += 1
-        else:
-            failed += 1
-    if failed == 0:
-        print("============= PASS ==============")
-    else:
-        print("============= FAIL ==============")
-    print(f"{passed} passed, {failed} failed")
-
-
-test_cases = submit_cases
-if "__RUN__" in globals():
-    test_cases = run_cases
-
-main()
 #END
 
 
@@ -3215,7 +2518,6 @@ class Dragon:
     def __str__(self):
         return f"I am {self.name}, the {self.color} dragon"
 
-#test cases
 run_cases = [
     (Dragon("Smaug", "red"), "I am Smaug, the red dragon"),
     (Dragon("Saphira", "blue"), "I am Saphira, the blue dragon"),
@@ -3272,13 +2574,8 @@ main()
 #END
 
 
-#shuffle t doesn't work with sort() directly 
-#It doesn't work with slicing... slicing creates a new list, and shuffle() modifies the original 
-#so slice the list before shuffling and shuffle only works with lists(str or int)
-
-#Fisher-Yates shuffle algorithm with Mega Man
-# and some clean explanations of abilities
-#and enemy abilities accompanied by a match between Mega Man vs an enemy
+#Fisher-Yates shuffle algorithm with Mega Man, clean explanations of abilities
+# accompanied by a match between Mega Man vs an enemy
 import random
 import time
 
@@ -3439,7 +2736,6 @@ class Card: #Creates a card with its rank and suit, and calculates their indexes
 SUITS = ["Clubs", "Diamonds", "Hearts", "Spades"]
 
 RANKS = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
-
 run_cases = [
     ("Ace", "Hearts", "Queen", "Hearts", False, True),
     ("2", "Spades", "2", "Hearts", False, True),
@@ -3699,8 +2995,7 @@ class Catapult(Siege):
 
 
 # "Handle with care" Robot for tech enthusiasts combined witg Good Programming Practices:
-#Clear comments explaining the code, Meaningful variable names, Organized code structure and,
-# Creative naming conventions for robots
+#Clear comments explaining the code, Meaningful variable names and organized code structure
 
 class Machine:
     def __init__(self, power_source):
@@ -3751,7 +3046,6 @@ robot1.manual()
 robot2 = Robot("Runs on Gasoline", "GR505")
 print("\nNew Robot2:")
 print(robot2)
-
 #END
         
 
@@ -3865,7 +3159,6 @@ def add_prefix(document, documents):
         document = (document,)
 
      prefix = f"{len(documents)}. "
-     #new_doc = prefix + document
      if document:
         new_doc = (prefix +  document[0],) + document[1:]
      else: 
@@ -3876,7 +3169,8 @@ result = add_prefix(("document", "funds"), ("I put the docuemnts in the paper sh
 print(result)
     #END
 
-    #clever index trick to find eve and odd numbers. or the smallest of comparable numbers
+
+    #clever index trick to find even and odd numbers. or the smallest of comparable numbers
 def get_median_font_size(font_sizes):
         result = sorted(font_sizes)
         smallestNum = (len(result)-1) //2 #Floor division divides and then rounds down to the nearest integer.
@@ -3895,8 +3189,6 @@ class Colorado:
       self.miles = miles
  
    def xyz(self, problems):
-         #In Python, when you define a method inside a class, 
-         # it must include self as the first parameter if it's meant to be called on an instance
         x = 175
         y = 909
         z = 708
@@ -3921,6 +3213,7 @@ print(f"here's the results of x, y, and z: {result}")
 #END
 
 
+#class practice
 what = (4444,)
 when = 1222
 how = {"hard work": "perseversence",
@@ -4026,35 +3319,6 @@ def format_line(line):
 print(format_line("I forgot the test file."))
 #END
 
-def toggle_case(line):
-    if line.istitle():
-        return line.upper() + "!!!"
-    if line.isupper():
-        return line.capitalize().rstrip("!")
-    if len(line) > 0 and line[1:].islower():
-        return line.title()
-    return line
-#END
-
-def hex_to_rgb(hex_color):
-    if not is_hexadecimal(hex_color) or len(hex_color) != 6:
-        raise Exception("not a hex color string")
-    else:
-        pass
-        
-    r = int(hex_color[0:2], 16)
-    g = int(hex_color[2:4], 16)
-    b = int(hex_color[4:6], 16)
-    return r, g, b
-
-def is_hexadecimal(hex_string):
-    try:
-        int(hex_string, 16)
-        return True
-    except Exception:
-        return False
-    #END
-
 
 def deduplicate_lists(lst1, lst2, reverse=False):
 
@@ -4064,11 +3328,6 @@ def deduplicate_lists(lst1, lst2, reverse=False):
 #sorts the deduplicated elements in descending order when reverse=True
 #END
 
-#functions as values
-def file_to_prompt(file, to_string):
-    notAVar = to_string(file)
-    return f"```\n{notAVar}\n```"
-#END
 
 def file_type_getter(file_extension_tuples):
     dict = {}
@@ -4097,35 +3356,6 @@ def convert_line(line):
     return line
 #END
 
-#today I learned how to pass functions into variables, anonymous functions,
-#further abilities of split, join and reverse and map
-
-#filter practice
-def remove_invalid_lines(document):
-    nextLine = document.split("\n")
-    conversion = filter(lambda x: not x.startswith("-"), nextLine)
-    
-    return "\n".join(conversion)
-#END
-
-
-#reduce practice
-def join(doc_so_far, sentence):
-    return doc_so_far + ". " + sentence
-
-
-def join_first_sentences(sentences, n):
-    if n == 0:
-        return ""
-    return functools.reduce(join, sentences[:n]) + "."
-#END
-
-#intersection
-def get_common_formats(formats1, formats2):
-    newFormat = set(formats1).intersection(set(formats2))
-    return newFormat
-#END
-
 
 #zip
 valid_formats = [
@@ -4143,19 +3373,8 @@ def pair_document_with_format(doc_names, doc_formats):
     return newFolder
 #END
 
-#Data cleaning technique
-def restore_documents(originals, backups):
-    return set(filter(lambda x: not x.isdigit(), map(lambda x: x.upper(), originals + backups)))
-
-#In real-world data processing, you often receive data from different sources that need to be:
-#Normalized - making data consistent (like converting everything to uppercase)
-#Filtered - removing invalid or corrupt data (like filtering out those numeric strings)
-#Deduplicated - removing redundant information (using a set to ensure uniqueness)
-#END
-
 
 #this is a pure function. anything that doesn't use global variables.
-#Once a global variable s called and updated, it stays with that current value
 def convert_file_format(filename, target_format):
     current_format = filename.split(".")[-1]
     valid_extensions = ["docx", "pdf", "txt", "pptx", "ppt", "md"]
@@ -4175,20 +3394,6 @@ def convert_file_format(filename, target_format):
         return filename.replace(current_format, target_format)
     return None
 #END
-
-
-#reference vs value
-def add_format(default_formats, new_format):
-    newDict = default_formats.copy()
-    newDict[new_format] = True
-    return newDict
-
-
-def remove_format(default_formats, old_format):
-    oldDict = default_formats.copy()
-    oldDict[old_format] = False
-    return oldDict
-    #END 
 
 
 #No-op: an operation that does nothing.
@@ -4280,13 +3485,6 @@ def find_keywords(document):
     return list(filter(lambda x: x.lower() in searchCase, keywords))
    #END
 
-#factorials
-def factorial_r(x):
-    if x == 0:
-        return 1
-
-    return x * factorial_r(x - 1)
-#END
 
 #recursive practice
 def zipmap(keys, values):
@@ -4298,17 +3496,6 @@ def zipmap(keys, values):
     return result
     #END
 
-
-#nested sum
-def sum_nested_list(lst):
-    totalSize = 0
-    for i in lst:
-        if isinstance(i, int):
-          totalSize += i
-        elif isinstance(i, list):
-          totalSize += sum_nested_list(i)
-    return totalSize
-#END 
 
 #Tree recursion
 def list_files(parent_directory, current_filepath=""):
@@ -4503,93 +3690,6 @@ def word_count_aggregator():
 #END
 
 
-#More closure practice
-def new_collection(initial_docs):
-    closure = initial_docs.copy()
-    def collection(someString):
-        closure.append(someString)
-        return closure
-    return collection
-
-
-run_cases = [
-    (["Dan Evans"], ["Charlie Prince"], ["Dan Evans", "Charlie Prince"]),
-    (
-        ["Dan Evans", "Ben Wade"],
-        ["Alice Evans"],
-        ["Dan Evans", "Ben Wade", "Alice Evans"],
-    ),
-    (
-        ["Dan Evans", "Ben Wade", "Alice Evans"],
-        ["Doc Potter", "Butterfield"],
-        ["Dan Evans", "Ben Wade", "Alice Evans", "Doc Potter", "Butterfield"],
-    ),
-]
-
-submit_cases = run_cases + [
-    (
-        ["Dan Evans", "Ben Wade", "Alice Evans"],
-        [],
-        ["Dan Evans", "Ben Wade", "Alice Evans"],
-    ),
-    ([], ["William Evans"], ["William Evans"]),
-    (
-        ["Dan Evans", "Ben Wade"],
-        ["Charlie Prince", "Butterfield"],
-        ["Dan Evans", "Ben Wade", "Charlie Prince", "Butterfield"],
-    ),
-]
-
-
-def test(initial_docs, docs_to_add, expected_output):
-    print("---------------------------------")
-    print(f"Initial documents: {initial_docs}")
-    print(f"Documents to add: {docs_to_add}")
-    print(f"Expecting: {expected_output}")
-    copy_of_initial_docs = initial_docs.copy()
-    add_doc = new_collection(initial_docs)
-    result = initial_docs.copy()
-    for doc in docs_to_add:
-        result = add_doc(doc)
-    print(f"Actual: {result}")
-    if copy_of_initial_docs != initial_docs:
-        print("Fail: You should not modify the initial list")
-        return False
-    if result != expected_output:
-        print("Fail: Unexpected result")
-        return False
-    print("Pass")
-    return True
-
-
-def main():
-    passed = 0
-    failed = 0
-    skipped = len(submit_cases) - len(test_cases)
-    for test_case in test_cases:
-        correct = test(*test_case)
-        if correct:
-            passed += 1
-        else:
-            failed += 1
-    if failed == 0:
-        print("============= PASS ==============")
-    else:
-        print("============= FAIL ==============")
-    if skipped > 0:
-        print(f"{passed} passed, {failed} failed, {skipped} skipped")
-    else:
-        print(f"{passed} passed, {failed} failed")
-
-
-test_cases = submit_cases
-if "__RUN__" in globals():
-    test_cases = run_cases
-
-main()
-#END
-
-
 #copy/paste 
 def new_clipboard(initial_clipboard):
     copyCat = initial_clipboard.copy()
@@ -4617,22 +3717,7 @@ def user_words(initial_words):
 #END
 
 
-#CSS F***
-def css_styles(initial_styles):
-    styles = initial_styles.copy()
-    def add_style(selector, property, value):
-        if selector not in styles:
-            styles[selector] = {}
-        styles[selector][property] = value
-        return styles
-    return add_style
-    #END
-
-
     #Line breaking
-    
-
-
 def lineator(line_length):
     def lineate(document):
         words = document.split()
@@ -4686,6 +3771,7 @@ def lines_with_sequence(char):
 #END
 
 
+#ow reduce works
 from functools import reduce
 def create_tagger(tag):
     def tagger(content):
@@ -4722,69 +3808,6 @@ def create_html_table(data_rows):
         table = tag_table(rows)
         return table
     return create_table_headers
-
-run_cases = [
-    (
-        [
-            ["Scooby Doo", "Lassie"],
-            ["Blue", "Wishbone"],
-        ],
-        ["Cartoon TV Dogs", "Real TV Dogs"],
-        "<table><tr><th>Cartoon TV Dogs</th><th>Real TV Dogs</th></tr><tr><td>Scooby Doo</td><td>Lassie</td></tr><tr><td>Blue</td><td>Wishbone</td></tr></table>",
-    ),
-]
-
-submit_cases = run_cases + [
-    (
-        [
-            ["Garfield", "Salem"],
-            ["Tom", "Mr. Bigglesworth"],
-        ],
-        ["Cartoon TV Cats", "Real TV Cats"],
-        "<table><tr><th>Cartoon TV Cats</th><th>Real TV Cats</th></tr><tr><td>Garfield</td><td>Salem</td></tr><tr><td>Tom</td><td>Mr. Bigglesworth</td></tr></table>",
-    ),
-]
-
-
-def test(data_rows, headers, expected_output):
-    print("---------------------------------")
-    print(f"Data Rows: {data_rows}")
-    print(f"Headers: {headers}")
-    print(f"Expecting:\n{expected_output}")
-    result = create_html_table(data_rows)(headers)
-    print(f"Actual:\n{result}")
-    if result == expected_output:
-        print("Pass")
-        return True
-    print("Fail")
-    return False
-
-
-def main():
-    passed = 0
-    failed = 0
-    skipped = len(submit_cases) - len(test_cases)
-    for test_case in test_cases:
-        correct = test(*test_case)
-        if correct:
-            passed += 1
-        else:
-            failed += 1
-    if failed == 0:
-        print("============= PASS ==============")
-    else:
-        print("============= FAIL ==============")
-    if skipped > 0:
-        print(f"{passed} passed, {failed} failed, {skipped} skipped")
-    else:
-        print(f"{passed} passed, {failed} failed")
-
-
-test_cases = submit_cases
-if "__RUN__" in globals():
-    test_cases = run_cases
-
-main()
 #END
 
 #resizing image
@@ -4867,11 +3890,6 @@ def is_palindrome(word):
         return False
 #end
 
-#
-from enum import Enum
-Doctype = Enum('Doctype', ['PDF','TXT', 'DOCX', 'MD', 'HTML'])
-#end
-
 
 #Match
 from enum import Enum
@@ -4900,7 +3918,7 @@ def convert_format(content, from_format, to_format):
 
 #Export CSV
 from enum import Enum
-
+Doctype = Enum('Doctype', ['PDF','TXT', 'DOCX', 'MD', 'HTML'])
 
 class CSVExportStatus(Enum):
     PENDING = 1
@@ -4976,9 +3994,7 @@ def delete(document, line_number, start, end):
 
 
     # raiseValueError(f""),  if blank not list, nonlocal/closure(calls variables from different scopes), concatter()
-    #function transformation, get(), reduce()
-    #string_list = ["apple", "banana", "apricot", "kiwi", "avocado"]
-#filtered_list = [s for s in string_list if s.startswith("a")]
+    
 class Dinner:
     def __init__(self, meat, vegetables):
         self.meat = meat
@@ -4986,6 +4002,7 @@ class Dinner:
     def menu(steak, cauliflower):
        steak = " Tenderloin: medium, rare, medium rare, well done"
        cauliflower = " Stirfry"
+       groceryList = [1, 2, 3, 4, 5]
        print(steak + "." + cauliflower)
     menu(2, "cost")
     def carrotJuice(sugar, vitaminC):
@@ -4994,13 +4011,40 @@ class Dinner:
         for s in range(0, len(sugar)):
            if s >= vitaminC:
               carrotClone = vitaminC.copy()
-              cClone = carrotClone + carrotClone
-              print(cClone)
+              newClone = carrotClone + carrotClone
+              print(newClone)
            elif s < vitaminC:
               sweetooth = "".join(filter(lambda x: x.isalpha(), sugar))
               print(sweetooth)
            else: 
               raise ValueError("We ran out of the product")
     carrotJuice("don't eat too much of me", "you don't consume enough of me")
-              
 chefChoice = Dinner("chocolate mousse", "broccoli")
+class Lunch(Dinner):
+   def __init__(self, meat, vegetables):
+        super().__init__(meat, vegetables)
+        def shopping_list(self, fruits, extras):
+            self.fruits = fruits
+            self.extras = [f"apple", "banana", "apricot", "grapefruit", "blueberries", {extras}]
+            for f in enumerate, self.fruits.items():
+                
+                if len(self.extras) > self.fruits:
+                   filtered_list = [f for f in self.extras if f.startswith("b")]
+                else: 
+                   filtered_list.get().reduce()
+
+        shopping_list(["pepper", "salt", "tabasco sauce"], "")
+#function transformation, get(), reduce()
+
+
+  # divide something by a divisor
+#filter 
+#split, join, reverse, map
+#reduce practice
+#intersection
+#reference vs value
+#Memoizaton
+#factorials
+#nested sum     
+
+       
