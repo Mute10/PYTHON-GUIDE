@@ -2,22 +2,13 @@ import math
 import random
 import string 
 import functools
-#import markdown
+#copy static http://localhost:8888
 
-# .append() is for lists
-# .add() is for sets
-# .update() updates the current set, list, tuple, or dictionary
-# + adds to strings(concatenation)
 def generate_random_string(length=10, character_set=None):
   
     if character_set is None:
-        # Default to letters and digits
         character_set = string.ascii_letters + string.digits
-    
-    # Use random.choices to select characters
     random_chars = random.choices(character_set, k=length)
-    
-    # Join the characters into a string
     return ''.join(random_chars)
 
 # Generate a 10-character alphanumeric string
@@ -32,6 +23,12 @@ print(lowercase_string)  # e.g. "abcdefgh"
 password = generate_random_string(12, string.ascii_letters + string.digits + string.punctuation)
 print(password)  # e.g. "a@3xF9!Z0p&*
 #END
+
+
+# .append() is for lists
+# .add() is for sets
+# .update() updates the current set, list, tuple, or dictionary
+# + adds to strings(concatenation)
 
 
 
@@ -2048,10 +2045,9 @@ def purchase_item(price, gold_available):
         raise Exception(f"{gold_available:.2f} is not enough for {price:.2f}")
     return gold_available - price
 
-
 main()
-
 #END 
+
 
 def number_sum(n):
     sum = 0
@@ -2068,6 +2064,7 @@ def find_min(nums):
          min = i   
     return min
     #END 
+
 def factor(burger):
   import math
   count = math.factorial(7) #I want to make this work 
@@ -2090,7 +2087,7 @@ def factor(burger):
   return count 
 factor(-2)
 
-#using subtraction with factorials doesn't calculate it,it becomes basic arithmetic
+#using subtraction with factorials doesn't calculate it, it becomes basic arithmetic
 def factor(burger):
     if burger < 0:
         return "Cannot calculate factorial of negative numbers"
@@ -2102,10 +2099,11 @@ def factor(burger):
 #common test during an interview
 for i in range(1, 21): print("Fizz" * (i%3==0) + "Buzz" *(i % 5 ==0) or str(i))
 #RANDOM Password Generator
-import random as r; p = 'icBJkKMNRvVxXyYzZ02345789$:-=;[]<>?./|!@%^&*)_+'; 
-print(''.join(r.choices(p, k=15)))
-print(''.join(r.choices(p, k=15)))
-print(''.join(r.choices(p, k=15)))
+import random as r; p = 'ibBJkKmMnNrRsuVxXyYzZ0789$:-=;[]<>?./|!@%^&*)_+'; 
+print(''.join(r.choices(p, k=10)))
+print(''.join(r.choices(p, k=10)))
+print(''.join(r.choices(p, k=10)))
+#END
 
 #tell time
 import datetime
@@ -3992,8 +3990,6 @@ def delete(document, line_number, start, end):
     return substitute(document, "", line_number, start, end)
     #END
 
-
-    # raiseValueError(f""),  if blank not list, nonlocal/closure(calls variables from different scopes), concatter()
     
 class Dinner:
     def __init__(self, meat, vegetables):
@@ -4037,14 +4033,163 @@ class Lunch(Dinner):
 #function transformation, get(), reduce()
 
 
-  # divide something by a divisor
+def simpleProblem(num_list, divisor):
+   
+   result = []
+   for num in num_list:
+     if num % divisor == 0:
+           print(f"{num} is divisible by {divisor}")
+           result.append(num)
+     else:
+           print(f"{num} is not divisible by {divisor}")
+   return result
+
+divisor_beta = [5, 12, 19, 28, 302, 303]    
+divisor_alpha = 5
+results = simpleProblem(divisor_beta, divisor_alpha) 
+print(results)
+simpleProblem([5, 12, 19, 27, 28, 302, 303, 305], 2)
+ 
+def house(rooms): 
+   result = []
+   for r in range(len(rooms)):
+      if r == 0:
+         continue
+      result.append(r + rooms[r])
+#r increase by 1 index per check and adds itself to rooms list
+#contine skips index 0
+   print(result)
+   return result 
+house([2, 12, 22, 32, 42]) #[13, 24, 35, 46]
+
+def building(infrastructure, budget): #time complexity: O(n * m)
+   #if the list is large, print output may become lengthy as it scales with input size
+   result = []
+   for i in range(len(infrastructure)):
+      for b in budget: 
+       if i > 0 or b > 0: #to have elif and else blocks reached consider checking the order before executing them
+            result.append(i + infrastructure[i])
+       elif i > 4 or b > 4:
+            print("Out of Range")
+       else:
+            break
+   print(result)
+   return result
+building([7, 1, 2, 8], [23, 23, 23, 24])
+
+# reverse
+def files(S):
+   R = ''
+   if R != "": 
+    raise TypeError("R should be EMPTY")
+   for s in range(len(S) -1, -1, -1):#start at the last index, stop at the first index, and 
+      R += S[s] #R = R +S[s]                      #reverse count by 1
+   return R
+files("I am a happy string")
+      
 #filter 
-#split, join, reverse, map
+#!= vs is not
+#split, join, map
 #reduce practice
 #intersection
 #reference vs value
 #Memoizaton
 #factorials
 #nested sum     
+#regex
 
+#exponents
+def get_estimated_spread(audiences_followers):
+   
+    if audiences_followers == []:
+         return 0
+    num_followers = len(audiences_followers)
+    average = sum(audiences_followers) / num_followers
        
+    return average * (num_followers ** 1.2)
+#end
+
+#growing exponents
+def get_follower_prediction(follower_count, influencer_type, num_months):
+      total = 0
+      if influencer_type == "fitness":
+          total = follower_count * (4 ** num_months)
+      elif influencer_type == "cosmetic":
+          total = follower_count * (3 ** num_months)
+      else:
+          total = follower_count * (2 ** num_months)
+      return total
+# geometric algorithms, or geometric sequence formula:
+# in this case would be follower count is a1, r is growth rate (4,3,2) and n is num months
+# If I made a function call with data types I'd have to figure it out 
+#end
+
+#find average
+def average_followers(nums):
+    average = 0
+    if nums == []:
+        return None
+    for num in range(len(nums)) :
+        average += nums[num]
+        
+    return average / len(nums)
+#END
+
+#find minimum
+def find_minimum(nums):
+    minimum = float("inf")
+    if not nums:
+        return None
+    for num in nums:
+        if num < minimum:
+            minimum = num
+    return minimum
+find_minimum([])      
+#an algorith is just a set of instructions used to solve a problem
+#looping through each number and comparing it to the current minimum 
+# #is a reliable algorithm for finding the smallest value
+
+
+#TIME COMPLEXITY AND RECURSION
+#time complexity: each function call grabs the first element and then recurses the rest,
+#when dealing with if and else return statements, it will create a new line/list each time(depending on what the data type),
+# on 0(n*2). pop() or slicing n[1:] is always 0(n). Example on 0(n):
+def sum_list_opt(n, i=0):
+   if i == len(n):
+      return 0
+   return n[i] + sum_list_opt(n, i +1)
+print(sum_list_opt([1, 2, 3, 4, 5]))
+
+def popSum(n): #time complexity is 0(n), space complexity is 0(n) due to recursion depth
+   #each recursive call adds a frame to the call stack
+   if not isinstance(n, list):
+      raise TypeError("popSum expects a list")
+   if len(n) <= 1:
+      return 0
+   return n.pop() + popSum(n)
+n = [17, 12, 17, 5, 7]
+print(f"Before pop(), {n}, \n"
+      f"Result of n + popSum(n): {popSum(n)}, \n"
+      f"after pop(): {n}")
+print(popSum([1, 2]))
+
+def factorial(n):
+   if n == 0 or n == 1:
+      return 1 #base case
+   else:
+      return n * factorial(n-1) #recursion case
+4 * factorial(3)#mentor loves laying out the call chain. chef's kiss
+3 * factorial(2)
+2 * factorial(1)
+result = 2 * 1, 3 * 2, 4 * 6
+print(factorial(6))
+#120 for factoial(5) 720 for factorial(6)
+#END
+
+
+def sum_list(n):
+   if len(n) == 0:
+      return 0
+   else: 
+      return n[0] + sum_list(n[1:])
+print(sum_list([1, 2, 3, 4]))
