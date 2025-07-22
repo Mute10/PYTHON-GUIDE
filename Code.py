@@ -3,7 +3,6 @@ import random
 import string
 import functools
 
-#copy static http://localhost:8888
 
 def generate_random_string(length=10, character_set=None):
   
