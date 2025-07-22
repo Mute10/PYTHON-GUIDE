@@ -340,12 +340,6 @@ print(planet2([1, 75, 44, 0], [4, 4, 5, 0, 9]))
 #END 
 
 
- def test_divide(self):
-        self.assertEqual(divide(10, 2), 5)
-        with self.assertRaises(ZeroDivisionError):
-            divide(10, 0)
-
-
 def negative(surface, gravity):
   depth = 100
   space = 9
