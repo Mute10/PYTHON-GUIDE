@@ -1,2 +1,2 @@
-How I mastered all the python backend basics in 5000+loc
-My journey from day 1 to day 275
+How I fordged my own toolkit in 4281 loc
+This is my self-taught jounry from day 1 to day 275
