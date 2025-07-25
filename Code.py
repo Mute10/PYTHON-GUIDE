@@ -1,8 +1,8 @@
 import math
 import random
 import string
-import functools
 
+#copy static http://localhost:8888
 
 def generate_random_string(length=10, character_set=None):
   
@@ -27,8 +27,9 @@ print(password)  # e.g. "a@3xF9!Z0p&*
 
 # .append() is for lists
 # .add() is for sets
-# .update() updates the current set, list, tuple, or dictionary
+# .update() updates the current set or dictionary
 # + adds to strings(concatenation)
+# Tuples are immutable
 
 
 
@@ -338,7 +339,6 @@ def planet2(Saturn, Mars):
 print(planet2([1, 75, 44, 0], [4, 4, 5, 0, 9]))
 #lesson learned: always concatenate in for loops to make proper updates
 #END 
-
 
 def negative(surface, gravity):
   depth = 100
@@ -2003,11 +2003,12 @@ def outerSpace(numOfStars, planetsOnSatellite):
 outerSpace({2, 22, 33, 55, 77}, {55, 0, .9, 46, 400})
 
 #END 
+
 def purchase_item(price, gold_available):
      if gold_available < price:
          raise Exception("not enough gold")
      return gold_available - price
-     #END 
+     
 
 def process_transactions(purchase_orders):
     leftovers = [] # this empty list was made to store successful purchases' leftover gold
@@ -2097,8 +2098,6 @@ def factor(burger):
 
 
 
-#common test during an interview
-for i in range(1, 21): print("Fizz" * (i%3==0) + "Buzz" *(i % 5 ==0) or str(i))
 #RANDOM Password Generator
 import random as r; p = 'ibBJkKmMnNrRsuVxXyYzZ0789$:-=;[]<>?./|!@%^&*)_+'; 
 print(''.join(r.choices(p, k=10)))
@@ -2119,6 +2118,10 @@ def sort_dates(dates):
 #dates.sort(key=formatted)
 #return dates
 #END
+
+
+#common test during an interview
+for i in range(1, 21): print("Fizz" * (i%3==0) + "Buzz" *(i % 5 ==0) or str(i))
 
 def fizzbuzz(start, end):
     fbList = []
@@ -3890,29 +3893,7 @@ def is_palindrome(word):
 #end
 
 
-#Match
-from enum import Enum
 
-
-class DocFormat(Enum):
-    PDF = 1
-    TXT = 2
-    MD = 3
-    HTML = 4
-
-
-
-def convert_format(content, from_format, to_format):
-    match (from_format, to_format):
-        case (DocFormat.MD, DocFormat.HTML):
-            return content.replace("# ", "<h1>") + "</h1>"
-        case (DocFormat.TXT, DocFormat.PDF):
-            return f"[PDF] {content} [PDF]"
-        case (DocFormat.HTML, DocFormat.MD):
-            return content.replace("<h1>", "# ").replace("</h1>", "")
-        case _:
-            raise Exception("invalid type")
-#end
 
 
 #Export CSV
@@ -3924,7 +3905,6 @@ class CSVExportStatus(Enum):
     PROCESSING = 2
     SUCCESS = 3
     FAILURE = 4
-
 
 def get_csv_status(status, data):
     match status:
@@ -3946,29 +3926,7 @@ def get_csv_status(status, data):
 
 
 
-#edit document
-from enum import Enum
 
-
-class EditType(Enum):
-    NEWLINE = 1
-    SUBSTITUTE = 2
-    INSERT = 3
-    DELETE = 4
-
-
-def handle_edit(document, edit_type, edit):
-    match edit_type:
-         case EditType.NEWLINE:
-             return newline(document, **edit)
-         case EditType.SUBSTITUTE:
-             return substitute(document, **edit)
-         case EditType.INSERT:
-             return insert(document, **edit)
-         case EditType.DELETE:
-             return delete(document, **edit)
-         case _:
-             raise Exception("unknown edit type")
 
 def newline(document, line_number):
     lines = document.split("\n")
@@ -3991,47 +3949,42 @@ def delete(document, line_number, start, end):
     return substitute(document, "", line_number, start, end)
     #END
 
-    
+
+
+from typing import List, Dict
 class Dinner:
-    def __init__(self, meat, vegetables):
+    def __init__(self, meat: str, vegetables: List[str]):
         self.meat = meat
         self.vegetables = vegetables
-    def menu(steak, cauliflower):
-       steak = " Tenderloin: medium, rare, medium rare, well done"
-       cauliflower = " Stirfry"
-       groceryList = [1, 2, 3, 4, 5]
-       print(steak + "." + cauliflower)
-    menu(2, "cost")
-    def carrotJuice(sugar, vitaminC):
-        sugar.split()
-        vitaminC.split(maxsplit=1)
-        for s in range(0, len(sugar)):
-           if s >= vitaminC:
-              carrotClone = vitaminC.copy()
-              newClone = carrotClone + carrotClone
-              print(newClone)
-           elif s < vitaminC:
-              sweetooth = "".join(filter(lambda x: x.isalpha(), sugar))
-              print(sweetooth)
-           else: 
-              raise ValueError("We ran out of the product")
-    carrotJuice("don't eat too much of me", "you don't consume enough of me")
-chefChoice = Dinner("chocolate mousse", "broccoli")
-class Lunch(Dinner):
-   def __init__(self, meat, vegetables):
-        super().__init__(meat, vegetables)
-        def shopping_list(self, fruits, extras):
-            self.fruits = fruits
-            self.extras = [f"apple", "banana", "apricot", "grapefruit", "blueberries", {extras}]
-            for f in enumerate, self.fruits.items():
-                
-                if len(self.extras) > self.fruits:
-                   filtered_list = [f for f in self.extras if f.startswith("b")]
-                else: 
-                   filtered_list.get().reduce()
 
-        shopping_list(["pepper", "salt", "tabasco sauce"], "")
-#function transformation, get(), reduce()
+    def get_menu(self) -> str:
+        return f"Main: {self.meat}\nSides: {', '.join(self.vegetables)}"
+
+    @staticmethod
+    def carrot_juice(sugar: str, vitamin_c: str) -> str:
+        sugar_cleaned = "".join(filter(str.isalpha, sugar))
+        vitamin_words = vitamin_c.split(maxsplit=1)
+
+        if len(sugar_cleaned) > len(vitamin_words[0]):
+            return f"Double juice: {vitamin_c + ' ' + vitamin_c}"
+        else:
+            return f"Filtered sugar: {sugar_cleaned}"
+
+
+class Lunch(Dinner):
+    def __init__(self, meat: str, vegetables: List[str], fruits: List[str]):
+        super().__init__(meat, vegetables)
+        self.fruits = fruits
+
+    def shopping_list(self) -> Dict[str, List[str]]:
+        extras = ["tabasco sauce", "pepper", "salt"]
+        fruit_basket = [f for f in self.fruits if f.startswith("b")]
+        return {
+            "vegetables": self.vegetables,
+            "fruits_starting_with_b": fruit_basket,
+            "extras": extras
+        }
+#END
 
 
 def simpleProblem(num_list, divisor):
@@ -4050,18 +4003,8 @@ divisor_alpha = 5
 results = simpleProblem(divisor_beta, divisor_alpha) 
 print(results)
 simpleProblem([5, 12, 19, 27, 28, 302, 303, 305], 2)
- 
-def house(rooms): 
-   result = []
-   for r in range(len(rooms)):
-      if r == 0:
-         continue
-      result.append(r + rooms[r])
-#r increase by 1 index per check and adds itself to rooms list
-#contine skips index 0
-   print(result)
-   return result 
-house([2, 12, 22, 32, 42]) #[13, 24, 35, 46]
+#end
+
 
 def building(infrastructure, budget): #time complexity: O(n * m)
    #if the list is large, print output may become lengthy as it scales with input size
@@ -4077,17 +4020,6 @@ def building(infrastructure, budget): #time complexity: O(n * m)
    print(result)
    return result
 building([7, 1, 2, 8], [23, 23, 23, 24])
-
-# reverse
-def files(S):
-   R = ''
-   if R != "": 
-    raise TypeError("R should be EMPTY")
-   for s in range(len(S) -1, -1, -1):#start at the last index, stop at the first index, and 
-      R += S[s] #R = R +S[s]                      #reverse count by 1
-   return R
-files("I am a happy string")
-      #end
 
 
 #logarithms
@@ -4125,10 +4057,7 @@ def get_follower_prediction(follower_count, influencer_type, num_months):
       else:
           total = follower_count * (2 ** num_months)
       return total
-# geometric algorithms, or geometric sequence formula:
-# in this case would be follower count is a1, r is growth rate (4,3,2) and n is num months
-# If I made a function call with data types I'd have to figure it out 
-#end
+
 
 #find average
 def average_followers(nums):
@@ -4151,13 +4080,10 @@ def find_minimum(nums):
             minimum = num
     return minimum
 find_minimum([])      
-#an algorith is just a set of instructions used to solve a problem
-#looping through each number and comparing it to the current minimum 
-# #is a reliable algorithm for finding the smallest value
+
 
 
 #TIME COMPLEXITY AND RECURSION
-#time complexity: 
 # Example of 0(n):
 def sum_list_opt(n, i=0):
    if i == len(n):
@@ -4217,12 +4143,7 @@ def get_avg_brand_followers(all_handles, brand_name):
                 average = average + 1
     return average / len(all_handles)
 
-#O(1)
-def find_last_name(names_dict, first_name):
-    try:
-        return names_dict[first_name]
-    except KeyError: 
-        return None
+
     
 #difference between O(log(n)) vs O(n) psuedo code. order(n*2)(squared)
 #don't be fooled by list... it could be a parameter
@@ -4239,29 +4160,6 @@ def antiCode(n, target):
          high = median -1
    return False
 
-#order log n
-def binary_search(target, arr):
-    low = 0
-    high = len(arr) -1
-    while low <= high:
-        median  = (low + high) // 2 
-        if arr[median] == target:
-            return True
-        elif arr[median] < target:
-            low = median +1
-        else:
-            high = median -1
-    return False
-
-
-#name count
-def count_names(list_of_lists, target_name):
-    counter  = 0
-    for i in list_of_lists:
-        for j in i:
-            if j == target_name:
-                counter += 1
-    return counter
 
 #sorting algorithms
 class Influencer:
@@ -4402,1015 +4300,7 @@ def power_set(input_set):
     #all_subsets.sort(key=lambda x: - len(x))
     return all_subsets
 
-    #exponetial growth 
-def exponential_growth(n, factor, days):
-    result = [n]
-    for i in range(days):
-             n *= factor
-             result.append(n)
-    return result
 
-#a data structure
-def count_marketers(job_titles):
-    result = 0
-    for j in job_titles:
-        j = j.lower()
-        if j == "marketer":
-            result +=1
-    return result
-
-#list
-def last_work_experience(work_experiences):
-    if len(work_experiences) > 0:
-        return work_experiences[len(work_experiences) - 1]
-    return None
-
-#stack
-class Stack:
-    def __init__(self):
-        self.items = []
-
-    def push(self, item):
-        self.items.append(item)
-
-    def size(self):
-        return len(self.items)
-
-#pop and peek
-class Stack:
-    def __init__(self):
-        self.items = []
-
-    def push(self, item):
-        self.items.append(item)
-
-    def size(self):
-        return len(self.items)
-
-    def peek(self):
-        if len(self.items) == 0:
-            return None
-        return self.items[-1]
-
-    def pop(self):
-        if len(self.items) == 0:
-            return None
-        item = self.items[-1]
-        del self.items[-1]
-        return item
-
-#using a stack
-from stack import Stack
-
-def is_balanced(input_str):
-    stack = Stack()
-    for char in input_str:
-        if char == "(":
-            stack.push(char)
-        elif char == ")":
-            if stack.pop() is None:
-                return False
-    return stack.peek() is None
-
-
-#queue class
-class QueueUp:
-    def __init__(self):
-        self.items = []
-
-    def push(self, item):
-        self.items.insert(0, item)
-
-    def pop(self):
-        if len(self.items) == 0:
-            return None
-        temp = self.items[-1]
-        del self.items[-1]
-        return temp
-
-    def peek(self):
-        if len(self.items) == 0:
-            return None
-        return self.items[-1]
-
-    def size(self):
-        return len(self.items)
-
-
-#matchmaking queue
-from stack import Queue
-
-
-def matchmake(queue, user):
-    name = user[0]
-    action = user[1]
-    if action == "leave":
-        queue.search_and_remove(name)
-    if action == "join":
-        queue.push(name)
-    if queue.size() >= 4:
-        user1 = queue.pop()
-        user2 = queue.pop()
-        return f"{user1} matched {user2}!"
-    else:
-        return "No match found"
-
-
-
-#linked lists
-class Node:
-    def __init__(self, val):
-        self.val = val
-        self.next = None
-
-    def set_next(self, node):
-        self.next = node
-
-    def __repr__(self):
-        return self.val
-
-
-
-#Iterating
-from stack import Node
-
-
-class LinkedList:
-    def __init__(self):
-        self.head = None
-
-    def __iter__(self):
-        node = self.head
-        while node is not None:
-            yield node
-            node = node.next
-
-
-    def __repr__(self):
-        nodes = []
-        current = self.head
-        while current and hasattr(current, "val"):
-            nodes.append(current.val)
-            current = current.next
-        return " -> ".join(nodes)
-
-
-#add to tail
-from stack import Node
-
-
-class LinkedList:
-    def add_to_tail(self, node):
-        if self.head is None:
-            self.head = node
-            return
-        last_node = None
-        for current_node in self:
-            last_node = current_node
-        last_node.set_next(node)
-
-
-    def __init__(self):
-        self.head = None
-
-    def __iter__(self):
-        node = self.head
-        while node is not None:
-            yield node
-            node = node.next
-
-    def __repr__(self):
-        nodes = []
-        for node in self:
-            nodes.append(node.val)
-    def add_to_tail(self, node):
-        if self.head is None:
-            self.head = node
-            self.tail = node
-            return
-        self.tail.set_next(node)
-        self.tail = node
-
-    #def __init__(self): Ask chatGPT
-        #return " -> ".join(nodes)
-
-
-#add to head
-from stack import Node
-
-
-class LinkedList:
-    def add_to_head(self, node):
-        node.set_next(self.head)
-        self.head = node
-
-    def add_to_tail(self, node):
-        if self.head is None:
-            self.head = node
-            return
-        last_node = None
-        for current_node in self:
-            last_node = current_node
-        last_node.set_next(node)
-
-    def __init__(self):
-        self.head = None
-
-    def __iter__(self):
-        node = self.head
-        while node is not None:
-            yield node
-            node = node.next
-
-    def __repr__(self):
-        nodes = []
-        for node in self:
-            nodes.append(node.val)
-        return " -> ".join(nodes)
-    
-
-#linked list queue
-from stack import Node
-
-
-class LinkedList:
-    def add_to_head(self, node):
-        if self.head is None:
-            self.tail = node
-        node.set_next(self.head)
-        self.head = node
-
-    def add_to_tail(self, node):
-        if self.head is None:
-            self.head = node
-            self.tail = node
-            return
-        self.tail.set_next(node)
-        self.tail = node
-
-    def __init__(self):
-        self.head = None
-        self.tail = None
-
-
-    def __iter__(self):
-        node = self.head
-        while node is not None:
-            yield node
-            node = node.next
-
-    def __repr__(self):
-        nodes = []
-        for node in self:
-            nodes.append(node.val)
-        return " -> ".join(nodes)
-
-
-#remove from head
-from stack import Node
-
-
-class LLQueue:
-    def remove_from_head(self):
-        if self.head is None:
-            return None
-        temp = self.head
-        self.head = self.head.next
-        if self.head is None:
-            self.tail = None
-        temp.set_next(None)
-        return temp
-
-
-        self.tail = None
-        self.head = None
-
-    def __iter__(self):
-        node = self.head
-        while node is not None:
-            yield node
-            node = node.next
-
-    def __repr__(self):
-        nodes = []
-        for node in self:
-            nodes.append(node.val)
-        return " <- ".join(nodes)
-
-
-#insert nodes
-class BSTNode:
-    def __init__(self, val=None):
-        self.left = None
-        self.right = None
-        self.val = val
-
-    def insert(self, val):
-        if not self.val:
-            self.val = val
-            return
-
-        if self.val == val:
-            return
-
-        if val < self.val:
-            if self.left:
-                self.left.insert(val)
-                return
-            self.left = BSTNode(val)
-            return
-
-        if self.right:
-            self.right.insert(val)
-            return
-        self.right = BSTNode(val)
-
-#min and max
-class BSTNode:
-    def get_min(self):
-        current = self
-        while current.left is not None:
-            current = current.left
-        return current.val
-
-    def get_max(self):
-        current = self
-        while current.right is not None:
-            current = current.right
-        return current.val
-
-
-    def __init__(self, val=None):
-        self.left = None
-        self.right = None
-        self.val = val
-
-    def insert(self, val):
-        if not self.val:
-            self.val = val
-            return
-
-        if self.val == val:
-            return
-
-        if val < self.val:
-            if self.left:
-                self.left.insert(val)
-                return
-            self.left = BSTNode(val)
-            return
-
-        if self.right:
-            self.right.insert(val)
-            return
-        self.right = BSTNode(val)
-
-
-
-#delete
-class BSTNode:
-    def delete(self, val):
-        if self.val is None:
-            return None
-        if val < self.val:
-            if self.left:
-                self.left = self.left.delete(val)
-            return self
-        if val > self.val:
-            if self.right:
-                self.right = self.right.delete(val)
-            return self
-        if self.right is None:
-            return self.left
-        if self.left is None:
-            return self.right
-        min_larger_node = self.right
-        while min_larger_node.left:
-            min_larger_node = min_larger_node.left
-        self.val = min_larger_node.val
-        self.right = self.right.delete(min_larger_node.val)
-        return self
-
-
-    def __init__(self, val=None):
-        self.left = None
-        self.right = None
-        self.val = val
-
-    def insert(self, val):
-        if not self.val:
-            self.val = val
-            return
-
-        if self.val == val:
-            return
-
-        if val < self.val:
-            if self.left:
-                self.left.insert(val)
-                return
-            self.left = BSTNode(val)
-            return
-
-        if self.right:
-            self.right.insert(val)
-            return
-        self.right = BSTNode(val)
-
-    def get_min(self):
-        current = self
-        while current.left is not None:
-            current = current.left
-        return current.val
-
-    def get_max(self):
-        current = self
-        while current.right is not None:
-            current = current.right
-        return current.val
-
-
-#preorder traversal
-class BSTNode:
-    def preorder(self, visited):
-        if self.val is not None:
-            visited.append(self.val)
-        if self.left is not None:
-            self.left.preorder(visited)
-        if self.right is not None:
-            self.right.preorder(visited)
-        return visited
-
-
-    def __init__(self, val=None):
-        self.left = None
-        self.right = None
-        self.val = val
-
-    def insert(self, val):
-        if not self.val:
-            self.val = val
-            return
-
-        if self.val == val:
-            return
-
-        if val < self.val:
-            if self.left:
-                self.left.insert(val)
-                return
-            self.left = BSTNode(val)
-            return
-
-        if self.right:
-            self.right.insert(val)
-            return
-        self.right = BSTNode(val)
-
-
-
-#postorder traversal
-class BSTNode:
-    def postorder(self, visited):
-        if self.left is not None:
-            self.left.postorder(visited)
-        if self.right is not None:
-            self.right.postorder(visited)
-        if self.val is not None:
-            visited.append(self.val)
-        return visited
-
-
-    def __init__(self, val=None):
-        self.left = None
-        self.right = None
-        self.val = val
-
-    def insert(self, val):
-        if not self.val:
-            self.val = val
-            return
-
-        if self.val == val:
-            return
-
-        if val < self.val:
-            if self.left:
-                self.left.insert(val)
-                return
-            self.left = BSTNode(val)
-            return
-
-        if self.right:
-            self.right.insert(val)
-            return
-        self.right = BSTNode(val)
-
-
-#inorder traversal
-class BSTNode:
-    def inorder(self, visited):
-        if self.left is not None:
-            self.left.inorder(visited)
-        if self.val is not None:
-            visited.append(self.val)
-        if self.right is not None:
-            self.right.inorder(visited)
-        return visited
-
-
-    def __init__(self, val=None):
-        self.left = None
-        self.right = None
-        self.val = val
-
-    def insert(self, val):
-        if not self.val:
-            self.val = val
-            return
-
-        if self.val == val:
-            return
-
-        if val < self.val:
-            if self.left:
-                self.left.insert(val)
-                return
-            self.left = BSTNode(val)
-            return
-
-        if self.right:
-            self.right.insert(val)
-            return
-        self.right = BSTNode(val)
-
-
-
-#node exists
-class BSTNode:
-    def exists(self, val):
-        if val == self.val:
-            return True
-
-        if val < self.val:
-            if self.left is None:
-                return False
-            return self.left.exists(val)
-
-        if self.right is None:
-            return False
-        return self.right.exists(val)
-
-
-    def __init__(self, val=None):
-        self.left = None
-        self.right = None
-        self.val = val
-
-    def insert(self, val):
-        if not self.val:
-            self.val = val
-            return
-
-        if self.val == val:
-            return
-
-        if val < self.val:
-            if self.left:
-                self.left.insert(val)
-                return
-            self.left = BSTNode(val)
-            return
-
-        if self.right:
-            self.right.insert(val)
-            return
-        self.right = BSTNode(val)
-
-
-
-
-#height
-class BSTNode:
-    def height(self):
-        if self.val is None:
-            return 0
-        left_height = 0
-        right_height = 0
-        if self.left is not None:
-            left_height = self.left.height()
-        if self.right is not None:
-            right_height = self.right.height()
-        return max(left_height, right_height) + 1
-
-
-    def __init__(self, val=None):
-        self.left = None
-        self.right = None
-        self.val = val
-
-    def insert(self, val):
-        if not self.val:
-            self.val = val
-            return
-
-        if self.val == val:
-            return
-
-        if val < self.val:
-            if self.left:
-                self.left.insert(val)
-                return
-            self.left = BSTNode(val)
-            return
-
-        if self.right:
-            self.right.insert(val)
-            return
-        self.right = BSTNode(val)
-
-
-#red black tree
-class RBNode:
-    def __init__(self, val):
-        self.red = False
-        self.parent = None
-        self.val = val
-        self.left = None
-        self.right = None
-
-
-class RBTree:
-    def __init__(self):
-        self.nil = RBNode(None)
-        self.nil.red = False
-        self.nil.left = None
-        self.nil.right = None
-        self.root = self.nil
-
-    def insert(self, val):
-        new_node = RBNode(val)
-        new_node.parent = None
-        new_node.left = self.nil
-        new_node.right = self.nil
-        new_node.red = True
-
-        parent = None
-        current = self.root
-        while current != self.nil:
-            parent = current
-            if new_node.val < current.val:
-                current = current.left
-            elif new_node.val > current.val:
-                current = current.right
-            else:
-                # duplicate, just ignore
-                return
-
-        new_node.parent = parent
-        if parent is None:
-            self.root = new_node
-        elif new_node.val < parent.val:
-            parent.left = new_node
-        else:
-            parent.right = new_node
-
-
-#rotation
-class RBNode:
-    def __init__(self, val):
-        self.red = False
-        self.parent = None
-        self.val = val
-        self.left = None
-        self.right = None
-
-
-class RBTree:
-    def __init__(self):
-        self.nil = RBNode(None)
-        self.nil.red = False
-        self.nil.left = None
-        self.nil.right = None
-        self.root = self.nil
-
-    def rotate_left(self, pivot_parent):
-        if pivot_parent == self.nil or pivot_parent.right == self.nil:
-            return
-        pivot = pivot_parent.right
-        pivot_parent.right = pivot.left
-        if pivot.left != self.nil:
-            pivot.left.parent = pivot_parent
-
-        pivot.parent = pivot_parent.parent
-        if pivot_parent.parent is None:
-            self.root = pivot
-        elif pivot_parent == pivot_parent.parent.left:
-            pivot_parent.parent.left = pivot
-        else:
-            pivot_parent.parent.right = pivot
-        pivot.left = pivot_parent
-        pivot_parent.parent = pivot
-
-    def rotate_right(self, pivot_parent):
-        if pivot_parent == self.nil or pivot_parent.left == self.nil:
-            return
-        pivot = pivot_parent.left
-        pivot_parent.left = pivot.right
-        if pivot.right != self.nil:
-            pivot.right.parent = pivot_parent
-
-        pivot.parent = pivot_parent.parent
-        if pivot_parent.parent is None:
-            self.root = pivot
-        elif pivot_parent == pivot_parent.parent.right:
-            pivot_parent.parent.right = pivot
-        else:
-            pivot_parent.parent.left = pivot
-        pivot.right = pivot_parent
-        pivot_parent.parent = pivot
-
-
-    def insert(self, val):
-        new_node = RBNode(val)
-        new_node.parent = None
-        new_node.left = self.nil
-        new_node.right = self.nil
-        new_node.red = True
-
-        parent = None
-        current = self.root
-        while current != self.nil:
-            parent = current
-            if new_node.val < current.val:
-                current = current.left
-            elif new_node.val > current.val:
-                current = current.right
-            else:
-                # duplicate, just ignore
-                return
-
-        new_node.parent = parent
-        if parent is None:
-            self.root = new_node
-        elif new_node.val < parent.val:
-            parent.left = new_node
-        else:
-            parent.right = new_node
-
-
-
-#fix insert
-class RBNode:
-    def __init__(self, val):
-        self.red = False
-        self.parent = None
-        self.val = val
-        self.left = None
-        self.right = None
-
-
-class RBTree:
-    def __init__(self):
-        self.nil = RBNode(None)
-        self.nil.red = False
-        self.nil.left = None
-        self.nil.right = None
-        self.root = self.nil
-
-    def insert(self, val):
-        new_node = RBNode(val)
-        new_node.parent = None
-        new_node.left = self.nil
-        new_node.right = self.nil
-        new_node.red = True
-
-        parent = None
-        current = self.root
-        while current != self.nil:
-            parent = current
-            if new_node.val < current.val:
-                current = current.left
-            elif new_node.val > current.val:
-                current = current.right
-            else:
-                # duplicate, just ignore
-                return
-
-        new_node.parent = parent
-        if parent is None:
-            self.root = new_node
-        elif new_node.val < parent.val:
-            parent.left = new_node
-        else:
-            parent.right = new_node
-
-        self.fix_insert(new_node)
-
-    def fix_insert(self, new_node):
-        while new_node != self.root and new_node.parent.red:
-            parent = new_node.parent
-            grandparent = parent.parent
-            if parent == grandparent.right:
-                uncle = grandparent.left
-                if uncle.red:
-                    uncle.red = False
-                    parent.red = False
-                    grandparent.red = True
-                    new_node = grandparent
-                else:
-                    if new_node == parent.left:
-                        new_node = parent
-                        self.rotate_right(new_node)
-                        parent = new_node.parent
-                    parent.red = False
-                    grandparent.red = True
-                    self.rotate_left(grandparent)
-            else:
-                uncle = grandparent.right
-                if uncle.red:
-                    uncle.red = False
-                    parent.red = False
-                    grandparent.red = True
-                    new_node = grandparent
-                else:
-                    if new_node == parent.right:
-                        new_node = parent
-                        self.rotate_left(new_node)
-                        parent = new_node.parent
-                    parent.red = False
-                    grandparent.red = True
-                    self.rotate_right(grandparent)
-        self.root.red = False
-
-    def exists(self, val):
-        curr = self.root
-        while curr != self.nil and val != curr.val:
-            if val < curr.val:
-                curr = curr.left
-            else:
-                curr = curr.right
-        return curr
-
-    def rotate_left(self, pivot_parent):
-        if pivot_parent == self.nil or pivot_parent.right == self.nil:
-            return
-        pivot = pivot_parent.right
-        pivot_parent.right = pivot.left
-        if pivot.left != self.nil:
-            pivot.left.parent = pivot_parent
-
-        pivot.parent = pivot_parent.parent
-        if pivot_parent.parent is None:
-            self.root = pivot
-        elif pivot_parent == pivot_parent.parent.left:
-            pivot_parent.parent.left = pivot
-        else:
-            pivot_parent.parent.right = pivot
-        pivot.left = pivot_parent
-        pivot_parent.parent = pivot
-
-    def rotate_right(self, pivot_parent):
-        if pivot_parent == self.nil or pivot_parent.left == self.nil:
-            return
-        pivot = pivot_parent.left
-        pivot_parent.left = pivot.right
-        if pivot.right != self.nil:
-            pivot.right.parent = pivot_parent
-
-        pivot.parent = pivot_parent.parent
-        if pivot_parent.parent is None:
-            self.root = pivot
-        elif pivot_parent == pivot_parent.parent.right:
-            pivot_parent.parent.right = pivot
-        else:
-            pivot_parent.parent.left = pivot
-        pivot.right = pivot_parent
-        pivot_parent.parent = pivot
-
-
-
-#hash function
-class HashMap:
-    def key_to_index(self, key):
-        sum = 0
-        for c in key:
-            sum += ord(c)
-        return sum % len(self.hashmap)
-
-    def __init__(self, size):
-        self.hashmap = [None for i in range(size)]
-
-    def __repr__(self):
-        buckets = []
-        for v in self.hashmap:
-            if v != None:
-                buckets.append(v)
-        return str(buckets)
-
-
-#insert
-class HashMap:
-    def insert(self, key, value):
-        i = self.key_to_index(key)
-        self.hashmap[i] = (key, value)
-
-
-    def __init__(self, size):
-        self.hashmap = [None for i in range(size)]
-
-    def key_to_index(self, key):
-        sum = 0
-        for c in key:
-            sum += ord(c)
-        return sum % len(self.hashmap)
-
-    def __repr__(self):
-        final = ""
-        for i, v in enumerate(self.hashmap):
-            if v != None:
-                final += f" - {i}: {str(v)}\n"
-            else:
-                final += f" - {i}: None\n"
-        return final
-
-
-#get
-class HashMap:
-    def get(self, key):
-        i = self.key_to_index(key)
-        bucket = self.hashmap[i]
-        if bucket is None:
-            raise Exception("sorry, key not found")
-        return bucket[1]
-
-
-    def __init__(self, size):
-        self.hashmap = [None for i in range(size)]
-
-    def key_to_index(self, key):
-        sum = 0
-        for c in key:
-            sum += ord(c)
-        return sum % len(self.hashmap)
-
-    def insert(self, key, value):
-        i = self.key_to_index(key)
-        self.hashmap[i] = (key, value)
-
-    def __repr__(self):
-        final = ""
-        for i, v in enumerate(self.hashmap):
-            if v != None:
-                final += f" - {str(v)}\n"
-        return final
-
-
-#resizing
-class HashMap:
-    def insert(self, key, value):
-        self.resize()
-        index = self.key_to_index(key)
-        self.hashmap[index] = (key, value)
-
-    def resize(self):
-        if len(self.hashmap) == 0:
-            self.hashmap = [None]
-            return
-        if self.current_load() < 0.05:
-            return
-        old_hashmap = self.hashmap
-        self.hashmap = [None] * (len(old_hashmap) * 10)
-        for kvp in old_hashmap:
-            if kvp is not None:
-                index = self.key_to_index(kvp[0])
-                self.hashmap[index] = (kvp[0], kvp[1])
-
-    def current_load(self):
-        if len(self.hashmap) == 0:
-            return 1
-        filled_slots = 0
-        for slot in self.hashmap:
-            if slot is not None:
-                filled_slots += 1
-        return filled_slots / len(self.hashmap)
-
-
-    def __init__(self, size):
-        self.hashmap = [None for i in range(size)]
-
-    def key_to_index(self, key):
-        sum = 0
-        for c in key:
-            sum += ord(c)
-        return sum % len(self.hashmap)
-
-    def __repr__(self):
-        final = ""
-        for i, v in enumerate(self.hashmap):
-            if v != None:
-                final += f" - {str(v)}\n"
-        return final
 
 
 
@@ -5455,76 +4345,9 @@ class HashMap:
             if v != None:
                 final += f" - {str(v)}\n"
         return final
+ 
 
 
-#tries
-class Trie:
-    def add(self, word):
-        current = self.root
-        for letter in word:
-            if letter not in current:
-                current[letter] = {}
-            current = current[letter]
-        current[self.end_symbol] = True
-
-    def __init__(self):
-        self.root = {}
-        self.end_symbol = "*"
-
-
-#exists
-class Trie:
-    def exists(self, word):
-        current = self.root
-        for letter in word:
-            if letter not in current:
-                return False
-            current = current[letter]
-        return self.end_symbol in current
-
-    def add(self, word):
-        current = self.root
-        for letter in word:
-            if letter not in current:
-                current[letter] = {}
-            current = current[letter]
-        current[self.end_symbol] = True
-
-    def __init__(self):
-        self.root = {}
-        self.end_symbol = "*"
-
-
-#words with prefix
-class Trie:
-    def search_level(self, current_level, current_prefix, words):
-        if self.end_symbol in current_level:
-            words.append(current_prefix)
-        for letter in sorted(current_level.keys()):
-            if letter != self.end_symbol:
-                self.search_level(current_level[letter], current_prefix + letter, words)
-        return words
-
-    def words_with_prefix(self, prefix):
-        collected_words = []
-        current_level = self.root
-        for letter in prefix:
-            if letter not in current_level:
-                return []
-            current_level = current_level[letter]
-        return self.search_level(current_level, prefix, collected_words)
-
-    def __init__(self):
-        self.root = {}
-        self.end_symbol = "*"
-
-    def add(self, word):
-        current_level = self.root
-        for letter in word:
-            if letter not in current_level:
-                current_level[letter] = {}
-            current_level = current_level[letter]
-        current_level[self.end_symbol] = True
 
 
 #find matches
@@ -5584,51 +4407,8 @@ class Trie:
                 current[letter] = {}
             current = current[letter]
         current[self.end_symbol] = True
-
-
-
-#advanced find matches
-class Trie:
-    def advanced_find_matches(self, document, variations):
-        matches = set()
-        for i in range(len(document)):
-            level = self.root
-            for j in range(i, len(document)):
-                ch = document[j]
-                if ch in variations:
-                    ch = variations[ch]
-                if ch not in level:
-                    break
-                level = level[ch]
-                if self.end_symbol in level:
-                    matches.add(document[i : j + 1])
-        return matches
-
-
-    def find_matches(self, document):
-        matches = set()
-        for i in range(len(document)):
-            level = self.root
-            for j in range(i, len(document)):
-                ch = document[j]
-                if ch not in level:
-                    break
-                level = level[ch]
-                if self.end_symbol in level:
-                    matches.add(document[i : j + 1])
-        return matches
-
-    def add(self, word):
-        current = self.root
-        for letter in word:
-            if letter not in current:
-                current[letter] = {}
-            current = current[letter]
-        current[self.end_symbol] = True
-
-    def __init__(self):
-        self.root = {}
-        self.end_symbol = "*"
+    
+      
 
 
 #graphs
@@ -5654,112 +4434,7 @@ class Graph:
         if v < 0 or v >= len(row1):
             return False
         return self.graph[u][v]
-
-
-#adjacency list
-class Graph:
-    def __init__(self):
-        self.graph = {}
-
-    def add_edge(self, u, v):
-        if u in self.graph.keys():
-            self.graph[u].add(v)
-        else:
-            self.graph[u] = set([v])
-        if v in self.graph.keys():
-            self.graph[v].add(u)
-        else:
-            self.graph[v] = set([u])
-
-    def edge_exists(self, u, v):
-        if u in self.graph and v in self.graph:
-            return (v in self.graph[u]) and (u in self.graph[v])
-        return False
-
-
-#adjacent nodes
-class Graph:
-    def adjacent_nodes(self, node):
-        return self.graph[node]
-
-
-    def __init__(self):
-        self.graph = {}
-
-    def add_edge(self, u, v):
-        if u in self.graph:
-            self.graph[u].add(v)
-        else:
-            self.graph[u] = {v}
-        if v in self.graph:
-            self.graph[v].add(u)
-        else:
-            self.graph[v] = {u}
-
-
-#unconnected vertices
-class Graph:
-    def unconnected_vertices(self):
-        unconnected = []
-        for vertex, connections in self.graph.items():
-            if not connections:
-                unconnected.append(vertex)
-        return unconnected
-
-    def __init__(self):
-        self.graph = {}
-
-    def add_edge(self, u, v):
-        if u in self.graph:
-            self.graph[u].add(v)
-        else:
-            self.graph[u] = {v}
-        if v in self.graph:
-            self.graph[v].add(u)
-        else:
-            self.graph[v] = {u}
-
-    def add_node(self, u):
-        if u not in self.graph:
-            self.graph[u] = set()
-
-
-
-#breadth first search
-class Graph:
-    def breadth_first_search(self, v):
-        visited = []
-        to_visit = []
-        to_visit.append(v)
-        while to_visit:
-            s = to_visit.pop(0)
-            visited.append(s)
-            sorted_neighbors = sorted(self.graph[s])
-            for neighbor in sorted_neighbors:
-                if neighbor not in visited and neighbor not in to_visit:
-                    to_visit.append(neighbor)
-        return visited
-
-    def __init__(self):
-        self.graph = {}
-
-    def add_edge(self, u, v):
-        if u in self.graph.keys():
-            self.graph[u].add(v)
-        else:
-            self.graph[u] = set([v])
-        if v in self.graph.keys():
-            self.graph[v].add(u)
-        else:
-            self.graph[v] = set([u])
-
-    def __repr__(self):
-        result = ""
-        for key in self.graph.keys():
-            result += f"Vertex: '{key}'\n"
-            for v in sorted(self.graph[key]):
-                result += f"has an edge leading to --> {v} \n"
-        return result
+     
 
 
 
@@ -5833,14 +4508,6 @@ def helper(res, arr, n):
     return res
 
 
-#verify tsp
-def verify_tsp(paths, dist, actual_path):
-    total = 0
-    for i in range(len(actual_path)):
-        if i != 0:
-            total += paths[actual_path[i - 1]][actual_path[i]]
-    return total < dist
-
 #verify solutions
 def get_num_guesses(length):
     total = 0
@@ -5883,7 +4550,7 @@ def find_subset_sum(nums, target, index):
     return res or res2
 
 
-#MORE ADVANCED PYTHON METHODS
+#MORE ADVANCED PYTHON METHODS----------
 #REVIEW OF GRAPHS
 class Graph:
     def __init__(self):
@@ -5900,30 +4567,10 @@ class Graph:
             self.graph[v] = set([u])
 
 
-#DIJKSTRAS GET MIN DIST NODE
-def get_min_dist_node(distances, unvisited):
-    min_dist = float("inf")
-    min_dist_node = None
-    for v in unvisited:
-        distance_so_far = distances[v]
-        if distance_so_far < min_dist:
-            min_dist = distance_so_far
-            min_dist_node = v
-    return min_dist_node
 
 
-#DIJKSTRAS GET PATH
-def get_path(dest, predecessors):
-    path = []
-    pred = dest
-    while pred is not None:
-        path.append(pred)
-        pred = predecessors.get(pred, None)
-    path.reverse()
-    return path
 
-
-#DIJKSTARS FULL CODE
+#DIJKSTAS FULL CODE
 def dijkstra(graph, src, dest):
     unvisited = set()
     predecessors = {}
@@ -5974,37 +4621,6 @@ def get_min_dist_node(distances, unvisited):
     return min_dist_node
 
 
-#BELLMAN FORD CODE
-def bellman_ford(graph, src, dest):
-    distances = {}
-    for node in graph:
-        if node == src:
-            distances[node] = 0
-        else:
-            distances[node] = float("inf")
-
-    for _ in range(len(graph) - 1):
-        for node1 in graph:
-            for node2 in graph[node1]:
-                weight = graph[node1][node2]
-                if (
-                    distances[node1] != float("inf")
-                    and distances[node1] + weight < distances[node2]
-                ):
-                    distances[node2] = distances[node1] + weight
-
-    for node1 in graph:
-        for node2 in graph[node1]:
-            weight = graph[node1][node2]
-            if (
-                distances[node1] != float("inf")
-                and distances[node1] + weight < distances[node2]
-            ):
-                raise Exception("negative cycle detected!")
-
-    return distances[dest]
-
-
 
 #PRIORITY QUEUE CODE
 class PriorityQueue:
@@ -6028,35 +4644,6 @@ class PriorityQueue:
         del self.elements[min]
         return item[1]
 
-
-
-#HEAPS
-class MinHeap:
-    def push(self, priority, value):
-        self.elements.append((priority, value))
-        self.bubble_up(len(self.elements) - 1)
-
-    def bubble_up(self, index):
-        if index == 0:
-            return
-        parent_index = (index - 1) // 2
-        parent_priority = self.elements[parent_index][0]
-        index_priority = self.elements[index][0]
-        if parent_priority > index_priority:
-            self.elements[parent_index], self.elements[index] = (
-                self.elements[index],
-                self.elements[parent_index],
-            )
-            self.bubble_up(parent_index)
-
-
-    def __init__(self):
-        self.elements = []
-
-    def peek(self):
-        if len(self.elements) == 0:
-            return None
-        return self.elements[0][1]
 
 
 #POP
@@ -6124,82 +4711,9 @@ class MinHeap:
             return None
         return self.elements[0][1]
 
+   
 
-#TRAFFIC TILES
-import random
-
-
-class Tile:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-    def cost(self):
-        random.seed(hash(self))
-        cost = random.randint(1, 25)
-        return cost
-
-    def __hash__(self):
-        return (self.x * 1000) + self.y
-
-    def __repr__(self):
-        return f"({self.x}, {self.y})"
-
-
-#TRAFFIC GRID
-import random
-
-
-class TrafficGrid:
-    def __init__(self, width, height):
-        self.width = width
-        self.height = height
-
-    def in_bounds(self, tile):
-        return 0 <= tile.x < self.width and 0 <= tile.y < self.height
-
-    def neighbors(self, tile):
-        neighbors = [
-            Tile(tile.x + 1, tile.y),
-            Tile(tile.x - 1, tile.y),
-            Tile(tile.x, tile.y - 1),
-            Tile(tile.x, tile.y + 1),
-        ]
-        results = filter(self.in_bounds, neighbors)
-        return results
-
-
-    def __repr__(self):
-        s = ""
-        for y in range(self.height - 1, -1, -1):
-            for x in range(self.width):
-                t = Tile(x, y)
-                s += f"[{t.cost():02d}]"
-            s += "\n"
-        return s
-
-
-class Tile:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-    def cost(self):
-        random.seed(hash(self))
-        cost = random.randint(1, 25)
-        return cost
-
-    def __eq__(self, other):
-        if other is None:
-            return False
-        else:
-            return self.x == other.x and self.y == other.y
-
-    def __hash__(self):
-        return (self.x * 1000) + self.y
-
-    def __repr__(self):
-        return f"({self.x}, {self.y})"
+ 
 
 
 #A * CODE
@@ -6363,6 +4877,7 @@ def edit_distance(str1, str2):
         edit_distance(str1[:-1], str2[:-1]),  # substitute
     )
 
+#dynamic arrays
 
 #DYNAMIC PROGRAMMING EDIT DISTANCE
 def edit_distance(str1, str2):
@@ -6598,77 +5113,8 @@ class SimplexSolver:
         self.objective.append(0)
 
 
-#THE PIVOT OPERATION
-class SimplexSolver:
-    def pivot(self, pivot_row_idx, pivot_col_idx):
-        pivot_val = self.rows[pivot_row_idx][pivot_col_idx]
-        for i in range(len(self.rows[pivot_row_idx])):
-            self.rows[pivot_row_idx][i] /= pivot_val
-
-        for i in range(len(self.rows)):
-            if i == pivot_row_idx:
-                continue
-            scalar = self.rows[i][pivot_col_idx]
-            for j in range(len(self.rows[i])):
-                self.rows[i][j] -= scalar * self.rows[pivot_row_idx][j]
-
-        scalar = self.objective[pivot_col_idx]
-        for i in range(len(self.objective)):
-            self.objective[i] -= scalar * self.rows[pivot_row_idx][i]
-
-
-    def __init__(self, func_coefficients):
-        self.objective = []
-        for func_coefficient in func_coefficients:
-            self.objective.append(func_coefficient)
-        self.rows = []
-        self.constraints = []
-
-    def add_constraint(self, coefficients, value):
-        row = []
-        for coefficient in coefficients:
-            row.append(coefficient)
-        self.rows.append(row)
-        self.constraints.append(value)
-
-    def get_pivot_col(self):
-        low = 0
-        pivot_idx = -1
-        for i in range(len(self.objective) - 1):
-            if self.objective[i] < low:
-                low = self.objective[i]
-                pivot_idx = i
-        return pivot_idx
-
-    def get_pivot_row(self, col_idx):
-        last_col = [self.rows[i][-1] for i in range(len(self.rows))]
-        pivot_col = [self.rows[i][col_idx] for i in range(len(self.rows))]
-        min_ratio = float("inf")
-        min_ratio_idx = -1
-        for i in range(len(last_col)):
-            ratio = float("inf")
-            if pivot_col[i] != 0:
-                ratio = last_col[i] / pivot_col[i]
-            if ratio < 0:
-                continue
-            if ratio < min_ratio:
-                min_ratio = ratio
-                min_ratio_idx = i
-        if min_ratio_idx == -1:
-            raise Exception("no non-negative ratios, problem doesn't have a solution")
-        return min_ratio_idx
-
-    def add_slack_variables(self):
-        for i in range(len(self.rows)):
-            self.objective.append(0)
-            basic_cols = [0] * len(self.rows)
-            basic_cols[i] = 1
-            basic_cols.append(self.constraints[i])
-            self.rows[i] += basic_cols
-        self.objective.append(0)
-
-
-#SOLVING THE WHOLE SIMPLEX
+       
+  #SOLVING THE WHOLE SIMPLEX
 class SimplexSolver:
     def solve(self):
         self.add_slack_variables()
