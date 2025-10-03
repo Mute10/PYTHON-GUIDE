@@ -1,2 +1,2 @@
-How I fordged my own raw code in 4281 loc
-This is my self-taught journey from day 1 to day 360
+Every snippet in VSCode I wrote with python in my self-taught developer journey.
+I'm no longer pursuing backend development, I switched to Frontend.
